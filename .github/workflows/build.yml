@@ -17,6 +17,16 @@ jobs:
       - name: Install project Qt SDK
         shell: pwsh
         run: ./scripts/bootstrap-qt.ps1
+      - name: Verify offline course and generated pages
+        shell: pwsh
+        run: |
+          python -m pip install -r tools/requirements-docs.txt
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          python tools/render_site.py
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          python tools/verify_docs.py
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          git diff --exit-code -- site
       - name: Configure, build, test
         shell: cmd
         run: scripts\build.cmd

@@ -8,7 +8,7 @@ call "%~dp0vs-env.cmd"
 if errorlevel 1 exit /b 1
 rem Restrict target name to existing executables from this course.
 set "COURSE_KNOWN="
-for %%T in (01_hello 02_counter 03_form 04_editor 05_json 06_model 07_paint 08_worker 09_http 10_sql 11_designer 12_resources 13_quick taskdesk) do if "%COURSE_TARGET%"=="%%T" set "COURSE_KNOWN=1"
+for %%T in (01_hello 02_counter 03_form 04_editor 05_json 06_model 07_paint 08_worker 09_http 10_sql 11_designer 12_resources 13_quick 14_controls 15_settings 16_tcp taskdesk) do if "%COURSE_TARGET%"=="%%T" set "COURSE_KNOWN=1"
 if not defined COURSE_KNOWN exit /b 1
 set "COURSE_EXE=%COURSE_ROOT%\build\Release\%COURSE_TARGET%.exe"
 if "%COURSE_TARGET%"=="taskdesk" set "COURSE_EXE=%COURSE_ROOT%\build\projects\taskdesk\Release\taskdesk.exe"

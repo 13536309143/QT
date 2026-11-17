@@ -1,13 +1,106 @@
-<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>17 · 代理模型、选择、委托与分页 · Qt 6 中文教程</title><link rel="stylesheet" href="style.css"></head><body><header><div class="tag">C++ · QT 6 · 从入门到项目</div><h1>Qt 6 中文学习手册</h1><p>离线阅读 / 配套源码 / 练习验收 / 固定版本可重现</p></header><div class="shell"><nav><input id="search" type="search" placeholder="搜索章节与正文" aria-label="搜索章节"><p><a href="index.html">课程首页</a></p><a href="workbook.html">12 个逐步实操实验</a><a class="chapter" data-i="0" href="00.html">00 · 学习地图：从零到独立开发</a><a class="chapter" data-i="1" href="01.html">01 · 安装与环境：项目内的 Qt 6</a><a class="chapter" data-i="2" href="02.html">02 · C++ 补课一：值、引用、指针和生命周期</a><a class="chapter" data-i="3" href="03.html">03 · C++ 补课二：类、继承、lambda 和工程拆分</a><a class="chapter" data-i="4" href="04.html">04 · CMake：从源码到程序</a><a class="chapter" data-i="5" href="05.html">05 · 第一个窗口与事件循环</a><a class="chapter" data-i="6" href="06.html">06 · QObject、元对象与父子所有权</a><a class="chapter" data-i="7" href="07.html">07 · 信号与槽：把行为连接起来</a><a class="chapter" data-i="8" href="08.html">08 · 布局管理：让界面适应窗口</a><a class="chapter" data-i="9" href="09.html">09 · 表单、输入验证和对话框</a><a class="chapter" data-i="10" href="10.html">10 · 主窗口、菜单、工具栏和快捷键</a><a class="chapter" data-i="11" href="11.html">11 · Qt Designer：可视化设计和 ui 文件</a><a class="chapter" data-i="12" href="12.html">12 · QString、容器、日期和字符编码</a><a class="chapter" data-i="13" href="13.html">13 · 文件、路径与可靠保存</a><a class="chapter" data-i="14" href="14.html">14 · JSON、配置与数据格式演进</a><a class="chapter" data-i="15" href="15.html">15 · 资源系统、QSS 与界面风格</a><a class="chapter" data-i="16" href="16.html">16 · Model/View：列表与表格的核心</a><a class="chapter" data-i="17" href="17.html">17 · 代理模型、选择、委托与分页</a><a class="chapter" data-i="18" href="18.html">18 · 事件系统、定时器和自定义控件</a><a class="chapter" data-i="19" href="19.html">19 · QPainter：坐标、抗锯齿和仪表盘</a><a class="chapter" data-i="20" href="20.html">20 · 多线程：后台任务、取消和退出</a><a class="chapter" data-i="21" href="21.html">21 · HTTP 网络：异步、超时和错误分层</a><a class="chapter" data-i="22" href="22.html">22 · SQLite：连接、SQL、绑定和事务</a><a class="chapter" data-i="23" href="23.html">23 · Qt Quick 与 QML：声明式界面</a><a class="chapter" data-i="24" href="24.html">24 · C++ 与 QML：属性、通知和类型注册</a><a class="chapter" data-i="25" href="25.html">25 · 自动测试：Qt Test、信号和临时数据库</a><a class="chapter" data-i="26" href="26.html">26 · 调试与故障排查：从第一条错误开始</a><a class="chapter" data-i="27" href="27.html">27 · Windows 部署：让程序离开开发机</a><a class="chapter" data-i="28" href="28.html">28 · 综合项目 TaskDesk：需求、架构和数据流</a><a class="chapter" data-i="29" href="29.html">29 · 综合项目 TaskDesk：分阶段扩展作业</a><a class="chapter" data-i="30" href="30.html">30 · 工程习惯、GitHub 准备和协作</a><a class="chapter" data-i="31" href="31.html">31 · 进阶选修：串口、TCP、音视频与国际化</a><a class="chapter" data-i="32" href="32.html">32 · 练习参考答案与最终验收清单</a></nav><main><h1>17 · 代理模型、选择、委托与分页</h1>
-<h2>代理模型改变展示顺序</h2>
-<p>QSortFilterProxyModel 位于原模型与视图之间，负责排序和筛选。代理第 0 行不一定是源模型第 0 行。对业务数据进行修改或删除时，必须 <code>mapToSource</code>，再读取稳定主键操作数据库。</p>
-<pre><code class="language-cpp">QModelIndex source = proxy-&gt;mapToSource(table-&gt;currentIndex());
-if (!source.isValid()) return;
-int id = model-&gt;data(model-&gt;index(source.row(), 0)).toInt();
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>17 · QSettings 与应用路径：记住用户的选择 · Qt 6 中文教程</title><link rel="stylesheet" href="style.css"></head><body><a class="skip-link" href="#content">跳到正文</a><header><div class="tag">C++ · QT 6 · 从入门到项目</div><h1>Qt 6 中文学习手册</h1><p>49 章分阶段学习 / 16 个源码示例 / 18 个逐步实验 / 离线可读</p></header><div class="shell"><nav aria-label="课程导航"><input id="search" type="search" placeholder="搜索章节与正文" aria-label="搜索章节与正文"><p><a href="index.html">课程首页与推荐路线</a><a href="workbook.html">18 个逐步实操实验</a><a href="references.html">官方参考资料</a></p><section class="nav-stage"><h2>一 · 零基础与开发工具</h2><a class="chapter" data-id="00" href="00.html">00 · 学习地图：从零到独立开发</a><a class="chapter" data-id="01" href="01.html">01 · 零基础预备课：读懂一小段 C++</a><a class="chapter" data-id="02" href="02.html">02 · 开发工具入门：Kit、断点与第一次修改</a><a class="chapter" data-id="03" href="03.html">03 · 安装与环境：项目内的 Qt 6</a><a class="chapter" data-id="04" href="04.html">04 · C++ 补课一：值、引用、指针和生命周期</a><a class="chapter" data-id="05" href="05.html">05 · C++ 补课二：类、继承、lambda 和工程拆分</a><a class="chapter" data-id="06" href="06.html">06 · CMake：从源码到程序</a><a class="chapter" data-id="07" href="07.html">07 · 第一个窗口与事件循环</a></section><section class="nav-stage"><h2>二 · 对象、控件与交互</h2><a class="chapter" data-id="08" href="08.html">08 · QObject、元对象与父子所有权</a><a class="chapter" data-id="09" href="09.html">09 · 信号与槽：把行为连接起来</a><a class="chapter" data-id="10" href="10.html">10 · 布局管理：让界面适应窗口</a><a class="chapter" data-id="11" href="11.html">11 · 常用控件详解：选择、输入与状态同步</a><a class="chapter" data-id="12" href="12.html">12 · 表单、输入验证和对话框</a><a class="chapter" data-id="13" href="13.html">13 · 多窗口与对话框：确认、取消和对象寿命</a><a class="chapter" data-id="14" href="14.html">14 · 主窗口、菜单、工具栏和快捷键</a><a class="chapter" data-id="15" href="15.html">15 · Qt Designer：可视化设计和 ui 文件</a><a class="chapter" data-id="16" href="16.html">16 · QString、容器、日期和字符编码</a><a class="chapter active" data-id="17" href="17.html" aria-current="page">17 · QSettings 与应用路径：记住用户的选择</a></section><section class="nav-stage"><h2>三 · 文件、数据与界面机制</h2><a class="chapter" data-id="18" href="18.html">18 · 文件、路径与可靠保存</a><a class="chapter" data-id="19" href="19.html">19 · JSON、配置与数据格式演进</a><a class="chapter" data-id="20" href="20.html">20 · 资源系统、QSS 与界面风格</a><a class="chapter" data-id="21" href="21.html">21 · Model/View：列表与表格的核心</a><a class="chapter" data-id="22" href="22.html">22 · 代理模型、选择、委托与分页</a><a class="chapter" data-id="23" href="23.html">23 · 模型进阶：角色、编辑委托与正确通知</a><a class="chapter" data-id="24" href="24.html">24 · 事件系统、定时器和自定义控件</a><a class="chapter" data-id="25" href="25.html">25 · 事件过滤、焦点与键盘：保留正常交互</a><a class="chapter" data-id="26" href="26.html">26 · QPainter：坐标、抗锯齿和仪表盘</a></section><section class="nav-stage"><h2>四 · 异步、通信与数据库</h2><a class="chapter" data-id="27" href="27.html">27 · 多线程：后台任务、取消和退出</a><a class="chapter" data-id="28" href="28.html">28 · 异步任务设计：状态、取消和过期结果</a><a class="chapter" data-id="29" href="29.html">29 · HTTP 网络：异步、超时和错误分层</a><a class="chapter" data-id="30" href="30.html">30 · TCP 实战：连接、拆包和有限缓冲</a><a class="chapter" data-id="31" href="31.html">31 · SQLite：连接、SQL、绑定和事务</a><a class="chapter" data-id="32" href="32.html">32 · SQLite 进阶：事务、迁移与分页</a></section><section class="nav-stage"><h2>五 · QML 与 C++ 协作</h2><a class="chapter" data-id="33" href="33.html">33 · Qt Quick 与 QML：声明式界面</a><a class="chapter" data-id="34" href="34.html">34 · C++ 与 QML：属性、通知和类型注册</a><a class="chapter" data-id="35" href="35.html">35 · QML 进阶入门：组件、绑定与页面状态</a></section><section class="nav-stage"><h2>六 · 测试、工程与综合项目</h2><a class="chapter" data-id="36" href="36.html">36 · 自动测试：Qt Test、信号和临时数据库</a><a class="chapter" data-id="37" href="37.html">37 · 测试进阶：从规则到真实交互</a><a class="chapter" data-id="38" href="38.html">38 · 调试与故障排查：从第一条错误开始</a><a class="chapter" data-id="39" href="39.html">39 · 性能与内存：先测量，再优化</a><a class="chapter" data-id="40" href="40.html">40 · Windows 部署：让程序离开开发机</a><a class="chapter" data-id="41" href="41.html">41 · 进阶发布：日志、翻译与可交付检查</a><a class="chapter" data-id="42" href="42.html">42 · 综合项目 TaskDesk：需求、架构和数据流</a><a class="chapter" data-id="43" href="43.html">43 · 项目拆分：让窗口不再承担全部业务</a><a class="chapter" data-id="44" href="44.html">44 · 综合项目 TaskDesk：分阶段扩展作业</a><a class="chapter" data-id="45" href="45.html">45 · 工程习惯、GitHub 准备和协作</a><a class="chapter" data-id="46" href="46.html">46 · 进阶选修：串口、TCP、音视频与国际化</a><a class="chapter" data-id="47" href="47.html">47 · 练习参考答案与最终验收清单</a><a class="chapter" data-id="48" href="48.html">48 · 新手答疑、术语表与阶段自测</a></section><p id="search-status" role="status" aria-live="polite"></p></nav><main id="content"><p class="reading-position">二 · 对象、控件与交互 · 推荐路线 18 / 49</p><h1 id="17-qsettings">17 · QSettings 与应用路径：记住用户的选择</h1>
+<p><strong>前置</strong>：第 16 章；路径与文件操作可结合第 18 章学习。<strong>配套</strong>：<code>15_settings</code>。<strong>目标</strong>：保存少量偏好，定位文件，并处理损坏值。</p>
+<h2 id="_1">哪些内容适合保存在哪里</h2>
+<table>
+<thead>
+<tr>
+<th>内容</th>
+<th>推荐方式</th>
+<th>原因</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>主题、语言、上次目录</td>
+<td>QSettings</td>
+<td>少量键值配置</td>
+</tr>
+<tr>
+<td>大量任务与查询</td>
+<td>SQLite</td>
+<td>关系、事务和索引</td>
+</tr>
+<tr>
+<td>可交换的数据</td>
+<td>JSON</td>
+<td>明确格式版本并校验</td>
+</tr>
+<tr>
+<td>可重新生成的缓存</td>
+<td>CacheLocation</td>
+<td>不应当作唯一原始数据</td>
+</tr>
+</tbody>
+</table>
+<p>QSettings 不等于加密保险箱，不保存明文密码和令牌。默认构造的 QSettings 依赖 organizationName、applicationName；Windows 原生格式可能使用注册表。示例故意使用显式 INI 路径，方便初学者观察，不需要猜注册表位置。</p>
+<h2 id="_2">读值不是直接相信文件</h2>
+<pre><code class="language-cpp">QSettings settings(path, QSettings::IniFormat);
+bool ok = false;
+int minutes = settings.value(&quot;study/minutes&quot;, 30).toInt(&amp;ok);
+if (!ok || minutes &lt; 5 || minutes &gt; 120) minutes = 30;
 </code></pre>
-<p>TaskDesk 采用这个流程，防止搜索后删除错误任务。用户清除搜索文本后，原数据还在，因为过滤只改变显示范围，不删除源数据。</p>
-<h2>委托与大数据</h2>
-<p>默认委托能编辑常见类型。对于优先级可继承 QStyledItemDelegate，实现 createEditor、setEditorData、setModelData，提供 QComboBox 或 QSpinBox。不要在每个 cell 上 setIndexWidget 来替代正常委托。</p>
-<p>数据库模型可能分批 fetchMore；rowCount 未必是数据库总行数。本课程 TaskDesk 的状态栏写“已载入”，而不是声称精确总数。大数据中内存代理过滤只能覆盖已载入行，应把筛选条件下推到 SQL，并加 LIMIT/OFFSET 或基于主键的分页；查询参数仍要绑定。</p>
-<p>练习：先创建十条任务，排序、搜索后删除其中一条，确认真正删除的是该主键。验收：无选择时不操作；筛选后删除没有误删；翻页与搜索状态能清楚展示。进阶：把“完成”列改为可勾选显示，而不是 1/0，业务修改仍走仓储接口。</p>
-<p><a href="index.html">返回目录</a></p><div class="pager"><a href="16.html">← 上一章</a><a href="18.html">下一章 →</a></div></main></div><script src="search.js"></script></body></html>
+<p>value 的第二个参数处理键不存在；<code>ok</code> 和范围判断处理“键存在但内容坏了”。示例还用 qBound 限制显示范围，练习时可改成上述严格回退策略，比较输入 abc、-100、999 的结果。</p>
+<p>写入 setValue 后可以 sync，再检查 status，及时告知失败。多个字段的 QSettings 更新不能当作数据库事务；需要整组更新的原子性时改用事务数据库或明确的文件保存策略。</p>
+<h2 id="_3">路径与工作目录</h2>
+<p>QStandardPaths 的 AppConfigLocation 返回当前应用适用的配置目录。先设定应用标识，再查询目录；用 QDir.mkpath 创建它，并处理失败。相对路径相对于进程的工作目录，不一定是 exe 目录，因此不要用 <code>./settings.ini</code> 假设它总在工程根目录。</p>
+<p>程序安装目录可能不可写。saveGeometry/restoreGeometry 保存窗口几何状态；多显示器拔出、缩放改变等条件仍需要手工检查，不能只验证同一桌面重启。</p>
+<h2 id="_4">实际操作</h2>
+<ol>
+<li>运行 <code>scripts\run.cmd 15_settings</code>，记下界面显示的配置文件路径。</li>
+<li>填写姓名和时间，点击保存，再关闭重开。</li>
+<li>关闭程序后用文本编辑器将分钟数改成 999，观察边界策略。</li>
+<li>删除该示例的 INI 副本再重开，确认采用默认值；不要删除 TaskDesk 数据。</li>
+<li>实现“恢复默认但暂不保存”，取消退出后原配置仍保留。</li>
+</ol>
+<p>验收：正常启动使用用户目录，--smoke 不改变真实配置；没有设置键时不崩溃；保存失败有提示。配置只会在点击“保存设置”时写入，关闭窗口本身不会自动保存本例的修改。</p>
+<p>参考：<a href="https://doc.qt.io/qt-6.8/qsettings.html">QSettings</a>、<a href="https://doc.qt.io/qt-6.8/qstandardpaths.html">QStandardPaths</a>。</p>
+<h2 id="_5">配套完整源码</h2>
+<p>在根工程构建本章目标：<code>15_settings</code>。运行 <code>scripts\run.cmd 15_settings</code>。</p>
+<h3 id="maincpp">main.cpp</h3>
+<pre><code class="language-cpp">#include &lt;QtWidgets&gt;
+
+int main(int argc, char **argv) {
+    QApplication app(argc, argv);
+    QCoreApplication::setOrganizationName(&quot;QtLearning&quot;);
+    QCoreApplication::setApplicationName(&quot;SettingsLab&quot;);
+    const bool smoke = app.arguments().contains(&quot;--smoke&quot;);
+    QStandardPaths::setTestModeEnabled(smoke);
+    QTemporaryDir temporary;
+    const QString folder = smoke ? temporary.path() : QStandardPaths::writableLocation(QStandardPaths::AppConfigLocation);
+    if (folder.isEmpty() || !QDir().mkpath(folder)) return 1;
+    // 使用明确路径的 INI，便于观察；启动检查只写临时目录。
+    QSettings settings(QDir(folder).filePath(&quot;preferences.ini&quot;), QSettings::IniFormat);
+    QWidget window;
+    window.setWindowTitle(QStringLiteral(&quot;15 · 配置与恢复&quot;));
+    auto *layout = new QFormLayout(&amp;window);
+    auto *name = new QLineEdit(settings.value(&quot;profile/name&quot;, QString()).toString(), &amp;window);
+    auto *minutes = new QSpinBox(&amp;window);
+    minutes-&gt;setRange(5, 120);
+    minutes-&gt;setValue(qBound(5, settings.value(&quot;study/minutes&quot;, 30).toInt(), 120));
+    auto *save = new QPushButton(QStringLiteral(&quot;保存设置&quot;), &amp;window);
+    auto *status = new QLabel(&amp;window);
+    status-&gt;setWordWrap(true);
+    layout-&gt;addRow(QStringLiteral(&quot;姓名&quot;), name);
+    layout-&gt;addRow(QStringLiteral(&quot;每天分钟数&quot;), minutes);
+    layout-&gt;addRow(save);
+    auto *pathLabel = new QLabel(QStringLiteral(&quot;配置文件：%1&quot;).arg(settings.fileName()), &amp;window);
+    pathLabel-&gt;setWordWrap(true);
+    pathLabel-&gt;setTextInteractionFlags(Qt::TextSelectableByMouse);
+    layout-&gt;addRow(pathLabel);
+    layout-&gt;addRow(status);
+    window.resize(620, 260);
+    window.restoreGeometry(settings.value(&quot;window/geometry&quot;).toByteArray());
+    QObject::connect(save, &amp;QPushButton::clicked, &amp;window, [&amp;] {
+        settings.setValue(&quot;profile/name&quot;, name-&gt;text().trimmed());
+        settings.setValue(&quot;study/minutes&quot;, minutes-&gt;value());
+        settings.setValue(&quot;window/geometry&quot;, window.saveGeometry());
+        settings.sync();
+        status-&gt;setText(settings.status() == QSettings::NoError
+            ? QStringLiteral(&quot;已保存，请关闭后重新打开验证&quot;) : QStringLiteral(&quot;保存失败，请检查路径与权限&quot;));
+    });
+    window.show();
+    if (smoke) QTimer::singleShot(150, &amp;app, &amp;QCoreApplication::quit);
+    return app.exec();
+}
+</code></pre>
+<p><a href="index.html">返回目录</a></p><div class="pager" aria-label="推荐学习顺序"><a href="16.html">← 上一课</a><a href="18.html">下一课 →</a></div></main></div><script src="search.js"></script></body></html>

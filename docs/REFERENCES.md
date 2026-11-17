@@ -15,5 +15,16 @@
 - [Windows 部署](https://doc.qt.io/qt-6.8/windows-deployment.html)
 - [Qt 许可](https://doc.qt.io/qt-6.8/licensing.html)
 - [aqtinstall 使用](https://aqtinstall.readthedocs.io/en/latest/cli.html)
+- [对象树与所有权](https://doc.qt.io/qt-6.8/objecttrees.html)
+- [QDialog 与窗口寿命](https://doc.qt.io/qt-6.8/qdialog.html)
+- [QSettings](https://doc.qt.io/qt-6.8/qsettings.html)
+- [QStandardPaths](https://doc.qt.io/qt-6.8/qstandardpaths.html)
+- [QSignalBlocker](https://doc.qt.io/qt-6.8/qsignalblocker.html)
+- [事件与事件过滤](https://doc.qt.io/qt-6.8/eventsandfilters.html)
+- [QTcpSocket](https://doc.qt.io/qt-6.8/qtcpsocket.html)
+- [模型接口](https://doc.qt.io/qt-6.8/qabstractitemmodel.html)
+- [QML 属性绑定](https://doc.qt.io/qt-6.8/qtqml-syntax-propertybinding.html)
+- [模型自动检查](https://doc.qt.io/qt-6.8/qabstractitemmodeltester.html)
+- [QTest 交互与异步等待](https://doc.qt.io/qt-6.8/qtest.html)
 
 基线资料核对日期：2026-11-17。版本已固定，升级 SDK 时请重新构建、运行测试并复查相应版本的文档。

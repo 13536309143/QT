@@ -2,7 +2,7 @@
 
 一套可以离线阅读、配套编译、逐章练习的 Qt 6 学习项目。以 **C++17 + Qt Widgets** 为主线，包含 **Qt Quick/QML 与 C++ 交互**，最终完成使用 SQLite 保存数据的 **TaskDesk 任务管理器**。
 
-适合有少量 C++ 基础、希望独立开发桌面软件的学习者。刚开始接触 C++ 的读者可以先完成第 02、03 章补课。课程包含 **33 章中文教程、13 个示例、1 个综合项目和 Qt Test 自动测试**。串口、TCP、音视频与国际化提供选修路线，不冒充已经实现的完整硬件案例。
+适合刚接触 Qt、希望逐步独立开发桌面软件的学习者。没有 C++ 基础时先读第 01 章，再完成第 04、05 章补课；第 02 章讲解 Kit、编辑器、构建与断点。课程包含 **49 章中文教程、16 个示例、1 个综合项目和 Qt Test 自动测试**。串口、TCP、音视频与国际化提供选修路线，不冒充已经实现的完整硬件案例。
 
 ## 从这里开始
 
@@ -10,7 +10,15 @@
 - **GitHub 在线阅读**：[完整章节目录](docs/00-目录.md)。GitHub 仓库页面通常不会直接执行 HTML，请在线读 Markdown，或下载后打开网页。
 - **先运行示例**：按下方步骤安装环境、构建，然后启动 `01_hello`。
 
-- **逐步实操**：[12 个详细实验](docs/WORKBOOK.md)，覆盖搭建新目标、取消保存、线程退出、数据库事务、QML 绑定和部署验收。
+- **逐步实操**：[18 个详细实验](docs/WORKBOOK.md)，覆盖搭建新目标、取消保存、线程退出、数据库事务、QML 绑定和部署验收。
+
+## 新手推荐路线
+
+按 [六阶段目录](docs/00-目录.md) 学习，章节已按学习顺序连续编号为 00～48，目录、文件名和离线页面保持一致。先读预备课与工具入门，再学对象、控件和布局，随后学习文件与模型、异步与通信、QML，最后进入测试和项目扩展。每章先运行，再修改，最后验证正常、边界和失败路径。
+
+示例目标名（如 `01_hello`、`14_controls`）使用独立编号，运行命令按示例名称使用；它们不代表章节号。
+
+新增章节覆盖常用控件、多窗口、QSettings、焦点和事件过滤、TCP 拆包、模型委托、异步状态、SQLite 迁移、QML 组件、交互测试、架构、性能、日志与发布，并附术语答疑。高级章节中的设计片段会明确前提，不代表现有 TaskDesk 已实现全部扩展。
 
 ## 环境基线
 
@@ -45,7 +53,7 @@ $env:QT_ROOT = Read-Host '请输入 Qt 6 SDK 根目录'
 scripts/build.cmd
 ```
 
-脚本只修改当前进程环境，不永久覆盖系统 PATH。更多配置解释见 [环境安装章节](docs/01.md)。
+脚本只修改当前进程环境，不永久覆盖系统 PATH。更多配置解释见 [环境安装章节](docs/03.md)。
 
 ## 一键构建、测试与运行
 
@@ -86,6 +94,9 @@ Qt Creator 用户打开根目录 `CMakeLists.txt`，选择 SDK 中的 qmake 与 
 | 11_designer | 可视化表单 | .ui、AUTOUIC |
 | 12_resources | 资源与样式 | .qrc、AUTORCC、QSS |
 | 13_quick | QML + C++ | 属性、NOTIFY、QML_ELEMENT |
+| 14_controls | 常用控件与同步 | 输入、选择、QSignalBlocker |
+| 15_settings | 配置保存与恢复 | QSettings、用户路径、默认值 |
+| 16_tcp | 本机 TCP 回显 | 异步 socket、拆帧、缓冲上限 |
 | taskdesk | 综合任务管理器 | SQLite、搜索、主键操作、持久化 |
 
 网络例子默认请求本地测试服务，在另一个终端运行：
@@ -100,7 +111,7 @@ TaskDesk 数据保存在 `QStandardPaths::AppDataLocation` 对应用户目录，
 
 C++ 必要基础 → 工具链与 CMake → QObject 与信号槽 → Widgets 布局和表单 → Designer → 文件/JSON/设置/资源 → Model/View → 事件和绘图 → 多线程 → 网络 → SQLite → QML 与 C++ → 自动测试 → 调试与部署 → 综合项目扩展。
 
-每章包含概念、操作或源码分析、练习及验收要点。建议用 12 周完成主线，每天 60~90 分钟。[查看全部 33 章](docs/00-目录.md) · [官方参考](docs/REFERENCES.md)。
+每章包含概念、操作或源码分析、练习及验收要点。建议用 12 周完成主线，零基础可放慢预备课和控件阶段的进度，每天 60~90 分钟。[查看全部 49 章](docs/00-目录.md) · [官方参考](docs/REFERENCES.md)。
 
 ## 验证与分发
 
@@ -111,14 +122,14 @@ scripts/deploy.cmd 01_hello
 scripts/deploy.cmd taskdesk
 ```
 
-测试覆盖标题边界、引号、CRUD、磁盘重开与异步信号。check 脚本对全部 14 个应用执行自动退出启动检查；它不能替代真实交互验收。deploy 生成 `dist/<目标>/` 并调用本项目 Qt 的 windeployqt。分发目录包含 MSVC 运行库安装程序 `vc_redist.x64.exe`，目标机器缺少运行库时先安装它。分发前仍需在干净 Windows 环境验证，并核对第三方许可。
+测试覆盖标题边界、引号、CRUD、磁盘重开与异步信号，以及 TCP 半包、粘包、UTF-8 分段、帧长边界和真实回环往返。check 脚本对全部 17 个应用执行自动退出启动检查；它不能替代真实交互验收。deploy 生成 `dist/<目标>/` 并调用本项目 Qt 的 windeployqt。分发目录包含 MSVC 运行库安装程序 `vc_redist.x64.exe`，目标机器缺少运行库时先安装它。分发前仍需在干净 Windows 环境验证，并核对第三方许可。
 
 ## 项目结构
 
 ```text
 docs/                    中文 Markdown 课程、参考与验证记录
 site/                    无外部依赖的离线网页
-examples/                13 个配套示例
+examples/                16 个配套示例
 projects/taskdesk/       综合项目与可测试仓储
 tests/                   Qt Test 测试
 scripts/                 安装、构建、运行、部署和检查脚本
@@ -136,6 +147,18 @@ dist/                    应用分发包（忽略）
 仓库包含 MIT License、第三方依赖说明、忽略规则、贡献说明、发布清单和 Windows CI 工作流。测试基线见 [验证记录](docs/VALIDATION.md)，仓库发布与维护步骤见 [PUBLISHING.md](PUBLISHING.md)。GitHub Actions 的执行结果以仓库中的实际运行记录为准。
 
 课程的验证平台是 Windows x64/MSVC。Linux/macOS 需要另外配置工具链并完成验证。
+
+## 更新离线教程
+
+Markdown 为编辑源，网页从它生成：
+
+```powershell
+.tools\Scripts\python.exe -m pip install -r tools/requirements-docs.txt
+.tools\Scripts\python.exe tools/render_site.py
+.tools\Scripts\python.exe tools/verify_docs.py
+```
+
+阶段顺序定义在 tools/course.json，首页、侧栏、搜索及前后翻页使用同一份路线。生成器不会改写 Markdown 源文件。配置示例只在点击保存时写入偏好；--smoke 使用临时目录。TCP 示例只监听本机，不依赖外网或额外 Qt 模块。
 
 ## 许可
 

@@ -1,9 +1,138 @@
-<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>30 · 工程习惯、GitHub 准备和协作 · Qt 6 中文教程</title><link rel="stylesheet" href="style.css"></head><body><header><div class="tag">C++ · QT 6 · 从入门到项目</div><h1>Qt 6 中文学习手册</h1><p>离线阅读 / 配套源码 / 练习验收 / 固定版本可重现</p></header><div class="shell"><nav><input id="search" type="search" placeholder="搜索章节与正文" aria-label="搜索章节"><p><a href="index.html">课程首页</a></p><a href="workbook.html">12 个逐步实操实验</a><a class="chapter" data-i="0" href="00.html">00 · 学习地图：从零到独立开发</a><a class="chapter" data-i="1" href="01.html">01 · 安装与环境：项目内的 Qt 6</a><a class="chapter" data-i="2" href="02.html">02 · C++ 补课一：值、引用、指针和生命周期</a><a class="chapter" data-i="3" href="03.html">03 · C++ 补课二：类、继承、lambda 和工程拆分</a><a class="chapter" data-i="4" href="04.html">04 · CMake：从源码到程序</a><a class="chapter" data-i="5" href="05.html">05 · 第一个窗口与事件循环</a><a class="chapter" data-i="6" href="06.html">06 · QObject、元对象与父子所有权</a><a class="chapter" data-i="7" href="07.html">07 · 信号与槽：把行为连接起来</a><a class="chapter" data-i="8" href="08.html">08 · 布局管理：让界面适应窗口</a><a class="chapter" data-i="9" href="09.html">09 · 表单、输入验证和对话框</a><a class="chapter" data-i="10" href="10.html">10 · 主窗口、菜单、工具栏和快捷键</a><a class="chapter" data-i="11" href="11.html">11 · Qt Designer：可视化设计和 ui 文件</a><a class="chapter" data-i="12" href="12.html">12 · QString、容器、日期和字符编码</a><a class="chapter" data-i="13" href="13.html">13 · 文件、路径与可靠保存</a><a class="chapter" data-i="14" href="14.html">14 · JSON、配置与数据格式演进</a><a class="chapter" data-i="15" href="15.html">15 · 资源系统、QSS 与界面风格</a><a class="chapter" data-i="16" href="16.html">16 · Model/View：列表与表格的核心</a><a class="chapter" data-i="17" href="17.html">17 · 代理模型、选择、委托与分页</a><a class="chapter" data-i="18" href="18.html">18 · 事件系统、定时器和自定义控件</a><a class="chapter" data-i="19" href="19.html">19 · QPainter：坐标、抗锯齿和仪表盘</a><a class="chapter" data-i="20" href="20.html">20 · 多线程：后台任务、取消和退出</a><a class="chapter" data-i="21" href="21.html">21 · HTTP 网络：异步、超时和错误分层</a><a class="chapter" data-i="22" href="22.html">22 · SQLite：连接、SQL、绑定和事务</a><a class="chapter" data-i="23" href="23.html">23 · Qt Quick 与 QML：声明式界面</a><a class="chapter" data-i="24" href="24.html">24 · C++ 与 QML：属性、通知和类型注册</a><a class="chapter" data-i="25" href="25.html">25 · 自动测试：Qt Test、信号和临时数据库</a><a class="chapter" data-i="26" href="26.html">26 · 调试与故障排查：从第一条错误开始</a><a class="chapter" data-i="27" href="27.html">27 · Windows 部署：让程序离开开发机</a><a class="chapter" data-i="28" href="28.html">28 · 综合项目 TaskDesk：需求、架构和数据流</a><a class="chapter" data-i="29" href="29.html">29 · 综合项目 TaskDesk：分阶段扩展作业</a><a class="chapter" data-i="30" href="30.html">30 · 工程习惯、GitHub 准备和协作</a><a class="chapter" data-i="31" href="31.html">31 · 进阶选修：串口、TCP、音视频与国际化</a><a class="chapter" data-i="32" href="32.html">32 · 练习参考答案与最终验收清单</a></nav><main><h1>30 · 工程习惯、GitHub 准备和协作</h1>
-<h2>什么应该进仓库</h2>
-<p>提交教程 Markdown、离线网页、C++/QML/ui/qrc 源码、CMake、脚本、测试和工作流。忽略 sdk、.tools、build、dist、IDE 用户配置、日志和实际数据库。CMakeUserPresets 用于个人机器，不提交私有绝对路径。</p>
-<p>README 必须让第一次访问的人知道这是什么、适合谁、版本要求、安装命令、如何构建和运行、从哪章开始、许可是什么。把演示限制诚实写出来，不添加尚未运行的 CI 通过徽章，不编造仓库地址或作者身份。</p>
-<h2>本地检查到公开发布</h2>
-<p>发布时先新建空仓库，再检查 git status、git diff --cached --stat，确认暂存内容完整且不含 SDK 与私人数据，最后设置远程地址并 push。发布操作示例放在 PUBLISHING.md，命令中的占位符必须替换。</p>
-<p>CI 在 Windows runner 上安装固定 Qt，构建全部示例并执行测试。工作流成功需要实际 GitHub 运行才能确认；本地通过不能冒充远程已通过。离线教程可直接阅读；若以后使用 GitHub Pages，需要选择部署站点内容，不必把 SDK 暴露到网页目录。</p>
-<p>练习：让一位没有接触项目的人只读 README，尝试构建首个例子，把他遇到的问题加入文档。验收：仓库源码体积合理，所有相对链接有效，命令可在仓库根目录直接执行。</p>
-<p><a href="index.html">返回目录</a></p><div class="pager"><a href="29.html">← 上一章</a><a href="31.html">下一章 →</a></div></main></div><script src="search.js"></script></body></html>
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>30 · TCP 实战：连接、拆包和有限缓冲 · Qt 6 中文教程</title><link rel="stylesheet" href="style.css"></head><body><a class="skip-link" href="#content">跳到正文</a><header><div class="tag">C++ · QT 6 · 从入门到项目</div><h1>Qt 6 中文学习手册</h1><p>49 章分阶段学习 / 16 个源码示例 / 18 个逐步实验 / 离线可读</p></header><div class="shell"><nav aria-label="课程导航"><input id="search" type="search" placeholder="搜索章节与正文" aria-label="搜索章节与正文"><p><a href="index.html">课程首页与推荐路线</a><a href="workbook.html">18 个逐步实操实验</a><a href="references.html">官方参考资料</a></p><section class="nav-stage"><h2>一 · 零基础与开发工具</h2><a class="chapter" data-id="00" href="00.html">00 · 学习地图：从零到独立开发</a><a class="chapter" data-id="01" href="01.html">01 · 零基础预备课：读懂一小段 C++</a><a class="chapter" data-id="02" href="02.html">02 · 开发工具入门：Kit、断点与第一次修改</a><a class="chapter" data-id="03" href="03.html">03 · 安装与环境：项目内的 Qt 6</a><a class="chapter" data-id="04" href="04.html">04 · C++ 补课一：值、引用、指针和生命周期</a><a class="chapter" data-id="05" href="05.html">05 · C++ 补课二：类、继承、lambda 和工程拆分</a><a class="chapter" data-id="06" href="06.html">06 · CMake：从源码到程序</a><a class="chapter" data-id="07" href="07.html">07 · 第一个窗口与事件循环</a></section><section class="nav-stage"><h2>二 · 对象、控件与交互</h2><a class="chapter" data-id="08" href="08.html">08 · QObject、元对象与父子所有权</a><a class="chapter" data-id="09" href="09.html">09 · 信号与槽：把行为连接起来</a><a class="chapter" data-id="10" href="10.html">10 · 布局管理：让界面适应窗口</a><a class="chapter" data-id="11" href="11.html">11 · 常用控件详解：选择、输入与状态同步</a><a class="chapter" data-id="12" href="12.html">12 · 表单、输入验证和对话框</a><a class="chapter" data-id="13" href="13.html">13 · 多窗口与对话框：确认、取消和对象寿命</a><a class="chapter" data-id="14" href="14.html">14 · 主窗口、菜单、工具栏和快捷键</a><a class="chapter" data-id="15" href="15.html">15 · Qt Designer：可视化设计和 ui 文件</a><a class="chapter" data-id="16" href="16.html">16 · QString、容器、日期和字符编码</a><a class="chapter" data-id="17" href="17.html">17 · QSettings 与应用路径：记住用户的选择</a></section><section class="nav-stage"><h2>三 · 文件、数据与界面机制</h2><a class="chapter" data-id="18" href="18.html">18 · 文件、路径与可靠保存</a><a class="chapter" data-id="19" href="19.html">19 · JSON、配置与数据格式演进</a><a class="chapter" data-id="20" href="20.html">20 · 资源系统、QSS 与界面风格</a><a class="chapter" data-id="21" href="21.html">21 · Model/View：列表与表格的核心</a><a class="chapter" data-id="22" href="22.html">22 · 代理模型、选择、委托与分页</a><a class="chapter" data-id="23" href="23.html">23 · 模型进阶：角色、编辑委托与正确通知</a><a class="chapter" data-id="24" href="24.html">24 · 事件系统、定时器和自定义控件</a><a class="chapter" data-id="25" href="25.html">25 · 事件过滤、焦点与键盘：保留正常交互</a><a class="chapter" data-id="26" href="26.html">26 · QPainter：坐标、抗锯齿和仪表盘</a></section><section class="nav-stage"><h2>四 · 异步、通信与数据库</h2><a class="chapter" data-id="27" href="27.html">27 · 多线程：后台任务、取消和退出</a><a class="chapter" data-id="28" href="28.html">28 · 异步任务设计：状态、取消和过期结果</a><a class="chapter" data-id="29" href="29.html">29 · HTTP 网络：异步、超时和错误分层</a><a class="chapter active" data-id="30" href="30.html" aria-current="page">30 · TCP 实战：连接、拆包和有限缓冲</a><a class="chapter" data-id="31" href="31.html">31 · SQLite：连接、SQL、绑定和事务</a><a class="chapter" data-id="32" href="32.html">32 · SQLite 进阶：事务、迁移与分页</a></section><section class="nav-stage"><h2>五 · QML 与 C++ 协作</h2><a class="chapter" data-id="33" href="33.html">33 · Qt Quick 与 QML：声明式界面</a><a class="chapter" data-id="34" href="34.html">34 · C++ 与 QML：属性、通知和类型注册</a><a class="chapter" data-id="35" href="35.html">35 · QML 进阶入门：组件、绑定与页面状态</a></section><section class="nav-stage"><h2>六 · 测试、工程与综合项目</h2><a class="chapter" data-id="36" href="36.html">36 · 自动测试：Qt Test、信号和临时数据库</a><a class="chapter" data-id="37" href="37.html">37 · 测试进阶：从规则到真实交互</a><a class="chapter" data-id="38" href="38.html">38 · 调试与故障排查：从第一条错误开始</a><a class="chapter" data-id="39" href="39.html">39 · 性能与内存：先测量，再优化</a><a class="chapter" data-id="40" href="40.html">40 · Windows 部署：让程序离开开发机</a><a class="chapter" data-id="41" href="41.html">41 · 进阶发布：日志、翻译与可交付检查</a><a class="chapter" data-id="42" href="42.html">42 · 综合项目 TaskDesk：需求、架构和数据流</a><a class="chapter" data-id="43" href="43.html">43 · 项目拆分：让窗口不再承担全部业务</a><a class="chapter" data-id="44" href="44.html">44 · 综合项目 TaskDesk：分阶段扩展作业</a><a class="chapter" data-id="45" href="45.html">45 · 工程习惯、GitHub 准备和协作</a><a class="chapter" data-id="46" href="46.html">46 · 进阶选修：串口、TCP、音视频与国际化</a><a class="chapter" data-id="47" href="47.html">47 · 练习参考答案与最终验收清单</a><a class="chapter" data-id="48" href="48.html">48 · 新手答疑、术语表与阶段自测</a></section><p id="search-status" role="status" aria-live="polite"></p></nav><main id="content"><p class="reading-position">四 · 异步、通信与数据库 · 推荐路线 31 / 49</p><h1 id="30-tcp">30 · TCP 实战：连接、拆包和有限缓冲</h1>
+<p><strong>前置</strong>：第 24、29 章。<strong>配套</strong>：<code>16_tcp</code>。<strong>目标</strong>：不依赖外网和硬件，完成本机按行回显通信。</p>
+<h2 id="_1">先写协议，再连接信号</h2>
+<p>本例协议：一条消息是最多 1024 字节的 UTF-8 文本，紧跟一个 LF 字节 <code>\n</code>；内容不能含 LF，不把 CRLF 自动解释为同一种结尾。空帧在拆帧层允许，但示例发送界面拒绝空输入。字节数限制不同于 QString 字符数，中文通常占多个 UTF-8 字节。</p>
+<p>TCP 保证有序字节流，不保证一次 write 对应一次 readyRead。两次发送可能一起到达，一次发送也可能分几次收到；readAll 返回“当前可读数据”，没有“完整业务消息”的保证。</p>
+<h2 id="_2">三个对象各司其职</h2>
+<p>QTcpServer 监听回环地址；服务端每条连接由独立 QTcpSocket 处理；客户端也有自己的 QTcpSocket。端口 0 让系统分配可用端口，再从 serverPort 读取，因此无需手动占固定端口。程序只接受本机连接，不是公开网络服务。</p>
+<p>socket 通过 connected、readyRead、disconnected、errorOccurred 通知状态。GUI 线程中不调用 waitForConnected/waitForReadyRead 阻塞等待；监听和连接失败应反馈，不应直接当作“没有收到任何消息”。</p>
+<h2 id="_3">拆帧器怎么工作</h2>
+<p>阅读 <code>examples/16_tcp/lineprotocol.h</code>：非换行字节先存入 buffer_，收到 LF 才输出完整行并清空缓存。一次输入包含两条完整消息就输出两条；只收到半条则留待下一次。只在取出完整帧后 fromUtf8，避免把多字节中文在中间切断后分别解码。</p>
+<p>上限检查在继续追加之前进行，因此未闭合的超长帧会失败。窗口示例按 4096 字节读取，限制 socket 接收缓存和服务端待发送量，并限制日志行数。生产协议还要考虑连接总数、速率、握手和身份验证，本例不实现这些网络服务要求。</p>
+<h2 id="_4">操作与错误路径</h2>
+<ol>
+<li>运行 <code>scripts\run.cmd 16_tcp</code>，看到“已连接”后发送中文。</li>
+<li>阅读客户端 write 与服务端回写，标出请求和响应方向。</li>
+<li>在协议测试中将一行拆成两段输入，结果只在第二段出现。</li>
+<li>再把两行合成一次输入，应该得到两条结果。</li>
+<li>删除服务端的回写语句做故障实验，3 秒后客户端应超时并终止连接；完成后恢复源码。</li>
+</ol>
+<p>write 成功只表示数据被本地接口接受，不等于对方业务已经处理。本例通过收到回显才结束等待；超时后会中止连接，重试需重新运行示例。--smoke 只检查启动，真实拆包与长度规则由单独测试验证。</p>
+<p>验收：GUI 不被阻塞；中文可来回传输；半包、粘包和超长输入有明确行为。下一步可以设计带 requestId 的 JSON 行协议，但仍应先限制帧大小再解析。</p>
+<p>参考：<a href="https://doc.qt.io/qt-6.8/qtcpsocket.html">QTcpSocket</a>、<a href="https://doc.qt.io/qt-6.8/qtcpserver.html">QTcpServer</a>。</p>
+<h2 id="_5">配套完整源码</h2>
+<p>在根工程构建本章目标：<code>16_tcp</code>。运行 <code>scripts\run.cmd 16_tcp</code>。</p>
+<h3 id="lineprotocolh">lineprotocol.h</h3>
+<pre><code class="language-cpp">#pragma once
+#include &lt;QByteArray&gt;
+#include &lt;QList&gt;
+
+// 无网络依赖的协议层：只负责拆帧，便于测试拆包、粘包与长度限制。
+class LineProtocol {
+public:
+    static constexpr int MaxPayload = 1024;
+    bool feed(const QByteArray &amp;bytes, QList&lt;QByteArray&gt; &amp;lines) {
+        // 调用者按有界块读取，避免一次缓存任意大小的数据。
+        for (char byte : bytes) {
+            if (byte == '\n') {
+                lines.append(buffer_);
+                buffer_.clear();
+            } else {
+                if (buffer_.size() &gt;= MaxPayload) { buffer_.clear(); return false; }
+                buffer_.append(byte);
+            }
+        }
+        return true;
+    }
+private:
+    QByteArray buffer_;
+};
+</code></pre>
+<h3 id="maincpp">main.cpp</h3>
+<pre><code class="language-cpp">#include &lt;QtWidgets&gt;
+#include &lt;QtNetwork&gt;
+#include &lt;memory&gt;
+#include &quot;lineprotocol.h&quot;
+
+int main(int argc, char **argv) {
+    QApplication app(argc, argv);
+    QWidget window;
+    window.setWindowTitle(QStringLiteral(&quot;16 · 本机 TCP 按行通信&quot;));
+    auto *layout = new QVBoxLayout(&amp;window);
+    auto *input = new QLineEdit(QStringLiteral(&quot;你好，TCP&quot;), &amp;window);
+    auto *send = new QPushButton(QStringLiteral(&quot;发送一行&quot;), &amp;window);
+    auto *log = new QPlainTextEdit(&amp;window);
+    log-&gt;setReadOnly(true);
+    log-&gt;document()-&gt;setMaximumBlockCount(200);
+    layout-&gt;addWidget(input); layout-&gt;addWidget(send); layout-&gt;addWidget(log);
+    QTcpServer server;
+    QTcpSocket client;
+    LineProtocol clientProtocol;
+    bool pending = false;
+    QTimer deadline;
+    deadline.setSingleShot(true);
+    deadline.setInterval(3000);
+    send-&gt;setEnabled(false);
+    QObject::connect(&amp;server, &amp;QTcpServer::newConnection, &amp;window, [&amp;] {
+        while (server.hasPendingConnections()) {
+            auto *peer = server.nextPendingConnection();
+            peer-&gt;setReadBufferSize(4096);
+            auto protocol = std::make_shared&lt;LineProtocol&gt;();
+            QObject::connect(peer, &amp;QTcpSocket::readyRead, peer, [peer, protocol] {
+                QList&lt;QByteArray&gt; lines;
+                while (peer-&gt;bytesAvailable() &gt; 0) {
+                    if (!protocol-&gt;feed(peer-&gt;read(4096), lines)) { peer-&gt;abort(); return; }
+                    for (const auto &amp;line : lines) {
+                        if (peer-&gt;bytesToWrite() &gt; 65536) { peer-&gt;abort(); return; }
+                        peer-&gt;write(line + '\n');
+                    }
+                    lines.clear();
+                }
+            });
+            QObject::connect(peer, &amp;QTcpSocket::disconnected, peer, &amp;QObject::deleteLater);
+        }
+    });
+    QObject::connect(&amp;client, &amp;QTcpSocket::connected, &amp;window, [&amp;] {
+        log-&gt;appendPlainText(QStringLiteral(&quot;已连接本机回显服务&quot;)); send-&gt;setEnabled(true);
+    });
+    QObject::connect(&amp;client, &amp;QTcpSocket::readyRead, &amp;window, [&amp;] {
+        QList&lt;QByteArray&gt; lines;
+        while (client.bytesAvailable() &gt; 0) {
+            if (!clientProtocol.feed(client.read(4096), lines)) { client.abort(); return; }
+            for (const auto &amp;line : lines) log-&gt;appendPlainText(QStringLiteral(&quot;收到：%1&quot;).arg(QString::fromUtf8(line)));
+            if (!lines.isEmpty()) { pending = false; deadline.stop(); send-&gt;setEnabled(true); }
+            lines.clear();
+        }
+    });
+    QObject::connect(&amp;client, &amp;QTcpSocket::errorOccurred, &amp;window, [&amp;](QAbstractSocket::SocketError) {
+        deadline.stop(); pending = false; send-&gt;setEnabled(false); log-&gt;appendPlainText(client.errorString());
+    });
+    QObject::connect(&amp;client, &amp;QTcpSocket::disconnected, &amp;window, [&amp;] { send-&gt;setEnabled(false); });
+    QObject::connect(&amp;deadline, &amp;QTimer::timeout, &amp;window, [&amp;] {
+        log-&gt;appendPlainText(QStringLiteral(&quot;响应超时，本次连接终止&quot;)); pending = false; client.abort(); send-&gt;setEnabled(false);
+    });
+    QObject::connect(send, &amp;QPushButton::clicked, &amp;window, [&amp;] {
+        const QByteArray bytes = input-&gt;text().toUtf8();
+        if (pending || bytes.isEmpty() || bytes.size() &gt; LineProtocol::MaxPayload || bytes.contains('\n')) {
+            log-&gt;appendPlainText(QStringLiteral(&quot;请输入 1~1024 字节、不含换行的 UTF-8 文本&quot;)); return;
+        }
+        if (client.write(bytes + '\n') == -1) { log-&gt;appendPlainText(client.errorString()); return; }
+        pending = true; send-&gt;setEnabled(false); deadline.start();
+    });
+    // 只监听回环地址，端口 0 由操作系统分配，不占用固定课程端口。
+    if (!server.listen(QHostAddress::LocalHost, 0)) return 1;
+    client.setReadBufferSize(4096);
+    client.connectToHost(QHostAddress::LocalHost, server.serverPort());
+    window.resize(620, 360); window.show();
+    if (app.arguments().contains(&quot;--smoke&quot;)) QTimer::singleShot(300, &amp;app, &amp;QCoreApplication::quit);
+    const int result = app.exec();
+    // 在局部状态析构前断开窗口回调，再主动终止连接。
+    QObject::disconnect(&amp;client, nullptr, &amp;window, nullptr);
+    QObject::disconnect(&amp;server, nullptr, &amp;window, nullptr);
+    QObject::disconnect(&amp;deadline, nullptr, &amp;window, nullptr);
+    client.abort();
+    server.close();
+    return result;
+}
+</code></pre>
+<p><a href="index.html">返回目录</a></p><div class="pager" aria-label="推荐学习顺序"><a href="29.html">← 上一课</a><a href="31.html">下一课 →</a></div></main></div><script src="search.js"></script></body></html>

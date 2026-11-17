@@ -1,20 +1,55 @@
-<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>02 · C++ 补课一：值、引用、指针和生命周期 · Qt 6 中文教程</title><link rel="stylesheet" href="style.css"></head><body><header><div class="tag">C++ · QT 6 · 从入门到项目</div><h1>Qt 6 中文学习手册</h1><p>离线阅读 / 配套源码 / 练习验收 / 固定版本可重现</p></header><div class="shell"><nav><input id="search" type="search" placeholder="搜索章节与正文" aria-label="搜索章节"><p><a href="index.html">课程首页</a></p><a href="workbook.html">12 个逐步实操实验</a><a class="chapter" data-i="0" href="00.html">00 · 学习地图：从零到独立开发</a><a class="chapter" data-i="1" href="01.html">01 · 安装与环境：项目内的 Qt 6</a><a class="chapter" data-i="2" href="02.html">02 · C++ 补课一：值、引用、指针和生命周期</a><a class="chapter" data-i="3" href="03.html">03 · C++ 补课二：类、继承、lambda 和工程拆分</a><a class="chapter" data-i="4" href="04.html">04 · CMake：从源码到程序</a><a class="chapter" data-i="5" href="05.html">05 · 第一个窗口与事件循环</a><a class="chapter" data-i="6" href="06.html">06 · QObject、元对象与父子所有权</a><a class="chapter" data-i="7" href="07.html">07 · 信号与槽：把行为连接起来</a><a class="chapter" data-i="8" href="08.html">08 · 布局管理：让界面适应窗口</a><a class="chapter" data-i="9" href="09.html">09 · 表单、输入验证和对话框</a><a class="chapter" data-i="10" href="10.html">10 · 主窗口、菜单、工具栏和快捷键</a><a class="chapter" data-i="11" href="11.html">11 · Qt Designer：可视化设计和 ui 文件</a><a class="chapter" data-i="12" href="12.html">12 · QString、容器、日期和字符编码</a><a class="chapter" data-i="13" href="13.html">13 · 文件、路径与可靠保存</a><a class="chapter" data-i="14" href="14.html">14 · JSON、配置与数据格式演进</a><a class="chapter" data-i="15" href="15.html">15 · 资源系统、QSS 与界面风格</a><a class="chapter" data-i="16" href="16.html">16 · Model/View：列表与表格的核心</a><a class="chapter" data-i="17" href="17.html">17 · 代理模型、选择、委托与分页</a><a class="chapter" data-i="18" href="18.html">18 · 事件系统、定时器和自定义控件</a><a class="chapter" data-i="19" href="19.html">19 · QPainter：坐标、抗锯齿和仪表盘</a><a class="chapter" data-i="20" href="20.html">20 · 多线程：后台任务、取消和退出</a><a class="chapter" data-i="21" href="21.html">21 · HTTP 网络：异步、超时和错误分层</a><a class="chapter" data-i="22" href="22.html">22 · SQLite：连接、SQL、绑定和事务</a><a class="chapter" data-i="23" href="23.html">23 · Qt Quick 与 QML：声明式界面</a><a class="chapter" data-i="24" href="24.html">24 · C++ 与 QML：属性、通知和类型注册</a><a class="chapter" data-i="25" href="25.html">25 · 自动测试：Qt Test、信号和临时数据库</a><a class="chapter" data-i="26" href="26.html">26 · 调试与故障排查：从第一条错误开始</a><a class="chapter" data-i="27" href="27.html">27 · Windows 部署：让程序离开开发机</a><a class="chapter" data-i="28" href="28.html">28 · 综合项目 TaskDesk：需求、架构和数据流</a><a class="chapter" data-i="29" href="29.html">29 · 综合项目 TaskDesk：分阶段扩展作业</a><a class="chapter" data-i="30" href="30.html">30 · 工程习惯、GitHub 准备和协作</a><a class="chapter" data-i="31" href="31.html">31 · 进阶选修：串口、TCP、音视频与国际化</a><a class="chapter" data-i="32" href="32.html">32 · 练习参考答案与最终验收清单</a></nav><main><h1>02 · C++ 补课一：值、引用、指针和生命周期</h1>
-<h2>先理解内存中的对象</h2>
-<p><code>int count = 0;</code> 创建一个整数对象，变量名帮助我们找到它。<code>int &amp;alias = count;</code> 是同一个对象的别名；<code>int *ptr = &amp;count;</code> 则保存对象的地址。引用通常必须绑定有效对象，指针允许是 <code>nullptr</code>，解引用前应保证对象仍存在。</p>
-<pre><code class="language-cpp">int count = 10;
-int &amp;alias = count;
-alias += 1;             // count 变成 11
-int *ptr = &amp;count;
-if (ptr) *ptr += 1;     // count 变成 12
-</code></pre>
-<p><code>const QString &amp;name</code> 常用于只读输入参数，避免不必要的拷贝；返回一个局部变量的引用则会悬空。函数返回值 <code>QString makeName()</code> 是正常做法，不要为“省拷贝”牺牲生命周期正确性。</p>
-<h2>栈、堆和 RAII</h2>
-<p>局部对象离开作用域会自动析构。<code>new</code> 创建的对象需要明确所有者。现代 C++ 资源管理优先用 RAII：构造获取资源、析构释放资源。文件句柄、互斥锁和智能指针都可以遵循这个思想。</p>
-<pre><code class="language-cpp">auto service = std::make_unique&lt;Service&gt;(); // 作用域结束自动释放
-auto *button = new QPushButton(parent);    // Qt 父对象负责释放
-</code></pre>
-<p>不要同时让一个 Qt 父对象和一个长期保存的智能指针独立拥有同一个堆对象，否则销毁顺序可能导致重复释放。不是所有指针都代表所有权；UI 成员变量经常只是观察父对象已经拥有的控件。</p>
-<h2>做一个生命周期推演</h2>
-<p>用纸画出 <code>QWidget window</code>、<code>new QPushButton(&amp;window)</code> 和一个普通 <code>std::vector&lt;int&gt;</code>。窗口销毁时按钮由父子机制释放，vector 自己在作用域末尾析构。若把按钮地址存到全局变量，窗口销毁后该全局指针不会自动变成空指针，不能再用它。</p>
-<p>练习：写一个构造和析构时打印日志的类，分别创建局部对象和 unique_ptr，观察输出次序。验收：能解释为什么返回局部对象地址错误，以及为什么 <code>delete nullptr</code> 安全却不能解决悬空指针问题。</p>
-<p><a href="index.html">返回目录</a></p><div class="pager"><a href="01.html">← 上一章</a><a href="03.html">下一章 →</a></div></main></div><script src="search.js"></script></body></html>
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>02 · 开发工具入门：Kit、断点与第一次修改 · Qt 6 中文教程</title><link rel="stylesheet" href="style.css"></head><body><a class="skip-link" href="#content">跳到正文</a><header><div class="tag">C++ · QT 6 · 从入门到项目</div><h1>Qt 6 中文学习手册</h1><p>49 章分阶段学习 / 16 个源码示例 / 18 个逐步实验 / 离线可读</p></header><div class="shell"><nav aria-label="课程导航"><input id="search" type="search" placeholder="搜索章节与正文" aria-label="搜索章节与正文"><p><a href="index.html">课程首页与推荐路线</a><a href="workbook.html">18 个逐步实操实验</a><a href="references.html">官方参考资料</a></p><section class="nav-stage"><h2>一 · 零基础与开发工具</h2><a class="chapter" data-id="00" href="00.html">00 · 学习地图：从零到独立开发</a><a class="chapter" data-id="01" href="01.html">01 · 零基础预备课：读懂一小段 C++</a><a class="chapter active" data-id="02" href="02.html" aria-current="page">02 · 开发工具入门：Kit、断点与第一次修改</a><a class="chapter" data-id="03" href="03.html">03 · 安装与环境：项目内的 Qt 6</a><a class="chapter" data-id="04" href="04.html">04 · C++ 补课一：值、引用、指针和生命周期</a><a class="chapter" data-id="05" href="05.html">05 · C++ 补课二：类、继承、lambda 和工程拆分</a><a class="chapter" data-id="06" href="06.html">06 · CMake：从源码到程序</a><a class="chapter" data-id="07" href="07.html">07 · 第一个窗口与事件循环</a></section><section class="nav-stage"><h2>二 · 对象、控件与交互</h2><a class="chapter" data-id="08" href="08.html">08 · QObject、元对象与父子所有权</a><a class="chapter" data-id="09" href="09.html">09 · 信号与槽：把行为连接起来</a><a class="chapter" data-id="10" href="10.html">10 · 布局管理：让界面适应窗口</a><a class="chapter" data-id="11" href="11.html">11 · 常用控件详解：选择、输入与状态同步</a><a class="chapter" data-id="12" href="12.html">12 · 表单、输入验证和对话框</a><a class="chapter" data-id="13" href="13.html">13 · 多窗口与对话框：确认、取消和对象寿命</a><a class="chapter" data-id="14" href="14.html">14 · 主窗口、菜单、工具栏和快捷键</a><a class="chapter" data-id="15" href="15.html">15 · Qt Designer：可视化设计和 ui 文件</a><a class="chapter" data-id="16" href="16.html">16 · QString、容器、日期和字符编码</a><a class="chapter" data-id="17" href="17.html">17 · QSettings 与应用路径：记住用户的选择</a></section><section class="nav-stage"><h2>三 · 文件、数据与界面机制</h2><a class="chapter" data-id="18" href="18.html">18 · 文件、路径与可靠保存</a><a class="chapter" data-id="19" href="19.html">19 · JSON、配置与数据格式演进</a><a class="chapter" data-id="20" href="20.html">20 · 资源系统、QSS 与界面风格</a><a class="chapter" data-id="21" href="21.html">21 · Model/View：列表与表格的核心</a><a class="chapter" data-id="22" href="22.html">22 · 代理模型、选择、委托与分页</a><a class="chapter" data-id="23" href="23.html">23 · 模型进阶：角色、编辑委托与正确通知</a><a class="chapter" data-id="24" href="24.html">24 · 事件系统、定时器和自定义控件</a><a class="chapter" data-id="25" href="25.html">25 · 事件过滤、焦点与键盘：保留正常交互</a><a class="chapter" data-id="26" href="26.html">26 · QPainter：坐标、抗锯齿和仪表盘</a></section><section class="nav-stage"><h2>四 · 异步、通信与数据库</h2><a class="chapter" data-id="27" href="27.html">27 · 多线程：后台任务、取消和退出</a><a class="chapter" data-id="28" href="28.html">28 · 异步任务设计：状态、取消和过期结果</a><a class="chapter" data-id="29" href="29.html">29 · HTTP 网络：异步、超时和错误分层</a><a class="chapter" data-id="30" href="30.html">30 · TCP 实战：连接、拆包和有限缓冲</a><a class="chapter" data-id="31" href="31.html">31 · SQLite：连接、SQL、绑定和事务</a><a class="chapter" data-id="32" href="32.html">32 · SQLite 进阶：事务、迁移与分页</a></section><section class="nav-stage"><h2>五 · QML 与 C++ 协作</h2><a class="chapter" data-id="33" href="33.html">33 · Qt Quick 与 QML：声明式界面</a><a class="chapter" data-id="34" href="34.html">34 · C++ 与 QML：属性、通知和类型注册</a><a class="chapter" data-id="35" href="35.html">35 · QML 进阶入门：组件、绑定与页面状态</a></section><section class="nav-stage"><h2>六 · 测试、工程与综合项目</h2><a class="chapter" data-id="36" href="36.html">36 · 自动测试：Qt Test、信号和临时数据库</a><a class="chapter" data-id="37" href="37.html">37 · 测试进阶：从规则到真实交互</a><a class="chapter" data-id="38" href="38.html">38 · 调试与故障排查：从第一条错误开始</a><a class="chapter" data-id="39" href="39.html">39 · 性能与内存：先测量，再优化</a><a class="chapter" data-id="40" href="40.html">40 · Windows 部署：让程序离开开发机</a><a class="chapter" data-id="41" href="41.html">41 · 进阶发布：日志、翻译与可交付检查</a><a class="chapter" data-id="42" href="42.html">42 · 综合项目 TaskDesk：需求、架构和数据流</a><a class="chapter" data-id="43" href="43.html">43 · 项目拆分：让窗口不再承担全部业务</a><a class="chapter" data-id="44" href="44.html">44 · 综合项目 TaskDesk：分阶段扩展作业</a><a class="chapter" data-id="45" href="45.html">45 · 工程习惯、GitHub 准备和协作</a><a class="chapter" data-id="46" href="46.html">46 · 进阶选修：串口、TCP、音视频与国际化</a><a class="chapter" data-id="47" href="47.html">47 · 练习参考答案与最终验收清单</a><a class="chapter" data-id="48" href="48.html">48 · 新手答疑、术语表与阶段自测</a></section><p id="search-status" role="status" aria-live="polite"></p></nav><main id="content"><p class="reading-position">一 · 零基础与开发工具 · 推荐路线 3 / 49</p><h1 id="02-kit">02 · 开发工具入门：Kit、断点与第一次修改</h1>
+<p><strong>前置</strong>：已阅读学习地图。<strong>目标</strong>：分清 Qt、编辑器、编译器和构建目录，完成一次可重复的修改。</p>
+<h2 id="_1">一张表理解开发环境</h2>
+<table>
+<thead>
+<tr>
+<th>组件</th>
+<th>作用</th>
+<th>本课程使用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Qt SDK</td>
+<td>头文件、库、插件、moc 等工具</td>
+<td>sdk/6.8.3/msvc2022_64</td>
+</tr>
+<tr>
+<td>编译器与 Windows SDK</td>
+<td>把 C++ 编译、链接为 Windows 程序</td>
+<td>MSVC 2022 x64</td>
+</tr>
+<tr>
+<td>CMake</td>
+<td>组织依赖和构建步骤</td>
+<td>根目录 CMakeLists.txt</td>
+</tr>
+<tr>
+<td>编辑器或 IDE</td>
+<td>编辑、跳转、调试</td>
+<td>可自行选择</td>
+</tr>
+<tr>
+<td>Kit</td>
+<td>一组相互兼容的开发工具配置</td>
+<td>Qt + MSVC + CMake + 调试器</td>
+</tr>
+</tbody>
+</table>
+<p>仓库脚本不安装 Qt Creator。已有编辑器即可开始；希望使用 Creator 时另行安装，再打开根目录 CMakeLists.txt。不要打开某个 cpp 后期待 IDE 自动知道整个工程。</p>
+<h2 id="qt-creator">在 Qt Creator 中检查什么</h2>
+<ol>
+<li>在设置的 Kits 页面检查编译器是否为 MSVC x64，Qt 版本是否指向项目 SDK 的 qmake.exe。</li>
+<li>为当前工程选择对应 Kit，构建目录建议用 <code>build-creator</code>，与脚本的 <code>build</code> 分开。</li>
+<li>第一次配置后检查 CMake 输出：Qt 根目录、生成器、编译器必须匹配；不同 Creator 版本的菜单名称可能略有变化。</li>
+<li>运行配置中选择 <code>01_hello</code>，不要把 <code>course_tests</code> 当成日常演示窗口。</li>
+</ol>
+<p>若 Creator 没有调试器，先用仓库命令完成构建，再安装或配置适用的 Windows 调试工具。编辑器中的红线来自代码分析器，最终以构建输出为准；两者不一致时检查 Kit 和头文件索引。</p>
+<h2 id="_2">完成第一次修改</h2>
+<p>打开 <code>examples/01_hello/main.cpp</code>，找到 setWindowTitle，修改标题并保存。运行根目录 build.cmd，之后运行 <code>scripts\run.cmd 01_hello</code>。看到新标题才说明“修改 → 保存 → 编译 → 运行”的链条正确；仍显示旧标题时先核对运行的 exe 路径。</p>
+<p>构建目录里有缓存、自动生成代码和二进制输出，不能在那里修改源码。Release 用于正常运行，Debug 更便于单步和查看变量；切换配置后检查正在运行的是哪一份程序。</p>
+<h2 id="_3">断点不是暂停整个世界</h2>
+<p>在计数器点击处理的 <code>++count_</code> 处设置断点。点击加一后查看 count_，执行一次单步，数值应增加一，再继续运行。暂停 GUI 线程期间窗口不响应很正常，不能据此判断死锁。优化后的 Release 可能让变量不可见，因此练习使用 Debug。</p>
+<p>实验记录写四项：修改的文件、构建目标、运行路径、观察结果。验收：能找到第一条编译错误；能说清“编辑成功”“构建成功”“运行成功”分别证明什么。</p>
+<p><a href="03.html">环境安装</a> · <a href="38.html">调试进阶</a> · <a href="index.html">返回目录</a></p><div class="pager" aria-label="推荐学习顺序"><a href="01.html">← 上一课</a><a href="03.html">下一课 →</a></div></main></div><script src="search.js"></script></body></html>

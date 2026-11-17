@@ -28,6 +28,8 @@ git push -u origin main
 
 ## 网页课程更新
 
-教程的 Markdown 是可编辑内容，site 是已生成静态阅读版。修改 Markdown 或示例后，执行 `python -m pip install -r tools/requirements-docs.txt`，再执行 `python tools/render_site.py` 同步网页，然后检查链接与版式。不会运行自动发布或上传。
+教程的 Markdown 是可编辑内容，site 是已生成静态阅读版。修改 Markdown 或示例后，执行 `python -m pip install -r tools/requirements-docs.txt`，再执行 `python tools/render_site.py` 同步网页，以及 `python tools/verify_docs.py` 检查路线、代码围栏与本地链接。检查桌面和窄屏版式后再提交。不会运行自动发布或上传。
+
+推荐学习顺序由 tools/course.json 统一维护；新增章节时同时加入对应阶段。生成器读取示例源码更新网页中的代码展示，不会改写 Markdown；修改嵌入源码时也应同步相应 Markdown 代码块。CI 会检查生成后的网页与提交内容一致。
 
 可选 GitHub Pages：将 site 内容作为静态站点发布。SDK 和构建目录不属于网页站点内容。

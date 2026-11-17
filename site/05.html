@@ -1,33 +1,44 @@
-<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>05 · 第一个窗口与事件循环 · Qt 6 中文教程</title><link rel="stylesheet" href="style.css"></head><body><header><div class="tag">C++ · QT 6 · 从入门到项目</div><h1>Qt 6 中文学习手册</h1><p>离线阅读 / 配套源码 / 练习验收 / 固定版本可重现</p></header><div class="shell"><nav><input id="search" type="search" placeholder="搜索章节与正文" aria-label="搜索章节"><p><a href="index.html">课程首页</a></p><a href="workbook.html">12 个逐步实操实验</a><a class="chapter" data-i="0" href="00.html">00 · 学习地图：从零到独立开发</a><a class="chapter" data-i="1" href="01.html">01 · 安装与环境：项目内的 Qt 6</a><a class="chapter" data-i="2" href="02.html">02 · C++ 补课一：值、引用、指针和生命周期</a><a class="chapter" data-i="3" href="03.html">03 · C++ 补课二：类、继承、lambda 和工程拆分</a><a class="chapter" data-i="4" href="04.html">04 · CMake：从源码到程序</a><a class="chapter" data-i="5" href="05.html">05 · 第一个窗口与事件循环</a><a class="chapter" data-i="6" href="06.html">06 · QObject、元对象与父子所有权</a><a class="chapter" data-i="7" href="07.html">07 · 信号与槽：把行为连接起来</a><a class="chapter" data-i="8" href="08.html">08 · 布局管理：让界面适应窗口</a><a class="chapter" data-i="9" href="09.html">09 · 表单、输入验证和对话框</a><a class="chapter" data-i="10" href="10.html">10 · 主窗口、菜单、工具栏和快捷键</a><a class="chapter" data-i="11" href="11.html">11 · Qt Designer：可视化设计和 ui 文件</a><a class="chapter" data-i="12" href="12.html">12 · QString、容器、日期和字符编码</a><a class="chapter" data-i="13" href="13.html">13 · 文件、路径与可靠保存</a><a class="chapter" data-i="14" href="14.html">14 · JSON、配置与数据格式演进</a><a class="chapter" data-i="15" href="15.html">15 · 资源系统、QSS 与界面风格</a><a class="chapter" data-i="16" href="16.html">16 · Model/View：列表与表格的核心</a><a class="chapter" data-i="17" href="17.html">17 · 代理模型、选择、委托与分页</a><a class="chapter" data-i="18" href="18.html">18 · 事件系统、定时器和自定义控件</a><a class="chapter" data-i="19" href="19.html">19 · QPainter：坐标、抗锯齿和仪表盘</a><a class="chapter" data-i="20" href="20.html">20 · 多线程：后台任务、取消和退出</a><a class="chapter" data-i="21" href="21.html">21 · HTTP 网络：异步、超时和错误分层</a><a class="chapter" data-i="22" href="22.html">22 · SQLite：连接、SQL、绑定和事务</a><a class="chapter" data-i="23" href="23.html">23 · Qt Quick 与 QML：声明式界面</a><a class="chapter" data-i="24" href="24.html">24 · C++ 与 QML：属性、通知和类型注册</a><a class="chapter" data-i="25" href="25.html">25 · 自动测试：Qt Test、信号和临时数据库</a><a class="chapter" data-i="26" href="26.html">26 · 调试与故障排查：从第一条错误开始</a><a class="chapter" data-i="27" href="27.html">27 · Windows 部署：让程序离开开发机</a><a class="chapter" data-i="28" href="28.html">28 · 综合项目 TaskDesk：需求、架构和数据流</a><a class="chapter" data-i="29" href="29.html">29 · 综合项目 TaskDesk：分阶段扩展作业</a><a class="chapter" data-i="30" href="30.html">30 · 工程习惯、GitHub 准备和协作</a><a class="chapter" data-i="31" href="31.html">31 · 进阶选修：串口、TCP、音视频与国际化</a><a class="chapter" data-i="32" href="32.html">32 · 练习参考答案与最终验收清单</a></nav><main><h1>05 · 第一个窗口与事件循环</h1>
-<h2>阅读 01_hello</h2>
-<p>首先包含 QApplication 和 QLabel。创建 QApplication 后再创建控件，因为 GUI 对象需要应用级初始化。QLabel 是显示文本的控件；不给 QWidget 父对象，它就可以成为顶层窗口。<code>resize</code> 设置初始尺寸；<code>show</code> 使窗口可见；<code>app.exec()</code> 开始分发操作系统事件。</p>
-<p>这不是从上到下执行完就结束的脚本。事件循环不断等待鼠标、键盘、定时器和重绘请求，并分派给相关对象。窗口关闭后，在默认配置下最后一个顶层窗口关闭会让应用退出。<code>show()</code> 后还没有进入循环时，窗口可能尚未来得及真正绘制。</p>
-<h2>操作步骤</h2>
-<ol>
-<li>运行 <code>scripts\run.cmd 01_hello</code>，观察窗口标题、居中文字和默认尺寸。</li>
-<li>把文本改为两行自我介绍，重新构建目标后运行。</li>
-<li>去掉 setAlignment，观察默认对齐方式；恢复后将尺寸减小。</li>
-<li>在 exec 前加入日志，关闭窗口后在 exec 返回处再打印日志，理解程序停留在哪里。</li>
-</ol>
-<h2>不要阻塞 GUI 线程</h2>
-<p>若在点击处理里运行十秒循环，鼠标响应、重绘和定时器都会被拖住。插入 <code>processEvents()</code> 可能引入嵌套调用和对象提前销毁，不应成为耗时任务的常规解决方案。短任务用定时器分批，长任务交给后台线程。</p>
-<p>程序还支持 <code>--smoke</code> 参数，短暂进入事件循环后自动退出，供自动检查启动使用。这只能证明程序能初始化，不能替代实际点击、输入和缩放的交互验收。</p>
-<p>练习：增加最小尺寸和窗口标题。验收：窗口能缩放，文本没有固定位置溢出；能说明 QApplication 与 QWidget 的析构顺序为何合理。</p>
-<h2>配套完整源码</h2>
-<p>在根工程构建本章目标：<code>01_hello</code>。以下是仓库内同一份文件，修改请到 examples 目录。</p>
-<h3>main.cpp</h3>
-<pre><code class="language-cpp">#include &lt;QApplication&gt;
-#include &lt;QLabel&gt;
-#include &lt;QTimer&gt;
-int main(int argc, char *argv[]) {
-    QApplication app(argc, argv); // QApplication 必须先于任何 QWidget 创建
-    QLabel label(QStringLiteral(&quot;你好，Qt！\n缩放窗口试试看。&quot;));
-    label.setAlignment(Qt::AlignCenter);
-    label.resize(480, 260);
-    label.setWindowTitle(QStringLiteral(&quot;01 · 第一个窗口&quot;));
-    label.show();
-    if (app.arguments().contains(&quot;--smoke&quot;)) QTimer::singleShot(150, &amp;app, &amp;QCoreApplication::quit);
-    return app.exec(); // 进入事件循环，关闭最后一个窗口后退出
-}
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>05 · C++ 补课二：类、继承、lambda 和工程拆分 · Qt 6 中文教程</title><link rel="stylesheet" href="style.css"></head><body><a class="skip-link" href="#content">跳到正文</a><header><div class="tag">C++ · QT 6 · 从入门到项目</div><h1>Qt 6 中文学习手册</h1><p>49 章分阶段学习 / 16 个源码示例 / 18 个逐步实验 / 离线可读</p></header><div class="shell"><nav aria-label="课程导航"><input id="search" type="search" placeholder="搜索章节与正文" aria-label="搜索章节与正文"><p><a href="index.html">课程首页与推荐路线</a><a href="workbook.html">18 个逐步实操实验</a><a href="references.html">官方参考资料</a></p><section class="nav-stage"><h2>一 · 零基础与开发工具</h2><a class="chapter" data-id="00" href="00.html">00 · 学习地图：从零到独立开发</a><a class="chapter" data-id="01" href="01.html">01 · 零基础预备课：读懂一小段 C++</a><a class="chapter" data-id="02" href="02.html">02 · 开发工具入门：Kit、断点与第一次修改</a><a class="chapter" data-id="03" href="03.html">03 · 安装与环境：项目内的 Qt 6</a><a class="chapter" data-id="04" href="04.html">04 · C++ 补课一：值、引用、指针和生命周期</a><a class="chapter active" data-id="05" href="05.html" aria-current="page">05 · C++ 补课二：类、继承、lambda 和工程拆分</a><a class="chapter" data-id="06" href="06.html">06 · CMake：从源码到程序</a><a class="chapter" data-id="07" href="07.html">07 · 第一个窗口与事件循环</a></section><section class="nav-stage"><h2>二 · 对象、控件与交互</h2><a class="chapter" data-id="08" href="08.html">08 · QObject、元对象与父子所有权</a><a class="chapter" data-id="09" href="09.html">09 · 信号与槽：把行为连接起来</a><a class="chapter" data-id="10" href="10.html">10 · 布局管理：让界面适应窗口</a><a class="chapter" data-id="11" href="11.html">11 · 常用控件详解：选择、输入与状态同步</a><a class="chapter" data-id="12" href="12.html">12 · 表单、输入验证和对话框</a><a class="chapter" data-id="13" href="13.html">13 · 多窗口与对话框：确认、取消和对象寿命</a><a class="chapter" data-id="14" href="14.html">14 · 主窗口、菜单、工具栏和快捷键</a><a class="chapter" data-id="15" href="15.html">15 · Qt Designer：可视化设计和 ui 文件</a><a class="chapter" data-id="16" href="16.html">16 · QString、容器、日期和字符编码</a><a class="chapter" data-id="17" href="17.html">17 · QSettings 与应用路径：记住用户的选择</a></section><section class="nav-stage"><h2>三 · 文件、数据与界面机制</h2><a class="chapter" data-id="18" href="18.html">18 · 文件、路径与可靠保存</a><a class="chapter" data-id="19" href="19.html">19 · JSON、配置与数据格式演进</a><a class="chapter" data-id="20" href="20.html">20 · 资源系统、QSS 与界面风格</a><a class="chapter" data-id="21" href="21.html">21 · Model/View：列表与表格的核心</a><a class="chapter" data-id="22" href="22.html">22 · 代理模型、选择、委托与分页</a><a class="chapter" data-id="23" href="23.html">23 · 模型进阶：角色、编辑委托与正确通知</a><a class="chapter" data-id="24" href="24.html">24 · 事件系统、定时器和自定义控件</a><a class="chapter" data-id="25" href="25.html">25 · 事件过滤、焦点与键盘：保留正常交互</a><a class="chapter" data-id="26" href="26.html">26 · QPainter：坐标、抗锯齿和仪表盘</a></section><section class="nav-stage"><h2>四 · 异步、通信与数据库</h2><a class="chapter" data-id="27" href="27.html">27 · 多线程：后台任务、取消和退出</a><a class="chapter" data-id="28" href="28.html">28 · 异步任务设计：状态、取消和过期结果</a><a class="chapter" data-id="29" href="29.html">29 · HTTP 网络：异步、超时和错误分层</a><a class="chapter" data-id="30" href="30.html">30 · TCP 实战：连接、拆包和有限缓冲</a><a class="chapter" data-id="31" href="31.html">31 · SQLite：连接、SQL、绑定和事务</a><a class="chapter" data-id="32" href="32.html">32 · SQLite 进阶：事务、迁移与分页</a></section><section class="nav-stage"><h2>五 · QML 与 C++ 协作</h2><a class="chapter" data-id="33" href="33.html">33 · Qt Quick 与 QML：声明式界面</a><a class="chapter" data-id="34" href="34.html">34 · C++ 与 QML：属性、通知和类型注册</a><a class="chapter" data-id="35" href="35.html">35 · QML 进阶入门：组件、绑定与页面状态</a></section><section class="nav-stage"><h2>六 · 测试、工程与综合项目</h2><a class="chapter" data-id="36" href="36.html">36 · 自动测试：Qt Test、信号和临时数据库</a><a class="chapter" data-id="37" href="37.html">37 · 测试进阶：从规则到真实交互</a><a class="chapter" data-id="38" href="38.html">38 · 调试与故障排查：从第一条错误开始</a><a class="chapter" data-id="39" href="39.html">39 · 性能与内存：先测量，再优化</a><a class="chapter" data-id="40" href="40.html">40 · Windows 部署：让程序离开开发机</a><a class="chapter" data-id="41" href="41.html">41 · 进阶发布：日志、翻译与可交付检查</a><a class="chapter" data-id="42" href="42.html">42 · 综合项目 TaskDesk：需求、架构和数据流</a><a class="chapter" data-id="43" href="43.html">43 · 项目拆分：让窗口不再承担全部业务</a><a class="chapter" data-id="44" href="44.html">44 · 综合项目 TaskDesk：分阶段扩展作业</a><a class="chapter" data-id="45" href="45.html">45 · 工程习惯、GitHub 准备和协作</a><a class="chapter" data-id="46" href="46.html">46 · 进阶选修：串口、TCP、音视频与国际化</a><a class="chapter" data-id="47" href="47.html">47 · 练习参考答案与最终验收清单</a><a class="chapter" data-id="48" href="48.html">48 · 新手答疑、术语表与阶段自测</a></section><p id="search-status" role="status" aria-live="polite"></p></nav><main id="content"><p class="reading-position">一 · 零基础与开发工具 · 推荐路线 6 / 49</p><h1 id="05-c-lambda">05 · C++ 补课二：类、继承、lambda 和工程拆分</h1>
+<h2 id="c">界面类就是普通 C++ 类</h2>
+<p>成员变量保存状态，成员函数规定行为。把内部状态设为 private，防止外部任意修改。窗口类继承 QWidget 后，可以重写 <code>paintEvent</code>、<code>closeEvent</code> 等虚函数；<code>override</code> 能让编译器检查你是否真的覆盖了基类函数。</p>
+<pre><code class="language-cpp">class Counter final : public QWidget {
+public:
+    explicit Counter(QWidget *parent = nullptr);
+private:
+    int count_ = 0;
+};
 </code></pre>
-<p><a href="index.html">返回目录</a></p><div class="pager"><a href="04.html">← 上一章</a><a href="06.html">下一章 →</a></div></main></div><script src="search.js"></script></body></html>
+<p>头文件声明接口，cpp 实现行为。头文件用 <code>#pragma once</code> 或 include guard 避免重复定义。项目中添加 cpp 后，也必须把它加入 CMake target；把文件复制进文件夹不会自动让它参与构建。Qt 的 QObject 通常不允许拷贝，因此窗口对象不要放进要求复制元素的普通值容器。</p>
+<h2 id="lambda">lambda 不是神秘语法</h2>
+<pre><code class="language-cpp">connect(button, &amp;QPushButton::clicked, this, [this] {
+    ++count_;
+});
+</code></pre>
+<p>方括号指定捕获。<code>[this]</code> 保存当前对象的指针；<code>[value]</code> 复制变量；<code>[&amp;value]</code> 保存引用。如果异步回调发生时局部变量已经离开作用域，引用捕获就危险。优先显式捕获，理解 <code>[=]</code> 不会复制 this 所指对象。</p>
+<p>连接时的第三个参数是上下文对象，不是 lambda 的一部分。上下文销毁后 Qt 自动断开该连接，但上下文仍活着不代表所有被捕获的外部指针也活着。必须逐个检查依赖对象的生命周期。</p>
+<h2 id="_1">需要掌握的标准库</h2>
+<p>先学 <code>std::vector</code>、<code>std::unique_ptr</code>、<code>std::optional</code>、范围 for 和基本算法，能区分值语义与指针语义即可。不要把模板元编程、复杂继承体系当作开始 Qt 的前置条件。UI 线程中的异常不要直接穿过 Qt 事件处理边界；在业务边界捕获并转成可显示的错误。</p>
+<p>练习：把计数器拆成 counter.h、counter.cpp、main.cpp，修改 CMake 后重编译。验收：不把函数实现重复放进多个 cpp 引入的头文件；能解释编译错误与链接错误的区别。</p>
+<h2 id="_2">从单文件走向三个文件</h2>
+<p>以普通 Counter 类为例，counter.h 中声明类与函数，counter.cpp 包含 counter.h 并实现函数，main.cpp 包含 counter.h 并创建对象。声明告诉编译器“有什么接口”，定义提供实际实现；同一个非 inline 普通函数不能在多个 cpp 各定义一次。</p>
+<pre><code class="language-cpp">// counter.h（这个普通类不依赖 QObject）
+#pragma once
+class Counter {
+public:
+    int value() const;
+    void increment();
+private:
+    int value_ = 0;
+};
+</code></pre>
+<pre><code class="language-cpp">// counter.cpp
+#include &quot;counter.h&quot;
+int Counter::value() const { return value_; }
+void Counter::increment() { ++value_; }
+</code></pre>
+<p><code>Counter::</code> 表示实现属于该类，value 后面的 const 说明读取不会修改普通成员状态。构造函数没有返回类型；初始化列表在进入函数体前初始化成员。<code>explicit</code> 防止不希望出现的隐式转换，尤其适合只有一个有效参数的构造函数。</p>
+<p><code>public</code> 是外部可用接口，<code>private</code> 是类内实现细节；继承 QWidget 用来复用界面能力，不意味着业务数据也必须继承窗口。信号和槽的声明仍遵循 C++ 类型规则，moc 不会替你修复不存在的函数。</p>
+<h2 id="_3">捕获练习：先说出谁活得更久</h2>
+<p>按钮回调常保存到未来执行。不要在辅助函数里创建局部 int，再 <code>[&amp;]</code> 捕获并连接到长寿命窗口；函数返回后 int 已不存在。需要持续状态时放入窗口成员，需要固定快照时按值捕获，确需共享状态时明确其所有者。</p>
+<p>验收：能把已有计数器拆文件后仍正常构建；头文件声明与 cpp 实现签名一致；lambda 捕获列表能逐项解释，不再默认对所有变量使用 <code>[&amp;]</code>。</p>
+<p><a href="index.html">返回目录</a></p><div class="pager" aria-label="推荐学习顺序"><a href="04.html">← 上一课</a><a href="06.html">下一课 →</a></div></main></div><script src="search.js"></script></body></html>

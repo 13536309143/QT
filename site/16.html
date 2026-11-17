@@ -1,53 +1,20 @@
-<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>16 · Model/View：列表与表格的核心 · Qt 6 中文教程</title><link rel="stylesheet" href="style.css"></head><body><header><div class="tag">C++ · QT 6 · 从入门到项目</div><h1>Qt 6 中文学习手册</h1><p>离线阅读 / 配套源码 / 练习验收 / 固定版本可重现</p></header><div class="shell"><nav><input id="search" type="search" placeholder="搜索章节与正文" aria-label="搜索章节"><p><a href="index.html">课程首页</a></p><a href="workbook.html">12 个逐步实操实验</a><a class="chapter" data-i="0" href="00.html">00 · 学习地图：从零到独立开发</a><a class="chapter" data-i="1" href="01.html">01 · 安装与环境：项目内的 Qt 6</a><a class="chapter" data-i="2" href="02.html">02 · C++ 补课一：值、引用、指针和生命周期</a><a class="chapter" data-i="3" href="03.html">03 · C++ 补课二：类、继承、lambda 和工程拆分</a><a class="chapter" data-i="4" href="04.html">04 · CMake：从源码到程序</a><a class="chapter" data-i="5" href="05.html">05 · 第一个窗口与事件循环</a><a class="chapter" data-i="6" href="06.html">06 · QObject、元对象与父子所有权</a><a class="chapter" data-i="7" href="07.html">07 · 信号与槽：把行为连接起来</a><a class="chapter" data-i="8" href="08.html">08 · 布局管理：让界面适应窗口</a><a class="chapter" data-i="9" href="09.html">09 · 表单、输入验证和对话框</a><a class="chapter" data-i="10" href="10.html">10 · 主窗口、菜单、工具栏和快捷键</a><a class="chapter" data-i="11" href="11.html">11 · Qt Designer：可视化设计和 ui 文件</a><a class="chapter" data-i="12" href="12.html">12 · QString、容器、日期和字符编码</a><a class="chapter" data-i="13" href="13.html">13 · 文件、路径与可靠保存</a><a class="chapter" data-i="14" href="14.html">14 · JSON、配置与数据格式演进</a><a class="chapter" data-i="15" href="15.html">15 · 资源系统、QSS 与界面风格</a><a class="chapter" data-i="16" href="16.html">16 · Model/View：列表与表格的核心</a><a class="chapter" data-i="17" href="17.html">17 · 代理模型、选择、委托与分页</a><a class="chapter" data-i="18" href="18.html">18 · 事件系统、定时器和自定义控件</a><a class="chapter" data-i="19" href="19.html">19 · QPainter：坐标、抗锯齿和仪表盘</a><a class="chapter" data-i="20" href="20.html">20 · 多线程：后台任务、取消和退出</a><a class="chapter" data-i="21" href="21.html">21 · HTTP 网络：异步、超时和错误分层</a><a class="chapter" data-i="22" href="22.html">22 · SQLite：连接、SQL、绑定和事务</a><a class="chapter" data-i="23" href="23.html">23 · Qt Quick 与 QML：声明式界面</a><a class="chapter" data-i="24" href="24.html">24 · C++ 与 QML：属性、通知和类型注册</a><a class="chapter" data-i="25" href="25.html">25 · 自动测试：Qt Test、信号和临时数据库</a><a class="chapter" data-i="26" href="26.html">26 · 调试与故障排查：从第一条错误开始</a><a class="chapter" data-i="27" href="27.html">27 · Windows 部署：让程序离开开发机</a><a class="chapter" data-i="28" href="28.html">28 · 综合项目 TaskDesk：需求、架构和数据流</a><a class="chapter" data-i="29" href="29.html">29 · 综合项目 TaskDesk：分阶段扩展作业</a><a class="chapter" data-i="30" href="30.html">30 · 工程习惯、GitHub 准备和协作</a><a class="chapter" data-i="31" href="31.html">31 · 进阶选修：串口、TCP、音视频与国际化</a><a class="chapter" data-i="32" href="32.html">32 · 练习参考答案与最终验收清单</a></nav><main><h1>16 · Model/View：列表与表格的核心</h1>
-<h2>数据与展示分开</h2>
-<p>QTableView 展示数据，QAbstractTableModel 提供数据，QStyledItemDelegate 决定绘制和编辑。简易原型可用 QTableWidget，但数据规模、复用或业务规则变复杂后，自定义模型更清楚。不要为表格每个单元格都创建 QWidget 来显示简单文本。</p>
-<p>必须实现 rowCount、columnCount、data。表模型的有效父索引通常返回 0，因为它不是树。QModelIndex 标识某个模型中的位置，不是永久数据库主键。删除、排序和重置后索引可能失效。</p>
-<p>data 通过 role 返回不同信息：DisplayRole 显示文本，EditRole 编辑值，CheckStateRole 勾选状态，UserRole 可存业务标识。不要在 data 内进行网络请求或昂贵数据库操作，因为视图会频繁调用它。</p>
-<h2>编辑与通知</h2>
-<p>flags 声明可编辑，setData 校验并更新存储，再发 dataChanged。新增行必须在修改容器前 beginInsertRows、修改后 endInsertRows；删行使用对应 remove 通知。全量替换数据用 beginResetModel/endResetModel，但不要为了省事把每次单格修改都变成整表重置。</p>
-<p>运行 06_model，双击任务名修改；输入空白会被拒绝。当前例子的优先级是演示字符串，排序也采用字符串规则。若改成数值优先级，应在模型中保存整数并返回对应 QVariant，避免 10 排在 2 前面。</p>
-<p>练习：新增“添加行”按钮，正确通知视图。验收：新行立即出现，选择不会随机跳动；空值被拒绝，通知的索引范围合法。
-参考：<a href="https://doc.qt.io/qt-6.8/model-view-programming.html">Model/View</a>。</p>
-<h2>配套完整源码</h2>
-<p>在根工程构建本章目标：<code>06_model</code>。以下是仓库内同一份文件，修改请到 examples 目录。</p>
-<h3>main.cpp</h3>
-<pre><code class="language-cpp">#include &lt;QtWidgets&gt;
-class TaskModel : public QAbstractTableModel {
-public:
-    using QAbstractTableModel::QAbstractTableModel;
-    int rowCount(const QModelIndex &amp;parent={}) const override { return parent.isValid()?0:rows_.size(); }
-    int columnCount(const QModelIndex &amp;parent={}) const override { return parent.isValid()?0:2; }
-    QVariant data(const QModelIndex &amp;index,int role=Qt::DisplayRole) const override {
-        if(!index.isValid() || index.row()&lt;0 || index.row()&gt;=rows_.size() || index.column()&lt;0 || index.column()&gt;1) return {};
-        if(role==Qt::DisplayRole || role==Qt::EditRole) return rows_[index.row()][index.column()];
-        return {};
-    }
-    QVariant headerData(int section,Qt::Orientation orientation,int role) const override {
-        if(orientation==Qt::Horizontal &amp;&amp; role==Qt::DisplayRole)
-            return section==0?QStringLiteral(&quot;任务&quot;):QStringLiteral(&quot;优先级&quot;);
-        return QAbstractTableModel::headerData(section,orientation,role);
-    }
-    Qt::ItemFlags flags(const QModelIndex &amp;index) const override {
-        return index.isValid()?QAbstractTableModel::flags(index)|Qt::ItemIsEditable:Qt::NoItemFlags;
-    }
-    bool setData(const QModelIndex &amp;index,const QVariant &amp;value,int role) override {
-        if(role!=Qt::EditRole || !index.isValid() || index.row()&lt;0 || index.row()&gt;=rows_.size() || index.column()&lt;0 || index.column()&gt;1) return false;
-        const auto text=value.toString().trimmed(); if(text.isEmpty()) return false;
-        rows_[index.row()][index.column()]=text; emit dataChanged(index,index,{Qt::DisplayRole,Qt::EditRole}); return true;
-    }
-private:
-    QVector&lt;QStringList&gt; rows_{{QStringLiteral(&quot;学习布局&quot;),&quot;1&quot;},{QStringLiteral(&quot;学习模型&quot;),&quot;2&quot;}};
-};
-int main(int argc,char **argv) {
-    QApplication app(argc,argv); QWidget w; auto *layout=new QVBoxLayout(&amp;w);
-    auto *search=new QLineEdit(&amp;w); search-&gt;setPlaceholderText(QStringLiteral(&quot;按任务名过滤&quot;));
-    auto *table=new QTableView(&amp;w); auto *model=new TaskModel(&amp;w);
-    auto *proxy=new QSortFilterProxyModel(&amp;w); proxy-&gt;setSourceModel(model); proxy-&gt;setFilterKeyColumn(0);
-    proxy-&gt;setFilterCaseSensitivity(Qt::CaseInsensitive); table-&gt;setModel(proxy); table-&gt;setSortingEnabled(true);
-    QObject::connect(search,&amp;QLineEdit::textChanged,proxy,&amp;QSortFilterProxyModel::setFilterFixedString);
-    layout-&gt;addWidget(search); layout-&gt;addWidget(table); w.resize(600,350); w.show();
-    if(app.arguments().contains(&quot;--smoke&quot;)) QTimer::singleShot(150,&amp;app,&amp;QCoreApplication::quit);
-    return app.exec();
-}
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>16 · QString、容器、日期和字符编码 · Qt 6 中文教程</title><link rel="stylesheet" href="style.css"></head><body><a class="skip-link" href="#content">跳到正文</a><header><div class="tag">C++ · QT 6 · 从入门到项目</div><h1>Qt 6 中文学习手册</h1><p>49 章分阶段学习 / 16 个源码示例 / 18 个逐步实验 / 离线可读</p></header><div class="shell"><nav aria-label="课程导航"><input id="search" type="search" placeholder="搜索章节与正文" aria-label="搜索章节与正文"><p><a href="index.html">课程首页与推荐路线</a><a href="workbook.html">18 个逐步实操实验</a><a href="references.html">官方参考资料</a></p><section class="nav-stage"><h2>一 · 零基础与开发工具</h2><a class="chapter" data-id="00" href="00.html">00 · 学习地图：从零到独立开发</a><a class="chapter" data-id="01" href="01.html">01 · 零基础预备课：读懂一小段 C++</a><a class="chapter" data-id="02" href="02.html">02 · 开发工具入门：Kit、断点与第一次修改</a><a class="chapter" data-id="03" href="03.html">03 · 安装与环境：项目内的 Qt 6</a><a class="chapter" data-id="04" href="04.html">04 · C++ 补课一：值、引用、指针和生命周期</a><a class="chapter" data-id="05" href="05.html">05 · C++ 补课二：类、继承、lambda 和工程拆分</a><a class="chapter" data-id="06" href="06.html">06 · CMake：从源码到程序</a><a class="chapter" data-id="07" href="07.html">07 · 第一个窗口与事件循环</a></section><section class="nav-stage"><h2>二 · 对象、控件与交互</h2><a class="chapter" data-id="08" href="08.html">08 · QObject、元对象与父子所有权</a><a class="chapter" data-id="09" href="09.html">09 · 信号与槽：把行为连接起来</a><a class="chapter" data-id="10" href="10.html">10 · 布局管理：让界面适应窗口</a><a class="chapter" data-id="11" href="11.html">11 · 常用控件详解：选择、输入与状态同步</a><a class="chapter" data-id="12" href="12.html">12 · 表单、输入验证和对话框</a><a class="chapter" data-id="13" href="13.html">13 · 多窗口与对话框：确认、取消和对象寿命</a><a class="chapter" data-id="14" href="14.html">14 · 主窗口、菜单、工具栏和快捷键</a><a class="chapter" data-id="15" href="15.html">15 · Qt Designer：可视化设计和 ui 文件</a><a class="chapter active" data-id="16" href="16.html" aria-current="page">16 · QString、容器、日期和字符编码</a><a class="chapter" data-id="17" href="17.html">17 · QSettings 与应用路径：记住用户的选择</a></section><section class="nav-stage"><h2>三 · 文件、数据与界面机制</h2><a class="chapter" data-id="18" href="18.html">18 · 文件、路径与可靠保存</a><a class="chapter" data-id="19" href="19.html">19 · JSON、配置与数据格式演进</a><a class="chapter" data-id="20" href="20.html">20 · 资源系统、QSS 与界面风格</a><a class="chapter" data-id="21" href="21.html">21 · Model/View：列表与表格的核心</a><a class="chapter" data-id="22" href="22.html">22 · 代理模型、选择、委托与分页</a><a class="chapter" data-id="23" href="23.html">23 · 模型进阶：角色、编辑委托与正确通知</a><a class="chapter" data-id="24" href="24.html">24 · 事件系统、定时器和自定义控件</a><a class="chapter" data-id="25" href="25.html">25 · 事件过滤、焦点与键盘：保留正常交互</a><a class="chapter" data-id="26" href="26.html">26 · QPainter：坐标、抗锯齿和仪表盘</a></section><section class="nav-stage"><h2>四 · 异步、通信与数据库</h2><a class="chapter" data-id="27" href="27.html">27 · 多线程：后台任务、取消和退出</a><a class="chapter" data-id="28" href="28.html">28 · 异步任务设计：状态、取消和过期结果</a><a class="chapter" data-id="29" href="29.html">29 · HTTP 网络：异步、超时和错误分层</a><a class="chapter" data-id="30" href="30.html">30 · TCP 实战：连接、拆包和有限缓冲</a><a class="chapter" data-id="31" href="31.html">31 · SQLite：连接、SQL、绑定和事务</a><a class="chapter" data-id="32" href="32.html">32 · SQLite 进阶：事务、迁移与分页</a></section><section class="nav-stage"><h2>五 · QML 与 C++ 协作</h2><a class="chapter" data-id="33" href="33.html">33 · Qt Quick 与 QML：声明式界面</a><a class="chapter" data-id="34" href="34.html">34 · C++ 与 QML：属性、通知和类型注册</a><a class="chapter" data-id="35" href="35.html">35 · QML 进阶入门：组件、绑定与页面状态</a></section><section class="nav-stage"><h2>六 · 测试、工程与综合项目</h2><a class="chapter" data-id="36" href="36.html">36 · 自动测试：Qt Test、信号和临时数据库</a><a class="chapter" data-id="37" href="37.html">37 · 测试进阶：从规则到真实交互</a><a class="chapter" data-id="38" href="38.html">38 · 调试与故障排查：从第一条错误开始</a><a class="chapter" data-id="39" href="39.html">39 · 性能与内存：先测量，再优化</a><a class="chapter" data-id="40" href="40.html">40 · Windows 部署：让程序离开开发机</a><a class="chapter" data-id="41" href="41.html">41 · 进阶发布：日志、翻译与可交付检查</a><a class="chapter" data-id="42" href="42.html">42 · 综合项目 TaskDesk：需求、架构和数据流</a><a class="chapter" data-id="43" href="43.html">43 · 项目拆分：让窗口不再承担全部业务</a><a class="chapter" data-id="44" href="44.html">44 · 综合项目 TaskDesk：分阶段扩展作业</a><a class="chapter" data-id="45" href="45.html">45 · 工程习惯、GitHub 准备和协作</a><a class="chapter" data-id="46" href="46.html">46 · 进阶选修：串口、TCP、音视频与国际化</a><a class="chapter" data-id="47" href="47.html">47 · 练习参考答案与最终验收清单</a><a class="chapter" data-id="48" href="48.html">48 · 新手答疑、术语表与阶段自测</a></section><p id="search-status" role="status" aria-live="polite"></p></nav><main id="content"><p class="reading-position">二 · 对象、控件与交互 · 推荐路线 17 / 49</p><h1 id="16-qstring">16 · QString、容器、日期和字符编码</h1>
+<h2 id="_1">字符和字节不能混为一谈</h2>
+<p>QString 表示 Unicode 文本，QByteArray 表示字节序列。网络和文件通常传输字节，转换应明确编码：<code>QString::fromUtf8(bytes)</code> 与 <code>text.toUtf8()</code>。不要用系统默认编码碰运气。本项目源码存为 UTF-8，MSVC 使用 /utf-8。</p>
+<p>QString::size 统计 UTF-16 代码单元数量，某些 emoji 不是一个代码单元。面向用户的“可见字符数”还涉及组合字符和字素边界。任务标题的 200 限制在课程项目中明确采用 UTF-16 单元，避免把实现声称为完整人类字符计数。</p>
+<pre><code class="language-cpp">QString message = QStringLiteral(&quot;你好，%1，今天学习 %2 分钟&quot;).arg(name).arg(minutes);
+bool ok = false;
+int value = input.toInt(&amp;ok);
+if (!ok) { /* 反馈数字格式错误 */ }
 </code></pre>
-<p><a href="index.html">返回目录</a></p><div class="pager"><a href="15.html">← 上一章</a><a href="17.html">下一章 →</a></div></main></div><script src="search.js"></script></body></html>
+<p><code>arg</code> 替换占位符，不能拿来替代 SQL 参数绑定。字符串到数字转换要检查 ok，不能把失败得到的零当作真实输入零。</p>
+<h2 id="_2">容器和日期</h2>
+<p>QStringList 适合字符串列表；QList/QVector 用于顺序数据；QHash 适合按键查找；QMap 按键排序。Qt 6 中 QList 和 QVector 的实现关系与 Qt 5 有变化，不要依靠旧文章推断内存行为。迭代容器时插入/删除可能让迭代器失效；先收集修改，或使用明确支持删除的迭代方式。</p>
+<p>存储时间可采用 UTC 的 ISO 8601，展示时转为本地时区。用 QDateTime 处理日期，不用“天数乘 24 小时”推算有夏令时地区的当地日历日期。练习：读取一分钟数文本、验证范围并展示当前本地时间。验收：空值、负数、中文输入有明确处理。</p>
+<h2 id="_3">常用操作先分清是否修改原值</h2>
+<p><code>trimmed()</code>、<code>toLower()</code>、<code>split()</code> 返回新结果；<code>append()</code>、<code>clear()</code> 改变原对象。<code>QStringList parts = text.split(',')</code> 只是按分隔符拆文本，不是完整 CSV 解析器，带引号和逗号的 CSV 需要专门处理。</p>
+<p>遍历容器可先用范围 for：<code>for (const auto &amp;name : names)</code> 表达只读元素。删除时不能假设原来的索引都保持稳定；反向按下标删除、使用受支持的迭代器删除或一次过滤后生成新容器，应根据数据类型选择。</p>
+<p>QVariant 是可存多种值的容器，不代表可以省略类型校验。JSON 的 missing、null、空字符串含义可能不同；配置中的字符串 <code>abc</code> 转数字失败也不应悄悄当作真实 0。日期解析后检查 isValid，用户地区显示用 QLocale，持久化时采用明确约定。</p>
+<p>正则表达式使用 QRegularExpression，先检查表达式 isValid，再匹配；不要用正则替代全部业务规则。例如姓名是否为空用 trimmed().isEmpty 就足够，复杂邮箱规则也不等于验证了邮箱真实存在。</p>
+<p>动手：准备含中文、emoji、空白、逗号的输入，分别打印 QString.size 和 toUtf8().size，解释它们为什么不同。验收：选择协议长度上限时说清单位，展示文字和传输字节不混用。</p>
+<p><a href="index.html">返回目录</a></p><div class="pager" aria-label="推荐学习顺序"><a href="15.html">← 上一课</a><a href="17.html">下一课 →</a></div></main></div><script src="search.js"></script></body></html>

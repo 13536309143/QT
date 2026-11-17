@@ -1,10 +1,11 @@
-<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>实操实验手册 · Qt 6 中文教程</title><link rel="stylesheet" href="style.css"></head><body><header><div class="tag">C++ · QT 6 · 从入门到项目</div><h1>Qt 6 中文学习手册</h1><p>离线阅读 / 配套源码 / 练习验收 / 固定版本可重现</p></header><div class="shell"><nav><input id="search" type="search" placeholder="搜索章节与正文" aria-label="搜索章节"><p><a href="index.html">课程首页</a></p><a href="workbook.html">12 个逐步实操实验</a><a class="chapter" data-i="0" href="00.html">00 · 学习地图：从零到独立开发</a><a class="chapter" data-i="1" href="01.html">01 · 安装与环境：项目内的 Qt 6</a><a class="chapter" data-i="2" href="02.html">02 · C++ 补课一：值、引用、指针和生命周期</a><a class="chapter" data-i="3" href="03.html">03 · C++ 补课二：类、继承、lambda 和工程拆分</a><a class="chapter" data-i="4" href="04.html">04 · CMake：从源码到程序</a><a class="chapter" data-i="5" href="05.html">05 · 第一个窗口与事件循环</a><a class="chapter" data-i="6" href="06.html">06 · QObject、元对象与父子所有权</a><a class="chapter" data-i="7" href="07.html">07 · 信号与槽：把行为连接起来</a><a class="chapter" data-i="8" href="08.html">08 · 布局管理：让界面适应窗口</a><a class="chapter" data-i="9" href="09.html">09 · 表单、输入验证和对话框</a><a class="chapter" data-i="10" href="10.html">10 · 主窗口、菜单、工具栏和快捷键</a><a class="chapter" data-i="11" href="11.html">11 · Qt Designer：可视化设计和 ui 文件</a><a class="chapter" data-i="12" href="12.html">12 · QString、容器、日期和字符编码</a><a class="chapter" data-i="13" href="13.html">13 · 文件、路径与可靠保存</a><a class="chapter" data-i="14" href="14.html">14 · JSON、配置与数据格式演进</a><a class="chapter" data-i="15" href="15.html">15 · 资源系统、QSS 与界面风格</a><a class="chapter" data-i="16" href="16.html">16 · Model/View：列表与表格的核心</a><a class="chapter" data-i="17" href="17.html">17 · 代理模型、选择、委托与分页</a><a class="chapter" data-i="18" href="18.html">18 · 事件系统、定时器和自定义控件</a><a class="chapter" data-i="19" href="19.html">19 · QPainter：坐标、抗锯齿和仪表盘</a><a class="chapter" data-i="20" href="20.html">20 · 多线程：后台任务、取消和退出</a><a class="chapter" data-i="21" href="21.html">21 · HTTP 网络：异步、超时和错误分层</a><a class="chapter" data-i="22" href="22.html">22 · SQLite：连接、SQL、绑定和事务</a><a class="chapter" data-i="23" href="23.html">23 · Qt Quick 与 QML：声明式界面</a><a class="chapter" data-i="24" href="24.html">24 · C++ 与 QML：属性、通知和类型注册</a><a class="chapter" data-i="25" href="25.html">25 · 自动测试：Qt Test、信号和临时数据库</a><a class="chapter" data-i="26" href="26.html">26 · 调试与故障排查：从第一条错误开始</a><a class="chapter" data-i="27" href="27.html">27 · Windows 部署：让程序离开开发机</a><a class="chapter" data-i="28" href="28.html">28 · 综合项目 TaskDesk：需求、架构和数据流</a><a class="chapter" data-i="29" href="29.html">29 · 综合项目 TaskDesk：分阶段扩展作业</a><a class="chapter" data-i="30" href="30.html">30 · 工程习惯、GitHub 准备和协作</a><a class="chapter" data-i="31" href="31.html">31 · 进阶选修：串口、TCP、音视频与国际化</a><a class="chapter" data-i="32" href="32.html">32 · 练习参考答案与最终验收清单</a></nav><main><h1>逐步实操实验手册</h1>
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>逐步实操实验手册 · Qt 6 中文教程</title><link rel="stylesheet" href="style.css"></head><body><a class="skip-link" href="#content">跳到正文</a><header><div class="tag">C++ · QT 6 · 从入门到项目</div><h1>Qt 6 中文学习手册</h1><p>49 章分阶段学习 / 16 个源码示例 / 18 个逐步实验 / 离线可读</p></header><div class="shell"><nav aria-label="课程导航"><input id="search" type="search" placeholder="搜索章节与正文" aria-label="搜索章节与正文"><p><a href="index.html">课程首页与推荐路线</a><a href="workbook.html">18 个逐步实操实验</a><a href="references.html">官方参考资料</a></p><section class="nav-stage"><h2>一 · 零基础与开发工具</h2><a class="chapter" data-id="00" href="00.html">00 · 学习地图：从零到独立开发</a><a class="chapter" data-id="01" href="01.html">01 · 零基础预备课：读懂一小段 C++</a><a class="chapter" data-id="02" href="02.html">02 · 开发工具入门：Kit、断点与第一次修改</a><a class="chapter" data-id="03" href="03.html">03 · 安装与环境：项目内的 Qt 6</a><a class="chapter" data-id="04" href="04.html">04 · C++ 补课一：值、引用、指针和生命周期</a><a class="chapter" data-id="05" href="05.html">05 · C++ 补课二：类、继承、lambda 和工程拆分</a><a class="chapter" data-id="06" href="06.html">06 · CMake：从源码到程序</a><a class="chapter" data-id="07" href="07.html">07 · 第一个窗口与事件循环</a></section><section class="nav-stage"><h2>二 · 对象、控件与交互</h2><a class="chapter" data-id="08" href="08.html">08 · QObject、元对象与父子所有权</a><a class="chapter" data-id="09" href="09.html">09 · 信号与槽：把行为连接起来</a><a class="chapter" data-id="10" href="10.html">10 · 布局管理：让界面适应窗口</a><a class="chapter" data-id="11" href="11.html">11 · 常用控件详解：选择、输入与状态同步</a><a class="chapter" data-id="12" href="12.html">12 · 表单、输入验证和对话框</a><a class="chapter" data-id="13" href="13.html">13 · 多窗口与对话框：确认、取消和对象寿命</a><a class="chapter" data-id="14" href="14.html">14 · 主窗口、菜单、工具栏和快捷键</a><a class="chapter" data-id="15" href="15.html">15 · Qt Designer：可视化设计和 ui 文件</a><a class="chapter" data-id="16" href="16.html">16 · QString、容器、日期和字符编码</a><a class="chapter" data-id="17" href="17.html">17 · QSettings 与应用路径：记住用户的选择</a></section><section class="nav-stage"><h2>三 · 文件、数据与界面机制</h2><a class="chapter" data-id="18" href="18.html">18 · 文件、路径与可靠保存</a><a class="chapter" data-id="19" href="19.html">19 · JSON、配置与数据格式演进</a><a class="chapter" data-id="20" href="20.html">20 · 资源系统、QSS 与界面风格</a><a class="chapter" data-id="21" href="21.html">21 · Model/View：列表与表格的核心</a><a class="chapter" data-id="22" href="22.html">22 · 代理模型、选择、委托与分页</a><a class="chapter" data-id="23" href="23.html">23 · 模型进阶：角色、编辑委托与正确通知</a><a class="chapter" data-id="24" href="24.html">24 · 事件系统、定时器和自定义控件</a><a class="chapter" data-id="25" href="25.html">25 · 事件过滤、焦点与键盘：保留正常交互</a><a class="chapter" data-id="26" href="26.html">26 · QPainter：坐标、抗锯齿和仪表盘</a></section><section class="nav-stage"><h2>四 · 异步、通信与数据库</h2><a class="chapter" data-id="27" href="27.html">27 · 多线程：后台任务、取消和退出</a><a class="chapter" data-id="28" href="28.html">28 · 异步任务设计：状态、取消和过期结果</a><a class="chapter" data-id="29" href="29.html">29 · HTTP 网络：异步、超时和错误分层</a><a class="chapter" data-id="30" href="30.html">30 · TCP 实战：连接、拆包和有限缓冲</a><a class="chapter" data-id="31" href="31.html">31 · SQLite：连接、SQL、绑定和事务</a><a class="chapter" data-id="32" href="32.html">32 · SQLite 进阶：事务、迁移与分页</a></section><section class="nav-stage"><h2>五 · QML 与 C++ 协作</h2><a class="chapter" data-id="33" href="33.html">33 · Qt Quick 与 QML：声明式界面</a><a class="chapter" data-id="34" href="34.html">34 · C++ 与 QML：属性、通知和类型注册</a><a class="chapter" data-id="35" href="35.html">35 · QML 进阶入门：组件、绑定与页面状态</a></section><section class="nav-stage"><h2>六 · 测试、工程与综合项目</h2><a class="chapter" data-id="36" href="36.html">36 · 自动测试：Qt Test、信号和临时数据库</a><a class="chapter" data-id="37" href="37.html">37 · 测试进阶：从规则到真实交互</a><a class="chapter" data-id="38" href="38.html">38 · 调试与故障排查：从第一条错误开始</a><a class="chapter" data-id="39" href="39.html">39 · 性能与内存：先测量，再优化</a><a class="chapter" data-id="40" href="40.html">40 · Windows 部署：让程序离开开发机</a><a class="chapter" data-id="41" href="41.html">41 · 进阶发布：日志、翻译与可交付检查</a><a class="chapter" data-id="42" href="42.html">42 · 综合项目 TaskDesk：需求、架构和数据流</a><a class="chapter" data-id="43" href="43.html">43 · 项目拆分：让窗口不再承担全部业务</a><a class="chapter" data-id="44" href="44.html">44 · 综合项目 TaskDesk：分阶段扩展作业</a><a class="chapter" data-id="45" href="45.html">45 · 工程习惯、GitHub 准备和协作</a><a class="chapter" data-id="46" href="46.html">46 · 进阶选修：串口、TCP、音视频与国际化</a><a class="chapter" data-id="47" href="47.html">47 · 练习参考答案与最终验收清单</a><a class="chapter" data-id="48" href="48.html">48 · 新手答疑、术语表与阶段自测</a></section><p id="search-status" role="status" aria-live="polite"></p></nav><main id="content"><h1 id="_1">逐步实操实验手册</h1>
 <p>这部分补充主教程的动手细节。请在同一个实验中按顺序修改、编译、观察，再解释结果。除“新增目标”实验外，均基于仓库现成示例，不需要从聊天中复制完整工程。</p>
-<h2>实验一：从空白文件增加第十四个示例</h2>
+<p>实验一至四适合入门；五至十二配合原课程主线；十三至十八用于新增章节。不要一次修改全部示例，每做一个实验先保留原版，再做最小改动和验收。</p>
+<h2 id="_2">实验一：从空白文件增加自己的时钟示例</h2>
 <p><strong>目标</strong>：不借助 IDE 向导，亲手理解一个 CMake target 的最小结构。</p>
 <ol>
-<li>新建 <code>examples/14_clock</code> 目录，添加 main.cpp。</li>
-<li>在根目录 CMakeLists 的 course_example 调用区追加 <code>course_example(14_clock)</code>。</li>
+<li>新建 <code>examples/19_clock</code> 目录，添加 main.cpp。14~16 编号已用于新增配套示例。</li>
+<li>在根目录 CMakeLists 的 course_example 调用区追加 <code>course_example(19_clock)</code>。</li>
 <li>main.cpp 使用以下代码：</li>
 </ol>
 <pre><code class="language-cpp">#include &lt;QApplication&gt;
@@ -28,12 +29,12 @@ int main(int argc, char **argv) {
 }
 </code></pre>
 <ol>
-<li>再次执行 <code>scripts/build.cmd</code> 让 CMake 看到新目标；之后可只执行 <code>cmake --build build --config Release --target 14_clock</code>。</li>
-<li><code>scripts/run.cmd 14_clock</code> 会按根目录目标的通用路径运行；部署脚本采用白名单，若要部署，需明确将新目标加入白名单。</li>
+<li>再次执行 <code>scripts/build.cmd</code> 让 CMake 看到新目标；之后可只执行 <code>cmake --build build --config Release --target 19_clock</code>。</li>
+<li><code>scripts/run.cmd 19_clock</code> 会按根目录目标的通用路径运行；部署脚本采用白名单，若要部署，需明确将新目标加入白名单。</li>
 </ol>
 <p><strong>解释关键细节</strong>：refresh 在进入事件循环前调用一次，因此初始窗口不会空白一秒；定时器没有父对象，但作为局部变量会在 main 返回时正常析构；lambda 引用的 clock 比连接的使用时长更长；显示的是当前系统时间，定时器延迟不会累计成“时钟越走越慢”。</p>
 <p><strong>故障实验</strong>：把 timer 作为辅助函数的局部变量并让函数立即返回，观察时钟停止。不要以为 connect 会延长 sender 的寿命。验收：可以指出为什么定时器没活到下一次 timeout。</p>
-<h2>实验二：计数器的数据源必须唯一</h2>
+<h2 id="_3">实验二：计数器的数据源必须唯一</h2>
 <p><strong>起点</strong>：02_counter。先运行并按三次加一。</p>
 <ol>
 <li>在构造函数里创建 reset 按钮，加入已有布局。</li>
@@ -45,7 +46,7 @@ int main(int argc, char **argv) {
 <p><strong>进一步要求</strong>：新增 <code>setCount(int)</code>，所有改变都经由它。若传入值与现有值一致就返回，只在改变时发 countChanged。把状态修改从按钮逻辑中抽出来，以后读文件、网络更新也能重用。</p>
 <p><strong>扩展题</strong>：达到 10 时禁用加一按钮。连接 countChanged 到按钮 enabled 状态，复位后应自动启用。不要在复位和加一两处分别写一遍“是否禁用”的规则。若未来上限改变，只应改一个地方。</p>
 <p><strong>验收表</strong>：初始 0；十次后 10 且按钮禁用；复位显示 0 并启用；连续复位不产生没有必要的状态通知；窗口销毁后连接不会继续访问按钮。</p>
-<h2>实验三：表单校验的四个阶段</h2>
+<h2 id="_4">实验三：表单校验的四个阶段</h2>
 <p><strong>起点</strong>：03_form。将提交处理整理为“读取、规范化、验证、执行”。</p>
 <table>
 <thead>
@@ -97,7 +98,7 @@ int main(int argc, char **argv) {
 </ol>
 <p><strong>常见错误</strong>：把所有输入框都设为固定宽度，导致窗口缩放没有效果；在 textChanged 每次敲键时弹 QMessageBox；把 <code>toInt()</code> 失败的 0 当成用户真填了 0。优先通过 QSpinBox 保证输入范围，再在业务接口保护规则。</p>
 <p><strong>验收</strong>：用键盘 Tab 完成一次提交；显示错误后能继续修正；成功结果读的是提交时的数据，而不是另一个旧变量。</p>
-<h2>实验四：编辑器关闭确认是一张决策表</h2>
+<h2 id="_5">实验四：编辑器关闭确认是一张决策表</h2>
 <p><strong>起点</strong>：04_editor。先准备一个可删除的 UTF-8 文本文件，不拿重要文档做实验。</p>
 <table>
 <thead>
@@ -149,7 +150,7 @@ int main(int argc, char **argv) {
 </ol>
 <p><strong>为什么检查 write 长度</strong>：写入调用成功打开文件，不代表全部字节已经写完。比较实际写入数与 bytes.size，失败不 commit。QSaveFile 的析构会放弃尚未提交的临时文件。编码采用 UTF-8，换行风格和原文件编码的完整保真是额外需求，本例不声称实现。</p>
 <p><strong>验收</strong>：完整走过决策表每一行，记录无法在当前机器模拟的故障；不通过“正常情况能保存”跳过取消与失败路径。</p>
-<h2>实验五：为表格添加行并理解通知</h2>
+<h2 id="_6">实验五：为表格添加行并理解通知</h2>
 <p><strong>起点</strong>：06_model。在 TaskModel 的 public 区增加：</p>
 <pre><code class="language-cpp">void appendTask(const QString &amp;title, int priority) {
     const int row = static_cast&lt;int&gt;(rows_.size());
@@ -167,7 +168,7 @@ int main(int argc, char **argv) {
 <p><strong>begin/end 为什么成对出现</strong>：视图和选择模型依赖通知维护内部映射。beginInsertRows 在底层容器改变前发出，end 在改变后结束事务；通知区间必须是真正新增的源模型行。直接 append 后 emit dataChanged 不能替代新增行通知。</p>
 <p><strong>进阶</strong>：把 priority 从字符串改成 int。可定义 Task 结构体储存 title、priority，data 根据列返回 QString 或 int。排序时会按真实类型比较，不再按字典序把 10 排在 2 前。要保留格式化显示时，可另外定义 SortRole 给代理使用。</p>
 <p><strong>验收</strong>：排序、过滤、编辑和插入可组合使用，没有视图残影；不能通过重启窗口才看到新数据。</p>
-<h2>实验六：线程取消为什么不能只发一个排队信号</h2>
+<h2 id="_7">实验六：线程取消为什么不能只发一个排队信号</h2>
 <p><strong>起点</strong>：08_worker，阅读 run 的循环和 requestInterruption。</p>
 <ol>
 <li>在后台循环打印 currentThreadId，在按钮处理打印同一函数，确认两个线程不同。</li>
@@ -179,7 +180,7 @@ int main(int argc, char **argv) {
 <p><strong>推理练习</strong>：若把 cancel 设计为 Worker 槽，并用默认跨线程连接，run 一直占着后台线程执行长循环，那么 cancel 事件要等 run 返回才有机会执行。requestInterruption 则是线程安全标志，运行中的循环可以主动观察它。</p>
 <p><strong>边界讨论</strong>：如果一轮工作需要十分钟阻塞且无法中断，这种循环每轮检查一次仍然不够。必须把阻塞调用改为超时、分块、库自身取消 API 或独立进程方案。<code>quit()</code> 仅要求事件循环退出，不会强行终止当前正在运行的函数。</p>
 <p><strong>改进作业</strong>：区分“完成”“取消”“失败”三种结果，不要仅凭进度是否到 100 判断。结果包含状态枚举与错误字符串，GUI 根据状态更新说明文字。验收：取消不显示“任务完成”，异常不留下永久禁用的开始按钮。</p>
-<h2>实验七：用本地 HTTP 服务验证四层错误</h2>
+<h2 id="http">实验七：用本地 HTTP 服务验证四层错误</h2>
 <p><strong>起点</strong>：09_http，先按主教程启动只监听 127.0.0.1 的 Python 服务。</p>
 <ol>
 <li>请求 sample.json，预期 HTTP 200。</li>
@@ -202,7 +203,7 @@ if (parseError.error != QJsonParseError::NoError || !document.isObject()) {
 </code></pre>
 <p><strong>注意</strong>：reply-&gt;readAll 会消费当前缓冲区。不要先调用它展示原文，再调用一次期待得到同样字节；先保存到 bytes，多个后续步骤都读取这份值。请求关闭与超时时，仍要统一恢复按钮、清理 reply。</p>
 <p><strong>扩展</strong>：快速更换搜索词时，为请求附加序号，响应返回时仅处理最新序号；中止旧请求也仍可能触发 finished，因此完成处理不能假定一定是“当前请求”。验收：最后输入的关键词决定最终展示，旧响应不覆盖新结果。</p>
-<h2>实验八：用事务证明“要么全做，要么全不做”</h2>
+<h2 id="_8">实验八：用事务证明“要么全做，要么全不做”</h2>
 <p><strong>起点</strong>：10_sql，在建表后添加一段实验。</p>
 <ol>
 <li>表中已经有 id=1，或手动插入 id=1。</li>
@@ -225,7 +226,7 @@ return true;
 </code></pre>
 <p>代码片段中的 query 应提前 prepare/bind；实际函数也要记录 rollback 失败的情况和原始错误，不要让清理错误覆盖首个业务错误。事务保持尽量短，不要开着事务等用户点对话框，也不要在事务中执行长网络请求。</p>
 <p><strong>验收</strong>：不是只检查函数返回 false，还要查询数据库证明确实没有部分数据。扩展至任务导入时，先验证全部数据，再在一个事务中执行插入。对数量极大的导入再设计批次与进度，不牺牲可恢复性。</p>
-<h2>实验九：QML 绑定与命令赋值的不同</h2>
+<h2 id="qml">实验九：QML 绑定与命令赋值的不同</h2>
 <p><strong>起点</strong>：13_quick。</p>
 <ol>
 <li>保持 Label 的 <code>text: "点击次数：" + backend.count</code>，点击按钮，标签自动更新。</li>
@@ -237,7 +238,7 @@ return true;
 <p><strong>NOTIFY 实验</strong>：去掉 increment 中的 emit 后重新构建，count 的内部值仍变化，但界面不会按预期得知改变。NOTIFY 不是存储数据，它通知绑定该重新读取。把 emit 加回，避免用定时器每秒“强行刷新界面”掩盖属性设计错误。</p>
 <p><strong>扩展</strong>：把窗口布局与业务类型分离到不同 QML 文件，在 CMake 的 QML_FILES 中声明新文件。URI 保持 Course，必要时查 qmldir 和构建日志，不能只把文件放到目录就认为已进入模块。</p>
 <p><strong>验收</strong>：新旧绑定行为能解释；没有循环绑定；属性读取函数快速、不做 I/O；C++ 负责业务状态，QML 负责展示。</p>
-<h2>实验十：TaskDesk 中最重要的误删测试</h2>
+<h2 id="taskdesk">实验十：TaskDesk 中最重要的误删测试</h2>
 <ol>
 <li>添加“苹果”“香蕉”“草莓”三条，记下数据库 id。</li>
 <li>按任务名排序，视图第一行不一定对应源查询第一行。</li>
@@ -248,7 +249,7 @@ return true;
 <p><strong>源码定位</strong>：sourceIndex 调用 proxy.mapToSource，按源模型索引取第 0 列主键，store.remove 用 WHERE id=?。若错误使用视图行号作为数据库 id，最可能在简单默认顺序里“看起来成功”，一排序就暴露问题。</p>
 <p><strong>扩展验收</strong>：切换完成状态使用同样映射；重启确认更改保留。不存在 id 的 remove 返回 false，不应宣称操作成功。此时给用户的错误可继续完善为“任务可能已被删除，请刷新”，区别于数据库故障。</p>
 <p><strong>架构作业</strong>：把 queryModel 全量查询也封装到独立读取接口；为分页提供总数查询。添加 JSON 导入时不要绕过 TaskStore 的验证规则。数据库导出/备份另用 SQLite 兼容方案，不要在正在写入时随意复制一个可能依赖 WAL 的文件。</p>
-<h2>实验十一：有效的测试应能发现错误</h2>
+<h2 id="_9">实验十一：有效的测试应能发现错误</h2>
 <ol>
 <li>找到 tests/tst_course.cpp 的 validation_data，观察空白、引号与长度边界。</li>
 <li>临时把 TaskStore 的 <code>t.size()&gt;200</code> 改为 <code>t.size()&gt;=200</code>。</li>
@@ -259,7 +260,7 @@ return true;
 <p>测试要验证外部行为，不应仅为了通过而复制实现中的判断表达式。持久化测试先关闭一个连接，再创建新仓储重开文件；如果只用同一个对象查刚插入的数据，不能充分验证重启保留。</p>
 <p><strong>GUI 检查</strong>：点击和键盘测试涉及焦点、平台以及真实事件，不能被 --smoke 完全代替。启动检查只证明构造和退出过程没有立即报错。线程示例的 --smoke 默认不会点击开始，所以要另行执行实验六。</p>
 <p><strong>验收</strong>：能证明测试曾因真实错误失败，并说明覆盖不到的场景。CI 工作流提交后仍需在 GitHub 实际执行一次，不能将 YAML 存在等同于远程验证成功。</p>
-<h2>实验十二：从源码仓库到可用分发包</h2>
+<h2 id="_10">实验十二：从源码仓库到可用分发包</h2>
 <ol>
 <li>执行 scripts/deploy.cmd taskdesk，检查 dist/taskdesk 目录。</li>
 <li>确认包含 TaskDesk exe、Qt DLL、platforms/qwindows.dll 与 sqldrivers/qsqlite.dll。</li>
@@ -270,4 +271,67 @@ return true;
 <p><strong>版本记录</strong>：发布包记录 Qt 版本、编译器、架构、配置与源码版本。可将构建元信息编入“关于”窗口，但不放私人绝对路径和凭据。对外上传前核对依赖许可与运行库分发要求。</p>
 <p><strong>Git 暂存演练</strong>：先 git status，再 git add，最后 git diff --cached --stat。若看到 sdk、build 或用户数据库，立即停止发布并修正忽略规则；已经被跟踪的文件不会因新增 .gitignore 自动消失，需要显式停止跟踪且确认保留本地文件。不要对不确定目录执行递归删除。</p>
 <p><strong>最终验收</strong>：另一个人只凭 README 能安装、编译、运行；普通用户只拿分发包能启动；仓库无 SDK 和私人数据；未验证平台与已知限制均清楚说明。</p>
-<p><a href="index.html">返回主教程目录</a></p></main></div><script src="search.js"></script></body></html>
+<p><a href="index.html">返回主教程目录</a></p>
+<h2 id="_11">实验十三：让三个控件共享学习计划</h2>
+<p><strong>起点</strong>：14_controls，对应第 11 章。</p>
+<ol>
+<li>先把滑块拖到 60，数字框与预览都应显示 60。</li>
+<li>用键盘把数字框改成 15，观察滑块回到对应位置。</li>
+<li>给级别新增一个编号为 2 的选项，再修改它的显示文字。</li>
+<li>给预览增加业务编号，使用 currentData().toInt()，不要使用 currentIndex 当作长期编号。</li>
+<li>修改“恢复默认”，验证姓名、选项、数字和滑块同时回到默认状态。</li>
+</ol>
+<p><strong>故障实验</strong>：临时只重置数字框、不更新被 QSignalBlocker 阻塞的滑块，观察它们不同步，然后恢复完整赋值。阻止通知并不等于帮你更新所有依赖。</p>
+<p><strong>参考与验收</strong>：预览由输入状态生成；选项名称改变不影响编号；重复恢复默认仍正确。用 Tab 与 Alt+N 操作，并检查空白姓名。</p>
+<h2 id="_12">实验十四：保存、恢复与损坏设置</h2>
+<p><strong>起点</strong>：15_settings，对应第 17 章。</p>
+<ol>
+<li>记录界面显示的 INI 路径，在程序中保存姓名“学习者”和 45 分钟。</li>
+<li>关闭重开，观察值恢复；再修改但不保存，重开后仍应保留上一次保存值。</li>
+<li>关闭后备份 INI，将 study/minutes 改成 abc、-10、999，分别启动记录结果。</li>
+<li>将读取改为 toInt(&amp;ok) 加范围判断，非法时统一回退到 30。</li>
+<li>增加“恢复默认”按钮，只修改界面，点击保存才落盘。</li>
+</ol>
+<p><strong>参考与验收</strong>：缺失键、损坏值与正常值分别测试；没有把配置写到 SDK 或安装目录；--smoke 使用临时位置。QSettings 不是数据库事务，也不是密码存储工具。</p>
+<h2 id="_13">实验十五：第二个窗口只在确认时提交</h2>
+<p><strong>起点</strong>：03_form，对应第 13 章。</p>
+<ol>
+<li>新建一个由主窗口拥有的 QDialog，用 QLineEdit 编辑姓名。</li>
+<li>添加 Ok/Cancel，先把主表单已有姓名复制进对话框。</li>
+<li>Ok 前验证 trimmed 后非空；失败保留对话框并提示。</li>
+<li>仅在 accepted 处理里更新主表单；Cancel 和右上角关闭都不提交。</li>
+<li>先观察重复打开多个对话框，再用 QPointer 成员实现单窗口复用或关闭后重建。</li>
+</ol>
+<p><strong>参考与验收</strong>：不能把局部 QDialog open 后立即返回；异步显示用明确的堆对象寿命。验证确认、取消、关闭主窗口、连续打开四条路径，主表单数据始终符合提交规则。</p>
+<h2 id="tcp">实验十六：亲手重现 TCP 半包与粘包</h2>
+<p><strong>起点</strong>：16_tcp、tests/tst_protocol.cpp，对应第 30、37 章。</p>
+<ol>
+<li>运行示例发送中文，确认客户端看到相同回显。</li>
+<li>阅读 fragmentedUtf8 测试，第一段只传中文编码的首字节，必须没有完整行。</li>
+<li>第二段传剩余内容但不传换行，仍不应输出；最后传 LF 才输出。</li>
+<li>阅读 coalescedAndPartial，确认一次输入可输出两行并保留下一行的前半段。</li>
+<li>测试 1024 字节和 1025 字节边界；UTF-8 字节数不是 QString.size。</li>
+<li>在测试副本里将 MaxPayload 判断改错，确认测试失败，再恢复。</li>
+</ol>
+<p><strong>参考与验收</strong>：TCP 接收次数不决定消息条数；完整帧后解码；超长未闭合消息及时拒绝。测试可用 scripts/build.cmd 执行，真实网络往返使用回环地址与随机端口，不依赖外网。</p>
+<h2 id="_14">实验十七：防抖与过期结果</h2>
+<p><strong>起点</strong>：06_model 的搜索框或 TaskDesk 副本，对应第 25、28 章。</p>
+<ol>
+<li>加一个 singleShot QTimer，输入变化时重新 start(250)。</li>
+<li>timeout 时读取当前文本并记录一次“发起搜索”日志。</li>
+<li>快速输入四个字，停顿后只应发起一次；输入中间停顿超过 250ms 时允许发起多次。</li>
+<li>用两个 singleShot 模拟 A 500ms 返回、B 100ms 返回。用户先请求 A，再请求 B。</li>
+<li>在 GUI 线程维护递增请求编号，结果处理时比较编号，A 过期后丢弃。</li>
+</ol>
+<p><strong>参考与验收</strong>：防抖减少发起次数，请求编号保证结果时序，两者解决不同问题。模拟结果回调提供上下文，关闭窗口后不再访问它。真实后台线程的结果用 queued 信号传回，不直接读写 GUI 状态。</p>
+<h2 id="_15">实验十八：一次失败的导入必须全部回滚</h2>
+<p><strong>起点</strong>：10_sql 或测试中的临时 SQLite 数据库，对应第 32 章。</p>
+<ol>
+<li>在临时库建立 tasks 表，先插入一条原始记录。</li>
+<li>开事务，批量导入三条数据，故意让中间一次 SQL 失败。</li>
+<li>失败后 rollback，查询记录总数仍为 1。</li>
+<li>修复输入后重新导入，commit 成功，总数为 4。</li>
+<li>在数据库副本上用 user_version 演练添加 priority；未知更高版本拒绝自动写入。</li>
+</ol>
+<p><strong>参考与验收</strong>：检查 transaction、prepare、exec、commit 各自结果，失败不提示成功；版本更新与迁移放同一事务。旧文件保留原数据，失败场景只用副本。不要把建议的迁移方案误写成现有 TaskDesk 已经实现的功能。</p>
+<p><a href="index.html">返回目录</a></p></main></div><script src="search.js"></script></body></html>
