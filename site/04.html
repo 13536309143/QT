@@ -1,0 +1,23 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>04 · CMake：从源码到程序 · Qt 6 中文教程</title><link rel="stylesheet" href="style.css"></head><body><header><div class="tag">C++ · QT 6 · 从入门到项目</div><h1>Qt 6 中文学习手册</h1><p>离线阅读 / 配套源码 / 练习验收 / 固定版本可重现</p></header><div class="shell"><nav><input id="search" type="search" placeholder="搜索章节与正文" aria-label="搜索章节"><p><a href="index.html">课程首页</a></p><a href="workbook.html">12 个逐步实操实验</a><a class="chapter" data-i="0" href="00.html">00 · 学习地图：从零到独立开发</a><a class="chapter" data-i="1" href="01.html">01 · 安装与环境：项目内的 Qt 6</a><a class="chapter" data-i="2" href="02.html">02 · C++ 补课一：值、引用、指针和生命周期</a><a class="chapter" data-i="3" href="03.html">03 · C++ 补课二：类、继承、lambda 和工程拆分</a><a class="chapter" data-i="4" href="04.html">04 · CMake：从源码到程序</a><a class="chapter" data-i="5" href="05.html">05 · 第一个窗口与事件循环</a><a class="chapter" data-i="6" href="06.html">06 · QObject、元对象与父子所有权</a><a class="chapter" data-i="7" href="07.html">07 · 信号与槽：把行为连接起来</a><a class="chapter" data-i="8" href="08.html">08 · 布局管理：让界面适应窗口</a><a class="chapter" data-i="9" href="09.html">09 · 表单、输入验证和对话框</a><a class="chapter" data-i="10" href="10.html">10 · 主窗口、菜单、工具栏和快捷键</a><a class="chapter" data-i="11" href="11.html">11 · Qt Designer：可视化设计和 ui 文件</a><a class="chapter" data-i="12" href="12.html">12 · QString、容器、日期和字符编码</a><a class="chapter" data-i="13" href="13.html">13 · 文件、路径与可靠保存</a><a class="chapter" data-i="14" href="14.html">14 · JSON、配置与数据格式演进</a><a class="chapter" data-i="15" href="15.html">15 · 资源系统、QSS 与界面风格</a><a class="chapter" data-i="16" href="16.html">16 · Model/View：列表与表格的核心</a><a class="chapter" data-i="17" href="17.html">17 · 代理模型、选择、委托与分页</a><a class="chapter" data-i="18" href="18.html">18 · 事件系统、定时器和自定义控件</a><a class="chapter" data-i="19" href="19.html">19 · QPainter：坐标、抗锯齿和仪表盘</a><a class="chapter" data-i="20" href="20.html">20 · 多线程：后台任务、取消和退出</a><a class="chapter" data-i="21" href="21.html">21 · HTTP 网络：异步、超时和错误分层</a><a class="chapter" data-i="22" href="22.html">22 · SQLite：连接、SQL、绑定和事务</a><a class="chapter" data-i="23" href="23.html">23 · Qt Quick 与 QML：声明式界面</a><a class="chapter" data-i="24" href="24.html">24 · C++ 与 QML：属性、通知和类型注册</a><a class="chapter" data-i="25" href="25.html">25 · 自动测试：Qt Test、信号和临时数据库</a><a class="chapter" data-i="26" href="26.html">26 · 调试与故障排查：从第一条错误开始</a><a class="chapter" data-i="27" href="27.html">27 · Windows 部署：让程序离开开发机</a><a class="chapter" data-i="28" href="28.html">28 · 综合项目 TaskDesk：需求、架构和数据流</a><a class="chapter" data-i="29" href="29.html">29 · 综合项目 TaskDesk：分阶段扩展作业</a><a class="chapter" data-i="30" href="30.html">30 · 工程习惯、GitHub 准备和协作</a><a class="chapter" data-i="31" href="31.html">31 · 进阶选修：串口、TCP、音视频与国际化</a><a class="chapter" data-i="32" href="32.html">32 · 练习参考答案与最终验收清单</a></nav><main><h1>04 · CMake：从源码到程序</h1>
+<h2>构建经历哪几步</h2>
+<p>配置阶段读取 CMakeLists、寻找 Qt 和编译器；生成阶段写出 VS 工程或 Ninja 文件；编译阶段把每个 cpp 变成目标文件；链接阶段把目标文件和 Qt 库组合成可执行程序。找不到头文件通常在编译阶段失败，unresolved external symbol 通常在链接阶段失败。</p>
+<pre><code class="language-cmake">cmake_minimum_required(VERSION 3.21)
+project(Hello LANGUAGES CXX)
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_AUTOMOC ON)
+find_package(Qt6 6.8 REQUIRED COMPONENTS Widgets)
+add_executable(hello main.cpp)
+target_link_libraries(hello PRIVATE Qt6::Widgets)
+</code></pre>
+<p><code>Qt6::Widgets</code> 是导入目标，会携带所需头文件路径、库和传递依赖。不要手工拼接 Qt 的 include/lib 路径。<code>PRIVATE</code> 表示该链接需求服务于当前目标；库项目公开头文件依赖 Qt 时再考虑 PUBLIC。</p>
+<h2>moc、uic、rcc</h2>
+<p>AUTOMOC 处理 Q_OBJECT 等元对象声明；AUTOUIC 将 ui 文件生成为 C++ 头；AUTORCC 将 qrc 资源打进程序。如果在 main.cpp 内定义 Q_OBJECT 类，示例末尾的 <code>#include "main.moc"</code> 是有意保留的。生成目录里的 ui_form.h 和 moc 文件不应手工修改或提交。</p>
+<h2>常用命令</h2>
+<pre><code class="language-powershell">cmake --build build --config Release --target 02_counter
+ctest --test-dir build -C Release --output-on-failure
+cmake --build build --config Debug --target taskdesk
+</code></pre>
+<p>切换 Qt 主版本、架构或生成器时用新的构建目录，例如 build-msvc，不要在旧缓存上反复猜。通过 <code>cmake -LA -N build</code> 查看缓存。根工程需要 Core、Gui、Widgets、Network、Sql、Test、Quick、QuickControls2；以后开发独立小项目时只链接真正需要的模块。</p>
+<p>练习：新增一个只链接 Core 的控制台目标打印当前时间。验收：能单独编译目标，不用重编译全部课程。
+参考：<a href="https://doc.qt.io/qt-6.8/cmake-get-started.html">Qt CMake 入门</a>。</p>
+<p><a href="index.html">返回目录</a></p><div class="pager"><a href="03.html">← 上一章</a><a href="05.html">下一章 →</a></div></main></div><script src="search.js"></script></body></html>

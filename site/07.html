@@ -1,0 +1,45 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>07 · 信号与槽：把行为连接起来 · Qt 6 中文教程</title><link rel="stylesheet" href="style.css"></head><body><header><div class="tag">C++ · QT 6 · 从入门到项目</div><h1>Qt 6 中文学习手册</h1><p>离线阅读 / 配套源码 / 练习验收 / 固定版本可重现</p></header><div class="shell"><nav><input id="search" type="search" placeholder="搜索章节与正文" aria-label="搜索章节"><p><a href="index.html">课程首页</a></p><a href="workbook.html">12 个逐步实操实验</a><a class="chapter" data-i="0" href="00.html">00 · 学习地图：从零到独立开发</a><a class="chapter" data-i="1" href="01.html">01 · 安装与环境：项目内的 Qt 6</a><a class="chapter" data-i="2" href="02.html">02 · C++ 补课一：值、引用、指针和生命周期</a><a class="chapter" data-i="3" href="03.html">03 · C++ 补课二：类、继承、lambda 和工程拆分</a><a class="chapter" data-i="4" href="04.html">04 · CMake：从源码到程序</a><a class="chapter" data-i="5" href="05.html">05 · 第一个窗口与事件循环</a><a class="chapter" data-i="6" href="06.html">06 · QObject、元对象与父子所有权</a><a class="chapter" data-i="7" href="07.html">07 · 信号与槽：把行为连接起来</a><a class="chapter" data-i="8" href="08.html">08 · 布局管理：让界面适应窗口</a><a class="chapter" data-i="9" href="09.html">09 · 表单、输入验证和对话框</a><a class="chapter" data-i="10" href="10.html">10 · 主窗口、菜单、工具栏和快捷键</a><a class="chapter" data-i="11" href="11.html">11 · Qt Designer：可视化设计和 ui 文件</a><a class="chapter" data-i="12" href="12.html">12 · QString、容器、日期和字符编码</a><a class="chapter" data-i="13" href="13.html">13 · 文件、路径与可靠保存</a><a class="chapter" data-i="14" href="14.html">14 · JSON、配置与数据格式演进</a><a class="chapter" data-i="15" href="15.html">15 · 资源系统、QSS 与界面风格</a><a class="chapter" data-i="16" href="16.html">16 · Model/View：列表与表格的核心</a><a class="chapter" data-i="17" href="17.html">17 · 代理模型、选择、委托与分页</a><a class="chapter" data-i="18" href="18.html">18 · 事件系统、定时器和自定义控件</a><a class="chapter" data-i="19" href="19.html">19 · QPainter：坐标、抗锯齿和仪表盘</a><a class="chapter" data-i="20" href="20.html">20 · 多线程：后台任务、取消和退出</a><a class="chapter" data-i="21" href="21.html">21 · HTTP 网络：异步、超时和错误分层</a><a class="chapter" data-i="22" href="22.html">22 · SQLite：连接、SQL、绑定和事务</a><a class="chapter" data-i="23" href="23.html">23 · Qt Quick 与 QML：声明式界面</a><a class="chapter" data-i="24" href="24.html">24 · C++ 与 QML：属性、通知和类型注册</a><a class="chapter" data-i="25" href="25.html">25 · 自动测试：Qt Test、信号和临时数据库</a><a class="chapter" data-i="26" href="26.html">26 · 调试与故障排查：从第一条错误开始</a><a class="chapter" data-i="27" href="27.html">27 · Windows 部署：让程序离开开发机</a><a class="chapter" data-i="28" href="28.html">28 · 综合项目 TaskDesk：需求、架构和数据流</a><a class="chapter" data-i="29" href="29.html">29 · 综合项目 TaskDesk：分阶段扩展作业</a><a class="chapter" data-i="30" href="30.html">30 · 工程习惯、GitHub 准备和协作</a><a class="chapter" data-i="31" href="31.html">31 · 进阶选修：串口、TCP、音视频与国际化</a><a class="chapter" data-i="32" href="32.html">32 · 练习参考答案与最终验收清单</a></nav><main><h1>07 · 信号与槽：把行为连接起来</h1>
+<h2>从用户点击到状态改变</h2>
+<p>信号表示发生了某件事，槽或 lambda 响应它。以计数器为例：按钮 clicked → 计数加一 → 自定义 countChanged → 标签更新。让状态变化发信号，比把所有控件更新硬塞到点击函数里更容易扩展。</p>
+<pre><code class="language-cpp">connect(button, &amp;QPushButton::clicked, this, [this] {
+    emit countChanged(++count_);
+});
+</code></pre>
+<p>emit 只是表达“发出信号”的可读性标记。信号由 moc 提供实现，不要自己为同一个信号写函数体。新式函数指针连接能做编译期类型检查，初学时优先使用，不使用旧字符串 SIGNAL/SLOT 语法。</p>
+<h2>连接类型</h2>
+<p>AutoConnection 在发射时依据接收对象的线程归属选择直接或排队执行。同线程通常立即调用；跨线程通常排队到接收线程。DirectConnection 在发射线程执行槽，因此不能把后台信号强制 Direct 到界面更新槽。QueuedConnection 需要接收线程处理事件，参数必须可复制并且 Qt 元类型系统知道相应类型。避免把指向短生命周期缓冲区的裸指针作为排队消息。</p>
+<h2>常见问题</h2>
+<p>重复调用 connect 会导致一次点击执行多次。构造时集中连接，或保存 QMetaObject::Connection 以便精确断开。UniqueConnection 不能通用于 lambda 去重。信号槽参数不必完全一样，接收端可以不接收信号的尾部参数，但已接收的参数类型应兼容。</p>
+<p>操作：运行 02_counter，增加“重置”按钮；重置应先改变 count_，再发同一个 countChanged。验收：加三次后重置显示 0，再加一次显示 1；不要只修改标签却忘了内部状态。
+参考：<a href="https://doc.qt.io/qt-6.8/signalsandslots.html">信号槽</a>。</p>
+<h2>配套完整源码</h2>
+<p>在根工程构建本章目标：<code>02_counter</code>。以下是仓库内同一份文件，修改请到 examples 目录。</p>
+<h3>main.cpp</h3>
+<pre><code class="language-cpp">#include &lt;QtWidgets&gt;
+class Counter final : public QWidget {
+    Q_OBJECT
+public:
+    Counter() {
+        auto *layout = new QVBoxLayout(this);
+        auto *value = new QLabel(&quot;0&quot;, this);
+        auto *button = new QPushButton(QStringLiteral(&quot;加一&quot;), this);
+        layout-&gt;addWidget(value); layout-&gt;addWidget(button);
+        // this 是连接上下文：窗口销毁后连接自动失效。
+        connect(button, &amp;QPushButton::clicked, this, [this] { emit countChanged(++count_); });
+        connect(this, &amp;Counter::countChanged, value, [value](int n) { value-&gt;setText(QString::number(n)); });
+        resize(320,180);
+    }
+signals:
+    void countChanged(int count);
+private:
+    int count_ = 0;
+};
+int main(int argc,char **argv) {
+    QApplication app(argc,argv); Counter w; w.show();
+    if(app.arguments().contains(&quot;--smoke&quot;)) QTimer::singleShot(150,&amp;app,&amp;QCoreApplication::quit);
+    return app.exec();
+}
+// Q_OBJECT 在 cpp 中定义时，AUTOMOC 需要这一行。
+#include &quot;main.moc&quot;
+</code></pre>
+<p><a href="index.html">返回目录</a></p><div class="pager"><a href="06.html">← 上一章</a><a href="08.html">下一章 →</a></div></main></div><script src="search.js"></script></body></html>

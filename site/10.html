@@ -1,0 +1,67 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>10 · 主窗口、菜单、工具栏和快捷键 · Qt 6 中文教程</title><link rel="stylesheet" href="style.css"></head><body><header><div class="tag">C++ · QT 6 · 从入门到项目</div><h1>Qt 6 中文学习手册</h1><p>离线阅读 / 配套源码 / 练习验收 / 固定版本可重现</p></header><div class="shell"><nav><input id="search" type="search" placeholder="搜索章节与正文" aria-label="搜索章节"><p><a href="index.html">课程首页</a></p><a href="workbook.html">12 个逐步实操实验</a><a class="chapter" data-i="0" href="00.html">00 · 学习地图：从零到独立开发</a><a class="chapter" data-i="1" href="01.html">01 · 安装与环境：项目内的 Qt 6</a><a class="chapter" data-i="2" href="02.html">02 · C++ 补课一：值、引用、指针和生命周期</a><a class="chapter" data-i="3" href="03.html">03 · C++ 补课二：类、继承、lambda 和工程拆分</a><a class="chapter" data-i="4" href="04.html">04 · CMake：从源码到程序</a><a class="chapter" data-i="5" href="05.html">05 · 第一个窗口与事件循环</a><a class="chapter" data-i="6" href="06.html">06 · QObject、元对象与父子所有权</a><a class="chapter" data-i="7" href="07.html">07 · 信号与槽：把行为连接起来</a><a class="chapter" data-i="8" href="08.html">08 · 布局管理：让界面适应窗口</a><a class="chapter" data-i="9" href="09.html">09 · 表单、输入验证和对话框</a><a class="chapter" data-i="10" href="10.html">10 · 主窗口、菜单、工具栏和快捷键</a><a class="chapter" data-i="11" href="11.html">11 · Qt Designer：可视化设计和 ui 文件</a><a class="chapter" data-i="12" href="12.html">12 · QString、容器、日期和字符编码</a><a class="chapter" data-i="13" href="13.html">13 · 文件、路径与可靠保存</a><a class="chapter" data-i="14" href="14.html">14 · JSON、配置与数据格式演进</a><a class="chapter" data-i="15" href="15.html">15 · 资源系统、QSS 与界面风格</a><a class="chapter" data-i="16" href="16.html">16 · Model/View：列表与表格的核心</a><a class="chapter" data-i="17" href="17.html">17 · 代理模型、选择、委托与分页</a><a class="chapter" data-i="18" href="18.html">18 · 事件系统、定时器和自定义控件</a><a class="chapter" data-i="19" href="19.html">19 · QPainter：坐标、抗锯齿和仪表盘</a><a class="chapter" data-i="20" href="20.html">20 · 多线程：后台任务、取消和退出</a><a class="chapter" data-i="21" href="21.html">21 · HTTP 网络：异步、超时和错误分层</a><a class="chapter" data-i="22" href="22.html">22 · SQLite：连接、SQL、绑定和事务</a><a class="chapter" data-i="23" href="23.html">23 · Qt Quick 与 QML：声明式界面</a><a class="chapter" data-i="24" href="24.html">24 · C++ 与 QML：属性、通知和类型注册</a><a class="chapter" data-i="25" href="25.html">25 · 自动测试：Qt Test、信号和临时数据库</a><a class="chapter" data-i="26" href="26.html">26 · 调试与故障排查：从第一条错误开始</a><a class="chapter" data-i="27" href="27.html">27 · Windows 部署：让程序离开开发机</a><a class="chapter" data-i="28" href="28.html">28 · 综合项目 TaskDesk：需求、架构和数据流</a><a class="chapter" data-i="29" href="29.html">29 · 综合项目 TaskDesk：分阶段扩展作业</a><a class="chapter" data-i="30" href="30.html">30 · 工程习惯、GitHub 准备和协作</a><a class="chapter" data-i="31" href="31.html">31 · 进阶选修：串口、TCP、音视频与国际化</a><a class="chapter" data-i="32" href="32.html">32 · 练习参考答案与最终验收清单</a></nav><main><h1>10 · 主窗口、菜单、工具栏和快捷键</h1>
+<h2>QMainWindow 的组成</h2>
+<p>菜单栏、工具栏、中央区域、停靠面板和状态栏各有用途。编辑器的主文本框放 centralWidget；常用命令可以同时出现在菜单与工具栏；状态栏显示当前文件、光标位置等状态。不要为同一个保存动作建立两套互不关联的处理逻辑。</p>
+<p>QAction 表示命令，既有文字、图标和快捷键，也有启用状态。菜单和工具栏可以共享同一个 QAction。新建 QAction 时给合适父对象，在文档不可保存时禁用动作，而不是点击后再解释为什么不能用。</p>
+<pre><code class="language-cpp">auto *save = menu-&gt;addAction(tr(&quot;保存&quot;));
+save-&gt;setShortcut(QKeySequence::Save);
+connect(save, &amp;QAction::triggered, this, [this] { saveFile(); });
+</code></pre>
+<p>QKeySequence::Save 使用平台常见快捷键，优于到处硬编码 Ctrl+S。菜单文本使用 tr 可为翻译做准备。在没有 Q_OBJECT 的教学类中可以使用 QStringLiteral 固定中文；真正准备多语言的窗口应采用可提取的翻译上下文。</p>
+<h2>编辑器状态机</h2>
+<p>本例关心 path_、document modified 和保存结果。打开新文件前询问旧文档，保存对话框被取消必须返回失败，这样“关闭前保存”才不会继续关窗。保存成功后才清除 modified 标记，写失败时保留它。</p>
+<p>练习：给 04_editor 加“另存为”和状态栏字数。验收：新文件输入后关闭，选择取消应留在窗口；选择保存但取消文件对话框也应留在窗口；保存失败不能丢掉修改。不要只测试一次正常保存。</p>
+<h2>配套完整源码</h2>
+<p>在根工程构建本章目标：<code>04_editor</code>。以下是仓库内同一份文件，修改请到 examples 目录。</p>
+<h3>main.cpp</h3>
+<pre><code class="language-cpp">#include &lt;QtWidgets&gt;
+#include &lt;QSaveFile&gt;
+class Editor : public QMainWindow {
+public:
+    Editor() {
+        setCentralWidget(edit_); resize(760,500);
+        auto *menu = menuBar()-&gt;addMenu(QStringLiteral(&quot;文件&quot;));
+        auto *open = menu-&gt;addAction(QStringLiteral(&quot;打开&quot;)); open-&gt;setShortcut(QKeySequence::Open);
+        auto *save = menu-&gt;addAction(QStringLiteral(&quot;保存&quot;)); save-&gt;setShortcut(QKeySequence::Save);
+        connect(open,&amp;QAction::triggered,this,[this] {
+            if(!confirm()) return;
+            const QString path=QFileDialog::getOpenFileName(this,QStringLiteral(&quot;打开 UTF-8 文本&quot;));
+            if(path.isEmpty()) return;
+            QFile f(path);
+            if(!f.open(QIODevice::ReadOnly)) { error(f.errorString()); return; }
+            const QByteArray bytes=f.readAll();
+            if(f.error()!=QFileDevice::NoError) { error(f.errorString()); return; }
+            edit_-&gt;setPlainText(QString::fromUtf8(bytes)); path_=path;
+            edit_-&gt;document()-&gt;setModified(false); setWindowTitle(path_);
+        });
+        connect(save,&amp;QAction::triggered,this,[this] { saveFile(); });
+    }
+protected:
+    void closeEvent(QCloseEvent *event) override { if(confirm()) event-&gt;accept(); else event-&gt;ignore(); }
+private:
+    QTextEdit *edit_=new QTextEdit(this);
+    QString path_;
+    void error(const QString &amp;message) { QMessageBox::warning(this,QStringLiteral(&quot;文件错误&quot;),message); }
+    bool saveFile() {
+        QString target=path_;
+        if(target.isEmpty()) target=QFileDialog::getSaveFileName(this,QStringLiteral(&quot;保存 UTF-8 文本&quot;));
+        if(target.isEmpty()) return false;
+        QSaveFile f(target); const auto bytes=edit_-&gt;toPlainText().toUtf8();
+        if(!f.open(QIODevice::WriteOnly) || f.write(bytes)!=bytes.size() || !f.commit()) {
+            error(f.errorString()); return false;
+        }
+        path_=target; edit_-&gt;document()-&gt;setModified(false); setWindowTitle(path_); return true;
+    }
+    bool confirm() {
+        if(!edit_-&gt;document()-&gt;isModified()) return true;
+        const auto choice=QMessageBox::question(this,QStringLiteral(&quot;未保存&quot;),QStringLiteral(&quot;是否保存修改？&quot;),
+            QMessageBox::Save|QMessageBox::Discard|QMessageBox::Cancel,QMessageBox::Save);
+        return choice==QMessageBox::Discard || (choice==QMessageBox::Save &amp;&amp; saveFile());
+    }
+};
+int main(int argc,char **argv) {
+    QApplication app(argc,argv); Editor w; w.show();
+    if(app.arguments().contains(&quot;--smoke&quot;)) QTimer::singleShot(150,&amp;app,&amp;QCoreApplication::quit);
+    return app.exec();
+}
+</code></pre>
+<p><a href="index.html">返回目录</a></p><div class="pager"><a href="09.html">← 上一章</a><a href="11.html">下一章 →</a></div></main></div><script src="search.js"></script></body></html>

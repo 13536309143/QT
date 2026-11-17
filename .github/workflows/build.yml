@@ -1,0 +1,36 @@
+name: Build and test Qt 6
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  windows:
+    runs-on: windows-2022
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install project Qt SDK
+        shell: pwsh
+        run: ./scripts/bootstrap-qt.ps1
+      - name: Configure, build, test
+        shell: cmd
+        run: scripts\build.cmd
+      - name: Smoke-check all applications
+        shell: pwsh
+        run: ./scripts/check.ps1
+      - name: Deploy hello and taskdesk
+        shell: cmd
+        run: |
+          call scripts\deploy.cmd 01_hello
+          if errorlevel 1 exit /b 1
+          call scripts\deploy.cmd taskdesk
+          if errorlevel 1 exit /b 1
+      - uses: actions/upload-artifact@v4
+        with:
+          name: qt6-windows-examples
+          path: dist/

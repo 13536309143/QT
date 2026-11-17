@@ -1,0 +1,51 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>21 · HTTP 网络：异步、超时和错误分层 · Qt 6 中文教程</title><link rel="stylesheet" href="style.css"></head><body><header><div class="tag">C++ · QT 6 · 从入门到项目</div><h1>Qt 6 中文学习手册</h1><p>离线阅读 / 配套源码 / 练习验收 / 固定版本可重现</p></header><div class="shell"><nav><input id="search" type="search" placeholder="搜索章节与正文" aria-label="搜索章节"><p><a href="index.html">课程首页</a></p><a href="workbook.html">12 个逐步实操实验</a><a class="chapter" data-i="0" href="00.html">00 · 学习地图：从零到独立开发</a><a class="chapter" data-i="1" href="01.html">01 · 安装与环境：项目内的 Qt 6</a><a class="chapter" data-i="2" href="02.html">02 · C++ 补课一：值、引用、指针和生命周期</a><a class="chapter" data-i="3" href="03.html">03 · C++ 补课二：类、继承、lambda 和工程拆分</a><a class="chapter" data-i="4" href="04.html">04 · CMake：从源码到程序</a><a class="chapter" data-i="5" href="05.html">05 · 第一个窗口与事件循环</a><a class="chapter" data-i="6" href="06.html">06 · QObject、元对象与父子所有权</a><a class="chapter" data-i="7" href="07.html">07 · 信号与槽：把行为连接起来</a><a class="chapter" data-i="8" href="08.html">08 · 布局管理：让界面适应窗口</a><a class="chapter" data-i="9" href="09.html">09 · 表单、输入验证和对话框</a><a class="chapter" data-i="10" href="10.html">10 · 主窗口、菜单、工具栏和快捷键</a><a class="chapter" data-i="11" href="11.html">11 · Qt Designer：可视化设计和 ui 文件</a><a class="chapter" data-i="12" href="12.html">12 · QString、容器、日期和字符编码</a><a class="chapter" data-i="13" href="13.html">13 · 文件、路径与可靠保存</a><a class="chapter" data-i="14" href="14.html">14 · JSON、配置与数据格式演进</a><a class="chapter" data-i="15" href="15.html">15 · 资源系统、QSS 与界面风格</a><a class="chapter" data-i="16" href="16.html">16 · Model/View：列表与表格的核心</a><a class="chapter" data-i="17" href="17.html">17 · 代理模型、选择、委托与分页</a><a class="chapter" data-i="18" href="18.html">18 · 事件系统、定时器和自定义控件</a><a class="chapter" data-i="19" href="19.html">19 · QPainter：坐标、抗锯齿和仪表盘</a><a class="chapter" data-i="20" href="20.html">20 · 多线程：后台任务、取消和退出</a><a class="chapter" data-i="21" href="21.html">21 · HTTP 网络：异步、超时和错误分层</a><a class="chapter" data-i="22" href="22.html">22 · SQLite：连接、SQL、绑定和事务</a><a class="chapter" data-i="23" href="23.html">23 · Qt Quick 与 QML：声明式界面</a><a class="chapter" data-i="24" href="24.html">24 · C++ 与 QML：属性、通知和类型注册</a><a class="chapter" data-i="25" href="25.html">25 · 自动测试：Qt Test、信号和临时数据库</a><a class="chapter" data-i="26" href="26.html">26 · 调试与故障排查：从第一条错误开始</a><a class="chapter" data-i="27" href="27.html">27 · Windows 部署：让程序离开开发机</a><a class="chapter" data-i="28" href="28.html">28 · 综合项目 TaskDesk：需求、架构和数据流</a><a class="chapter" data-i="29" href="29.html">29 · 综合项目 TaskDesk：分阶段扩展作业</a><a class="chapter" data-i="30" href="30.html">30 · 工程习惯、GitHub 准备和协作</a><a class="chapter" data-i="31" href="31.html">31 · 进阶选修：串口、TCP、音视频与国际化</a><a class="chapter" data-i="32" href="32.html">32 · 练习参考答案与最终验收清单</a></nav><main><h1>21 · HTTP 网络：异步、超时和错误分层</h1>
+<h2>建立可重复实验</h2>
+<p>在项目根目录开一个终端运行：</p>
+<pre><code class="language-powershell">python -m http.server 8765 --bind 127.0.0.1 --directory examples/09_http
+</code></pre>
+<p>另一个终端启动 09_http，点击 GET，应该看到 HTTP 200 和 sample.json 的中文内容。本地服务器无需外部服务或 API 密钥。关闭服务器后再点一次，观察连接失败。换成不存在路径，观察 404。用完 Ctrl+C 结束服务器。</p>
+<p>QNetworkAccessManager 可以长期复用，reply 表示一次请求。finished 时读取结果，再 deleteLater。异步回调给窗口上下文，避免窗口销毁后继续更新已经不存在的控件。本示例将窗口作为 manager 父对象，窗口关闭时请求对象一并清理。</p>
+<h2>不只检查一个错误</h2>
+<p>网络连通、TLS、HTTP 状态、JSON 格式和业务字段是不同层级。状态码成功不代表 body 一定是你需要的 JSON。setTransferTimeout 设置无数据超时，示例还用定时器设置总时限，并限制响应规模；downloadProgress 的限制只是教学级防护，生产下载应在 readyRead 中边收边限制/落盘。</p>
+<p>不要 ignoreSslErrors 解决证书问题；应检查系统时钟、证书链、服务端配置和 Qt TLS 后端。日志不要记录 Authorization 等凭据。自动重试要考虑幂等性：GET 的重试和创建订单 POST 的重试不能同样处理。</p>
+<p>练习：成功返回后解析 JSON 并展示 message；解析失败保留原始错误。验收：重复点击不会发起无限并行请求，服务器关闭与 404 都能恢复按钮，窗口能在请求中关闭。
+参考：<a href="https://doc.qt.io/qt-6.8/qnetworkaccessmanager.html">QNetworkAccessManager</a>。</p>
+<h2>配套完整源码</h2>
+<p>在根工程构建本章目标：<code>09_http</code>。以下是仓库内同一份文件，修改请到 examples 目录。</p>
+<h3>main.cpp</h3>
+<pre><code class="language-cpp">#include &lt;QtWidgets&gt;
+#include &lt;QtNetwork&gt;
+int main(int argc,char **argv) {
+    QApplication app(argc,argv); QWidget w; auto *layout=new QVBoxLayout(&amp;w);
+    auto *url=new QLineEdit(&quot;http://127.0.0.1:8765/sample.json&quot;,&amp;w);
+    auto *button=new QPushButton(QStringLiteral(&quot;GET 请求&quot;),&amp;w);
+    auto *output=new QPlainTextEdit(&amp;w); output-&gt;setReadOnly(true);
+    auto *manager=new QNetworkAccessManager(&amp;w);
+    layout-&gt;addWidget(url); layout-&gt;addWidget(button); layout-&gt;addWidget(output);
+    QObject::connect(button,&amp;QPushButton::clicked,&amp;w,[url,button,output,manager,&amp;w] {
+        QUrl target(url-&gt;text());
+        if(!target.isValid() || (target.scheme()!=&quot;https&quot; &amp;&amp; target.scheme()!=&quot;http&quot;) || target.host().isEmpty()) {
+            output-&gt;setPlainText(QStringLiteral(&quot;请输入有效 HTTP/HTTPS 地址&quot;)); return;
+        }
+        button-&gt;setEnabled(false); output-&gt;clear();
+        QNetworkRequest request(target); request.setTransferTimeout(10000);
+        auto *reply=manager-&gt;get(request);
+        // 总时限独立于“连续无数据”超时；reply 销毁时定时器自动失效。
+        QTimer::singleShot(15000,reply,[reply] { if(reply-&gt;isRunning()) reply-&gt;abort(); });
+        QObject::connect(reply,&amp;QNetworkReply::downloadProgress,reply,[reply](qint64 received,qint64) {
+            if(received&gt;1024*1024) reply-&gt;abort(); // 教学客户端限制为 1 MiB
+        });
+        QObject::connect(reply,&amp;QNetworkReply::finished,&amp;w,[reply,button,output] {
+            const auto status=reply-&gt;attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
+            output-&gt;setPlainText(QStringLiteral(&quot;HTTP %1\n%2\n%3&quot;).arg(status)
+                .arg(reply-&gt;error()==QNetworkReply::NoError?QStringLiteral(&quot;成功&quot;):reply-&gt;errorString())
+                .arg(QString::fromUtf8(reply-&gt;readAll())));
+            reply-&gt;deleteLater(); button-&gt;setEnabled(true);
+        });
+    });
+    w.resize(700,450); w.show();
+    if(app.arguments().contains(&quot;--smoke&quot;)) QTimer::singleShot(150,&amp;app,&amp;QCoreApplication::quit);
+    return app.exec();
+}
+</code></pre>
+<p><a href="index.html">返回目录</a></p><div class="pager"><a href="20.html">← 上一章</a><a href="22.html">下一章 →</a></div></main></div><script src="search.js"></script></body></html>

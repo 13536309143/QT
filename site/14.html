@@ -1,0 +1,35 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>14 · JSON、配置与数据格式演进 · Qt 6 中文教程</title><link rel="stylesheet" href="style.css"></head><body><header><div class="tag">C++ · QT 6 · 从入门到项目</div><h1>Qt 6 中文学习手册</h1><p>离线阅读 / 配套源码 / 练习验收 / 固定版本可重现</p></header><div class="shell"><nav><input id="search" type="search" placeholder="搜索章节与正文" aria-label="搜索章节"><p><a href="index.html">课程首页</a></p><a href="workbook.html">12 个逐步实操实验</a><a class="chapter" data-i="0" href="00.html">00 · 学习地图：从零到独立开发</a><a class="chapter" data-i="1" href="01.html">01 · 安装与环境：项目内的 Qt 6</a><a class="chapter" data-i="2" href="02.html">02 · C++ 补课一：值、引用、指针和生命周期</a><a class="chapter" data-i="3" href="03.html">03 · C++ 补课二：类、继承、lambda 和工程拆分</a><a class="chapter" data-i="4" href="04.html">04 · CMake：从源码到程序</a><a class="chapter" data-i="5" href="05.html">05 · 第一个窗口与事件循环</a><a class="chapter" data-i="6" href="06.html">06 · QObject、元对象与父子所有权</a><a class="chapter" data-i="7" href="07.html">07 · 信号与槽：把行为连接起来</a><a class="chapter" data-i="8" href="08.html">08 · 布局管理：让界面适应窗口</a><a class="chapter" data-i="9" href="09.html">09 · 表单、输入验证和对话框</a><a class="chapter" data-i="10" href="10.html">10 · 主窗口、菜单、工具栏和快捷键</a><a class="chapter" data-i="11" href="11.html">11 · Qt Designer：可视化设计和 ui 文件</a><a class="chapter" data-i="12" href="12.html">12 · QString、容器、日期和字符编码</a><a class="chapter" data-i="13" href="13.html">13 · 文件、路径与可靠保存</a><a class="chapter" data-i="14" href="14.html">14 · JSON、配置与数据格式演进</a><a class="chapter" data-i="15" href="15.html">15 · 资源系统、QSS 与界面风格</a><a class="chapter" data-i="16" href="16.html">16 · Model/View：列表与表格的核心</a><a class="chapter" data-i="17" href="17.html">17 · 代理模型、选择、委托与分页</a><a class="chapter" data-i="18" href="18.html">18 · 事件系统、定时器和自定义控件</a><a class="chapter" data-i="19" href="19.html">19 · QPainter：坐标、抗锯齿和仪表盘</a><a class="chapter" data-i="20" href="20.html">20 · 多线程：后台任务、取消和退出</a><a class="chapter" data-i="21" href="21.html">21 · HTTP 网络：异步、超时和错误分层</a><a class="chapter" data-i="22" href="22.html">22 · SQLite：连接、SQL、绑定和事务</a><a class="chapter" data-i="23" href="23.html">23 · Qt Quick 与 QML：声明式界面</a><a class="chapter" data-i="24" href="24.html">24 · C++ 与 QML：属性、通知和类型注册</a><a class="chapter" data-i="25" href="25.html">25 · 自动测试：Qt Test、信号和临时数据库</a><a class="chapter" data-i="26" href="26.html">26 · 调试与故障排查：从第一条错误开始</a><a class="chapter" data-i="27" href="27.html">27 · Windows 部署：让程序离开开发机</a><a class="chapter" data-i="28" href="28.html">28 · 综合项目 TaskDesk：需求、架构和数据流</a><a class="chapter" data-i="29" href="29.html">29 · 综合项目 TaskDesk：分阶段扩展作业</a><a class="chapter" data-i="30" href="30.html">30 · 工程习惯、GitHub 准备和协作</a><a class="chapter" data-i="31" href="31.html">31 · 进阶选修：串口、TCP、音视频与国际化</a><a class="chapter" data-i="32" href="32.html">32 · 练习参考答案与最终验收清单</a></nav><main><h1>14 · JSON、配置与数据格式演进</h1>
+<h2>JSON 与设置分工</h2>
+<p>QJsonDocument 负责 JSON 字节解析，QJsonObject 表示键值对象，QJsonArray 表示数组。解析后先检查 error，再检查顶层类型，再验证每个字段。<code>toInt()</code> 的默认值会掩盖字段不存在或类型错误，业务要求严格时应显式 isDouble/isString 判断。</p>
+<p>示例把任务对象写入临时目录，重新读取并打印标题。它退出后自动清理，适合实验；真正数据应使用 AppDataLocation。字段包括 title、done、version，其中 version 为后续迁移预留入口。</p>
+<h2>数据演进实例</h2>
+<p>第一版只有 title，第二版加 priority。读取旧版本时，为缺少 priority 的记录补默认值；读到未知更高版本时明确拒绝或进入只读模式，而不是静默删掉不认识的字段。导入外部 JSON 时限制大小、记录数和字符串长度，避免一次解析占满内存。</p>
+<p>QSettings 适合窗口位置、主题、最近目录这类偏好设置，不适合大量任务数据，也不是密码保险箱。调用前设置 organizationName 和 applicationName，让存储位置稳定。Windows 的默认 QSettings 后端可能是注册表，不能以为一定会生成 ini 文件。</p>
+<pre><code class="language-cpp">QSettings settings;
+restoreGeometry(settings.value(&quot;geometry&quot;).toByteArray());
+settings.setValue(&quot;geometry&quot;, saveGeometry());
+</code></pre>
+<p>练习：为示例添加一个 tasks 数组并验证每项 title 非空；故意删去 JSON 的逗号，检查错误偏移。验收：非法 JSON 有错误提示，未知字段不会引发崩溃；能解释配置与业务数据库为何分开。</p>
+<h2>配套完整源码</h2>
+<p>在根工程构建本章目标：<code>05_json</code>。以下是仓库内同一份文件，修改请到 examples 目录。</p>
+<h3>main.cpp</h3>
+<pre><code class="language-cpp">#include &lt;QtCore&gt;
+int main(int argc,char **argv) {
+    QCoreApplication app(argc,argv);
+    QTemporaryDir dir; // 本例退出自动清理，不污染用户目录
+    if(!dir.isValid()) return 1;
+    QJsonObject object{{&quot;title&quot;,QStringLiteral(&quot;学习 Qt&quot;)},{&quot;done&quot;,false},{&quot;version&quot;,1}};
+    const auto bytes=QJsonDocument(object).toJson();
+    QSaveFile out(dir.filePath(&quot;task.json&quot;));
+    if(!out.open(QIODevice::WriteOnly) || out.write(bytes)!=bytes.size() || !out.commit()) {
+        qCritical()&lt;&lt;out.errorString(); return 1;
+    }
+    QFile in(dir.filePath(&quot;task.json&quot;));
+    if(!in.open(QIODevice::ReadOnly)) return 2;
+    QJsonParseError error;
+    auto doc=QJsonDocument::fromJson(in.readAll(),&amp;error);
+    if(error.error!=QJsonParseError::NoError || !doc.isObject()) return 3;
+    qInfo().noquote()&lt;&lt;doc.object().value(&quot;title&quot;).toString(); return 0;
+}
+</code></pre>
+<p><a href="index.html">返回目录</a></p><div class="pager"><a href="13.html">← 上一章</a><a href="15.html">下一章 →</a></div></main></div><script src="search.js"></script></body></html>

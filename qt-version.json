@@ -1,0 +1,13 @@
+{
+  "qt": "6.8.3",
+  "architecture": "win64_msvc2022_64",
+  "sdkSubdir": "msvc2022_64",
+  "aqtinstall": "3.3.0",
+  "archives": [
+    "qtbase",
+    "qtdeclarative",
+    "qttools",
+    "qtsvg",
+    "qttranslations"
+  ]
+}

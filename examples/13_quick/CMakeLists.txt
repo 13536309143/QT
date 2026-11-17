@@ -1,0 +1,5 @@
+find_package(Qt6 6.5 REQUIRED COMPONENTS Quick QuickControls2)
+qt_standard_project_setup(REQUIRES 6.5)
+qt_add_executable(13_quick main.cpp)
+qt_add_qml_module(13_quick URI Course VERSION 1.0 QML_FILES Main.qml SOURCES counter.h)
+target_link_libraries(13_quick PRIVATE Qt6::Quick Qt6::QuickControls2)

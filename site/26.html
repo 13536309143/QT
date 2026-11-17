@@ -1,0 +1,55 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>26 · 调试与故障排查：从第一条错误开始 · Qt 6 中文教程</title><link rel="stylesheet" href="style.css"></head><body><header><div class="tag">C++ · QT 6 · 从入门到项目</div><h1>Qt 6 中文学习手册</h1><p>离线阅读 / 配套源码 / 练习验收 / 固定版本可重现</p></header><div class="shell"><nav><input id="search" type="search" placeholder="搜索章节与正文" aria-label="搜索章节"><p><a href="index.html">课程首页</a></p><a href="workbook.html">12 个逐步实操实验</a><a class="chapter" data-i="0" href="00.html">00 · 学习地图：从零到独立开发</a><a class="chapter" data-i="1" href="01.html">01 · 安装与环境：项目内的 Qt 6</a><a class="chapter" data-i="2" href="02.html">02 · C++ 补课一：值、引用、指针和生命周期</a><a class="chapter" data-i="3" href="03.html">03 · C++ 补课二：类、继承、lambda 和工程拆分</a><a class="chapter" data-i="4" href="04.html">04 · CMake：从源码到程序</a><a class="chapter" data-i="5" href="05.html">05 · 第一个窗口与事件循环</a><a class="chapter" data-i="6" href="06.html">06 · QObject、元对象与父子所有权</a><a class="chapter" data-i="7" href="07.html">07 · 信号与槽：把行为连接起来</a><a class="chapter" data-i="8" href="08.html">08 · 布局管理：让界面适应窗口</a><a class="chapter" data-i="9" href="09.html">09 · 表单、输入验证和对话框</a><a class="chapter" data-i="10" href="10.html">10 · 主窗口、菜单、工具栏和快捷键</a><a class="chapter" data-i="11" href="11.html">11 · Qt Designer：可视化设计和 ui 文件</a><a class="chapter" data-i="12" href="12.html">12 · QString、容器、日期和字符编码</a><a class="chapter" data-i="13" href="13.html">13 · 文件、路径与可靠保存</a><a class="chapter" data-i="14" href="14.html">14 · JSON、配置与数据格式演进</a><a class="chapter" data-i="15" href="15.html">15 · 资源系统、QSS 与界面风格</a><a class="chapter" data-i="16" href="16.html">16 · Model/View：列表与表格的核心</a><a class="chapter" data-i="17" href="17.html">17 · 代理模型、选择、委托与分页</a><a class="chapter" data-i="18" href="18.html">18 · 事件系统、定时器和自定义控件</a><a class="chapter" data-i="19" href="19.html">19 · QPainter：坐标、抗锯齿和仪表盘</a><a class="chapter" data-i="20" href="20.html">20 · 多线程：后台任务、取消和退出</a><a class="chapter" data-i="21" href="21.html">21 · HTTP 网络：异步、超时和错误分层</a><a class="chapter" data-i="22" href="22.html">22 · SQLite：连接、SQL、绑定和事务</a><a class="chapter" data-i="23" href="23.html">23 · Qt Quick 与 QML：声明式界面</a><a class="chapter" data-i="24" href="24.html">24 · C++ 与 QML：属性、通知和类型注册</a><a class="chapter" data-i="25" href="25.html">25 · 自动测试：Qt Test、信号和临时数据库</a><a class="chapter" data-i="26" href="26.html">26 · 调试与故障排查：从第一条错误开始</a><a class="chapter" data-i="27" href="27.html">27 · Windows 部署：让程序离开开发机</a><a class="chapter" data-i="28" href="28.html">28 · 综合项目 TaskDesk：需求、架构和数据流</a><a class="chapter" data-i="29" href="29.html">29 · 综合项目 TaskDesk：分阶段扩展作业</a><a class="chapter" data-i="30" href="30.html">30 · 工程习惯、GitHub 准备和协作</a><a class="chapter" data-i="31" href="31.html">31 · 进阶选修：串口、TCP、音视频与国际化</a><a class="chapter" data-i="32" href="32.html">32 · 练习参考答案与最终验收清单</a></nav><main><h1>26 · 调试与故障排查：从第一条错误开始</h1>
+<h2>把问题定位到阶段</h2>
+<table>
+<thead>
+<tr>
+<th>现象</th>
+<th>优先检查</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>找不到 Qt6Config.cmake</td>
+<td>CMAKE_PREFIX_PATH 指向 SDK 根目录，不是 bin</td>
+</tr>
+<tr>
+<td>找不到 cl 或 SDK</td>
+<td>VS C++ 工作负载和 x64 开发环境</td>
+</tr>
+<tr>
+<td>vtable / metaObject 链接错误</td>
+<td>Q_OBJECT、AUTOMOC、源文件列表、main.moc</td>
+</tr>
+<tr>
+<td>缺 Qt6Widgets.dll</td>
+<td>运行路径或 windeployqt 部署</td>
+</tr>
+<tr>
+<td>windows 平台插件加载失败</td>
+<td>platforms/qwindows.dll 与同版本依赖</td>
+</tr>
+<tr>
+<td>QSQLITE driver not loaded</td>
+<td>sqldrivers 插件和 Qt 主版本</td>
+</tr>
+<tr>
+<td>QML module not installed</td>
+<td>模块安装、QML 路径、SDK 版本</td>
+</tr>
+<tr>
+<td>点击两次执行两遍</td>
+<td>是否重复 connect</td>
+</tr>
+<tr>
+<td>关闭时崩溃</td>
+<td>对象寿命、线程退出、悬空 lambda 捕获</td>
+</tr>
+</tbody>
+</table>
+<h2>有效调试过程</h2>
+<p>先用 Debug 构建，在槽函数入口打断点，查看调用栈和局部变量。段错误发生的行可能只是使用了早先已经释放的对象；回溯所有者和销毁时机比随手加 nullptr 更有效。未初始化指针不等于空指针。</p>
+<p>qDebug 用于开发日志，qWarning 表示可恢复异常，qCritical 表示关键失败。用 QLoggingCategory 按功能筛选日志；不要把用户密码、访问令牌和完整私人数据写进日志。查插件时可临时设置 QT_DEBUG_PLUGINS=1，定位完成后关闭，避免日常日志被淹没。</p>
+<h2>缩小复现</h2>
+<p>记录版本、操作顺序、预期、实际和第一条错误，减少到只含必要控件的项目。不要从不同 Qt 版本复制 DLL 到系统目录“试试看”。切换 Kit 后创建新构建目录。练习：移走测试副本中的一个插件，观察诊断并恢复；不要破坏 SDK 原目录。
+验收：能将一个错误明确归类为配置、编译、链接、启动或业务逻辑问题。</p>
+<p><a href="index.html">返回目录</a></p><div class="pager"><a href="25.html">← 上一章</a><a href="27.html">下一章 →</a></div></main></div><script src="search.js"></script></body></html>

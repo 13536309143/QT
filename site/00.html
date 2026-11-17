@@ -1,0 +1,81 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>00 · 学习地图：从零到独立开发 · Qt 6 中文教程</title><link rel="stylesheet" href="style.css"></head><body><header><div class="tag">C++ · QT 6 · 从入门到项目</div><h1>Qt 6 中文学习手册</h1><p>离线阅读 / 配套源码 / 练习验收 / 固定版本可重现</p></header><div class="shell"><nav><input id="search" type="search" placeholder="搜索章节与正文" aria-label="搜索章节"><p><a href="index.html">课程首页</a></p><a href="workbook.html">12 个逐步实操实验</a><a class="chapter" data-i="0" href="00.html">00 · 学习地图：从零到独立开发</a><a class="chapter" data-i="1" href="01.html">01 · 安装与环境：项目内的 Qt 6</a><a class="chapter" data-i="2" href="02.html">02 · C++ 补课一：值、引用、指针和生命周期</a><a class="chapter" data-i="3" href="03.html">03 · C++ 补课二：类、继承、lambda 和工程拆分</a><a class="chapter" data-i="4" href="04.html">04 · CMake：从源码到程序</a><a class="chapter" data-i="5" href="05.html">05 · 第一个窗口与事件循环</a><a class="chapter" data-i="6" href="06.html">06 · QObject、元对象与父子所有权</a><a class="chapter" data-i="7" href="07.html">07 · 信号与槽：把行为连接起来</a><a class="chapter" data-i="8" href="08.html">08 · 布局管理：让界面适应窗口</a><a class="chapter" data-i="9" href="09.html">09 · 表单、输入验证和对话框</a><a class="chapter" data-i="10" href="10.html">10 · 主窗口、菜单、工具栏和快捷键</a><a class="chapter" data-i="11" href="11.html">11 · Qt Designer：可视化设计和 ui 文件</a><a class="chapter" data-i="12" href="12.html">12 · QString、容器、日期和字符编码</a><a class="chapter" data-i="13" href="13.html">13 · 文件、路径与可靠保存</a><a class="chapter" data-i="14" href="14.html">14 · JSON、配置与数据格式演进</a><a class="chapter" data-i="15" href="15.html">15 · 资源系统、QSS 与界面风格</a><a class="chapter" data-i="16" href="16.html">16 · Model/View：列表与表格的核心</a><a class="chapter" data-i="17" href="17.html">17 · 代理模型、选择、委托与分页</a><a class="chapter" data-i="18" href="18.html">18 · 事件系统、定时器和自定义控件</a><a class="chapter" data-i="19" href="19.html">19 · QPainter：坐标、抗锯齿和仪表盘</a><a class="chapter" data-i="20" href="20.html">20 · 多线程：后台任务、取消和退出</a><a class="chapter" data-i="21" href="21.html">21 · HTTP 网络：异步、超时和错误分层</a><a class="chapter" data-i="22" href="22.html">22 · SQLite：连接、SQL、绑定和事务</a><a class="chapter" data-i="23" href="23.html">23 · Qt Quick 与 QML：声明式界面</a><a class="chapter" data-i="24" href="24.html">24 · C++ 与 QML：属性、通知和类型注册</a><a class="chapter" data-i="25" href="25.html">25 · 自动测试：Qt Test、信号和临时数据库</a><a class="chapter" data-i="26" href="26.html">26 · 调试与故障排查：从第一条错误开始</a><a class="chapter" data-i="27" href="27.html">27 · Windows 部署：让程序离开开发机</a><a class="chapter" data-i="28" href="28.html">28 · 综合项目 TaskDesk：需求、架构和数据流</a><a class="chapter" data-i="29" href="29.html">29 · 综合项目 TaskDesk：分阶段扩展作业</a><a class="chapter" data-i="30" href="30.html">30 · 工程习惯、GitHub 准备和协作</a><a class="chapter" data-i="31" href="31.html">31 · 进阶选修：串口、TCP、音视频与国际化</a><a class="chapter" data-i="32" href="32.html">32 · 练习参考答案与最终验收清单</a></nav><main><h1>00 · 学习地图：从零到独立开发</h1>
+<h2>这套课程怎么用</h2>
+<p>这是一套中文离线课程，面向想用 C++ 开发桌面软件的学习者。主线采用 <strong>Qt 6.8.3、C++17、CMake、Windows x64 + MSVC 2022</strong>。固定版本是为了方便重现课堂结果，不代表它是最新版本。软件框架、编辑器、编译器是三个不同的东西：Qt 提供类库，Qt Creator 提供开发界面，MSVC 把代码编译为机器指令。安装了编辑器并不等于安装了编译器。</p>
+<p>每章按“概念 → 阅读源码 → 动手修改 → 验收”学习。不要只看窗口是否出现；要能说出输入在哪里验证、对象由谁销毁、失败如何反馈、文件保存在哪里。建议每天 60~90 分钟，先运行原例，再改一个功能，最后写三句话学习记录。</p>
+<h2>十二周路线</h2>
+<table>
+<thead>
+<tr>
+<th>周次</th>
+<th>主题</th>
+<th>应交付的结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>环境、C++、CMake、首个窗口</td>
+<td>能从空目录构建一个窗口</td>
+</tr>
+<tr>
+<td>2</td>
+<td>QObject、信号槽、布局</td>
+<td>计数器和输入表单</td>
+</tr>
+<tr>
+<td>3</td>
+<td>主窗口、菜单、Designer</td>
+<td>可打开和保存的编辑器</td>
+</tr>
+<tr>
+<td>4</td>
+<td>文件、JSON、配置、资源</td>
+<td>带主题、记住窗口位置的小工具</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Model/View、代理模型</td>
+<td>可筛选和编辑的数据表</td>
+</tr>
+<tr>
+<td>6</td>
+<td>事件、绘图、定时器</td>
+<td>自适应仪表盘</td>
+</tr>
+<tr>
+<td>7</td>
+<td>线程、取消、生命周期</td>
+<td>不阻塞界面的后台任务</td>
+</tr>
+<tr>
+<td>8</td>
+<td>网络、数据库</td>
+<td>本地 HTTP 客户端与 SQLite CRUD</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Qt Quick/QML 与 C++</td>
+<td>属性驱动的 QML 计数器</td>
+</tr>
+<tr>
+<td>10</td>
+<td>测试、调试、部署</td>
+<td>自动测试通过，可独立分发</td>
+</tr>
+<tr>
+<td>11</td>
+<td>TaskDesk 综合项目</td>
+<td>增删查改、搜索、持久化</td>
+</tr>
+<tr>
+<td>12</td>
+<td>架构、重构、GitHub 整理</td>
+<td>有说明、有测试的个人项目</td>
+</tr>
+</tbody>
+</table>
+<h2>入门者容易误解的事</h2>
+<p>Qt 不是一种新语言。<code>signals</code>、<code>slots</code>、<code>Q_OBJECT</code> 是 Qt 构建工具配合 C++ 实现的机制。Widgets 和 Quick 是两条界面路线，本课程先用 Widgets 训练 C++ 和桌面交互，再学习 QML 的声明式界面。你不必同时精通所有模块；本课程覆盖常用主干，串口、音视频、3D 等方向放在拓展章节，按项目需求选学。</p>
+<h2>第一项练习</h2>
+<p>建立学习日志，记录电脑上的 Qt 版本、编译器、构建目录和首个错误。验收：不借助记忆，能从 README 的指令打开并运行第一个示例。</p>
+<p><a href="index.html">返回目录</a></p><div class="pager"><span></span><a href="01.html">下一章 →</a></div></main></div><script src="search.js"></script></body></html>

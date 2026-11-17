@@ -1,0 +1,23 @@
+# Downloaded SDK / local Python tools
+/sdk/
+/.tools/
+# Build and deployment artifacts
+/build*/
+/dist/
+/out/
+/.vs/
+/.vscode/
+/CMakeUserPresets.json
+*.user
+*.user.*
+*.suo
+*.log
+*.sqlite
+*.sqlite-*
+*.db
+*.db-*
+__pycache__/
+.DS_Store
+Thumbs.db
+/local-environment.json
+/aqtinstall.log

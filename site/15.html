@@ -1,0 +1,36 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>15 · 资源系统、QSS 与界面风格 · Qt 6 中文教程</title><link rel="stylesheet" href="style.css"></head><body><header><div class="tag">C++ · QT 6 · 从入门到项目</div><h1>Qt 6 中文学习手册</h1><p>离线阅读 / 配套源码 / 练习验收 / 固定版本可重现</p></header><div class="shell"><nav><input id="search" type="search" placeholder="搜索章节与正文" aria-label="搜索章节"><p><a href="index.html">课程首页</a></p><a href="workbook.html">12 个逐步实操实验</a><a class="chapter" data-i="0" href="00.html">00 · 学习地图：从零到独立开发</a><a class="chapter" data-i="1" href="01.html">01 · 安装与环境：项目内的 Qt 6</a><a class="chapter" data-i="2" href="02.html">02 · C++ 补课一：值、引用、指针和生命周期</a><a class="chapter" data-i="3" href="03.html">03 · C++ 补课二：类、继承、lambda 和工程拆分</a><a class="chapter" data-i="4" href="04.html">04 · CMake：从源码到程序</a><a class="chapter" data-i="5" href="05.html">05 · 第一个窗口与事件循环</a><a class="chapter" data-i="6" href="06.html">06 · QObject、元对象与父子所有权</a><a class="chapter" data-i="7" href="07.html">07 · 信号与槽：把行为连接起来</a><a class="chapter" data-i="8" href="08.html">08 · 布局管理：让界面适应窗口</a><a class="chapter" data-i="9" href="09.html">09 · 表单、输入验证和对话框</a><a class="chapter" data-i="10" href="10.html">10 · 主窗口、菜单、工具栏和快捷键</a><a class="chapter" data-i="11" href="11.html">11 · Qt Designer：可视化设计和 ui 文件</a><a class="chapter" data-i="12" href="12.html">12 · QString、容器、日期和字符编码</a><a class="chapter" data-i="13" href="13.html">13 · 文件、路径与可靠保存</a><a class="chapter" data-i="14" href="14.html">14 · JSON、配置与数据格式演进</a><a class="chapter" data-i="15" href="15.html">15 · 资源系统、QSS 与界面风格</a><a class="chapter" data-i="16" href="16.html">16 · Model/View：列表与表格的核心</a><a class="chapter" data-i="17" href="17.html">17 · 代理模型、选择、委托与分页</a><a class="chapter" data-i="18" href="18.html">18 · 事件系统、定时器和自定义控件</a><a class="chapter" data-i="19" href="19.html">19 · QPainter：坐标、抗锯齿和仪表盘</a><a class="chapter" data-i="20" href="20.html">20 · 多线程：后台任务、取消和退出</a><a class="chapter" data-i="21" href="21.html">21 · HTTP 网络：异步、超时和错误分层</a><a class="chapter" data-i="22" href="22.html">22 · SQLite：连接、SQL、绑定和事务</a><a class="chapter" data-i="23" href="23.html">23 · Qt Quick 与 QML：声明式界面</a><a class="chapter" data-i="24" href="24.html">24 · C++ 与 QML：属性、通知和类型注册</a><a class="chapter" data-i="25" href="25.html">25 · 自动测试：Qt Test、信号和临时数据库</a><a class="chapter" data-i="26" href="26.html">26 · 调试与故障排查：从第一条错误开始</a><a class="chapter" data-i="27" href="27.html">27 · Windows 部署：让程序离开开发机</a><a class="chapter" data-i="28" href="28.html">28 · 综合项目 TaskDesk：需求、架构和数据流</a><a class="chapter" data-i="29" href="29.html">29 · 综合项目 TaskDesk：分阶段扩展作业</a><a class="chapter" data-i="30" href="30.html">30 · 工程习惯、GitHub 准备和协作</a><a class="chapter" data-i="31" href="31.html">31 · 进阶选修：串口、TCP、音视频与国际化</a><a class="chapter" data-i="32" href="32.html">32 · 练习参考答案与最终验收清单</a></nav><main><h1>15 · 资源系统、QSS 与界面风格</h1>
+<h2>资源打包</h2>
+<p>qrc 文件声明资源前缀和文件，rcc 将它们编进程序。示例使用 <code>:/lesson/readme.txt</code> 读取资源；Quick 里常见 qrc:/ URL。资源路径与磁盘绝对路径不同，也不随工作目录改变。资源是只读的，用户改过的配置应另存到可写目录。</p>
+<h2>QSS 能做什么</h2>
+<p>Qt Style Sheets 可以设置颜色、边框、间距和部分控件外观，语法与 CSS 相似但能力不同。浏览器 CSS 的所有布局、动画和选择器不能原样套用。优先让布局负责几何，QSS 负责外观。</p>
+<pre><code class="language-css">QPushButton { padding: 8px 16px; border-radius: 6px; }
+QPushButton:hover { background: #d9eee8; }
+QLineEdit:focus { border: 1px solid #168477; }
+</code></pre>
+<p>示例把 theme.qss 也放进资源。修改后要重建才能看到变化。若运行时允许用户切换主题，可加载不同资源并设置 application 或窗口样式；注意局部样式的继承和覆盖关系。不要靠把所有字体都固定为很小像素来获得“精致”界面。</p>
+<p>练习：给资源示例补充 hover、pressed、disabled 三种按钮状态；再新增一个带 objectName 的强调按钮，只对它应用样式。验收：禁用状态可辨认，键盘焦点仍可见，浅色背景上的文本有足够对比度。图标可使用自己制作或许可清楚的素材，并在仓库记录来源。</p>
+<p>进阶：主题颜色抽成少量设计变量，通过生成 QSS 或统一调色板维护。QSS 复杂到难以预测时，先精简选择器并检查控件真实类名。</p>
+<h2>配套完整源码</h2>
+<p>在根工程构建本章目标：<code>12_resources</code>。以下是仓库内同一份文件，修改请到 examples 目录。</p>
+<h3>assets.qrc</h3>
+<pre><code class="language-xml">&lt;RCC&gt;&lt;qresource prefix=&quot;/lesson&quot;&gt;&lt;file&gt;readme.txt&lt;/file&gt;&lt;file&gt;theme.qss&lt;/file&gt;&lt;/qresource&gt;&lt;/RCC&gt;
+</code></pre>
+<h3>main.cpp</h3>
+<pre><code class="language-cpp">#include &lt;QtWidgets&gt;
+int main(int argc,char **argv) {
+    QApplication app(argc,argv); QWidget w; auto *layout=new QVBoxLayout(&amp;w);
+    QFile text(&quot;:/lesson/readme.txt&quot;);
+    if(!text.open(QIODevice::ReadOnly)) return 1;
+    auto *label=new QLabel(QString::fromUtf8(text.readAll()),&amp;w); layout-&gt;addWidget(label);
+    QFile style(&quot;:/lesson/theme.qss&quot;);
+    if(style.open(QIODevice::ReadOnly)) w.setStyleSheet(QString::fromUtf8(style.readAll()));
+    layout-&gt;addWidget(new QPushButton(QStringLiteral(&quot;资源加载成功&quot;),&amp;w));
+    w.resize(420,200); w.show();
+    if(app.arguments().contains(&quot;--smoke&quot;)) QTimer::singleShot(150,&amp;app,&amp;QCoreApplication::quit);
+    return app.exec();
+}
+</code></pre>
+<h3>theme.qss</h3>
+<pre><code class="language-css">QWidget { background: #eef5fa; color: #18354a; font-size: 16px; } QPushButton { padding: 12px; border: 1px solid #168477; border-radius: 6px; }
+</code></pre>
+<p><a href="index.html">返回目录</a></p><div class="pager"><a href="14.html">← 上一章</a><a href="16.html">下一章 →</a></div></main></div><script src="search.js"></script></body></html>

@@ -1,0 +1,40 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>11 · Qt Designer：可视化设计和 ui 文件 · Qt 6 中文教程</title><link rel="stylesheet" href="style.css"></head><body><header><div class="tag">C++ · QT 6 · 从入门到项目</div><h1>Qt 6 中文学习手册</h1><p>离线阅读 / 配套源码 / 练习验收 / 固定版本可重现</p></header><div class="shell"><nav><input id="search" type="search" placeholder="搜索章节与正文" aria-label="搜索章节"><p><a href="index.html">课程首页</a></p><a href="workbook.html">12 个逐步实操实验</a><a class="chapter" data-i="0" href="00.html">00 · 学习地图：从零到独立开发</a><a class="chapter" data-i="1" href="01.html">01 · 安装与环境：项目内的 Qt 6</a><a class="chapter" data-i="2" href="02.html">02 · C++ 补课一：值、引用、指针和生命周期</a><a class="chapter" data-i="3" href="03.html">03 · C++ 补课二：类、继承、lambda 和工程拆分</a><a class="chapter" data-i="4" href="04.html">04 · CMake：从源码到程序</a><a class="chapter" data-i="5" href="05.html">05 · 第一个窗口与事件循环</a><a class="chapter" data-i="6" href="06.html">06 · QObject、元对象与父子所有权</a><a class="chapter" data-i="7" href="07.html">07 · 信号与槽：把行为连接起来</a><a class="chapter" data-i="8" href="08.html">08 · 布局管理：让界面适应窗口</a><a class="chapter" data-i="9" href="09.html">09 · 表单、输入验证和对话框</a><a class="chapter" data-i="10" href="10.html">10 · 主窗口、菜单、工具栏和快捷键</a><a class="chapter" data-i="11" href="11.html">11 · Qt Designer：可视化设计和 ui 文件</a><a class="chapter" data-i="12" href="12.html">12 · QString、容器、日期和字符编码</a><a class="chapter" data-i="13" href="13.html">13 · 文件、路径与可靠保存</a><a class="chapter" data-i="14" href="14.html">14 · JSON、配置与数据格式演进</a><a class="chapter" data-i="15" href="15.html">15 · 资源系统、QSS 与界面风格</a><a class="chapter" data-i="16" href="16.html">16 · Model/View：列表与表格的核心</a><a class="chapter" data-i="17" href="17.html">17 · 代理模型、选择、委托与分页</a><a class="chapter" data-i="18" href="18.html">18 · 事件系统、定时器和自定义控件</a><a class="chapter" data-i="19" href="19.html">19 · QPainter：坐标、抗锯齿和仪表盘</a><a class="chapter" data-i="20" href="20.html">20 · 多线程：后台任务、取消和退出</a><a class="chapter" data-i="21" href="21.html">21 · HTTP 网络：异步、超时和错误分层</a><a class="chapter" data-i="22" href="22.html">22 · SQLite：连接、SQL、绑定和事务</a><a class="chapter" data-i="23" href="23.html">23 · Qt Quick 与 QML：声明式界面</a><a class="chapter" data-i="24" href="24.html">24 · C++ 与 QML：属性、通知和类型注册</a><a class="chapter" data-i="25" href="25.html">25 · 自动测试：Qt Test、信号和临时数据库</a><a class="chapter" data-i="26" href="26.html">26 · 调试与故障排查：从第一条错误开始</a><a class="chapter" data-i="27" href="27.html">27 · Windows 部署：让程序离开开发机</a><a class="chapter" data-i="28" href="28.html">28 · 综合项目 TaskDesk：需求、架构和数据流</a><a class="chapter" data-i="29" href="29.html">29 · 综合项目 TaskDesk：分阶段扩展作业</a><a class="chapter" data-i="30" href="30.html">30 · 工程习惯、GitHub 准备和协作</a><a class="chapter" data-i="31" href="31.html">31 · 进阶选修：串口、TCP、音视频与国际化</a><a class="chapter" data-i="32" href="32.html">32 · 练习参考答案与最终验收清单</a></nav><main><h1>11 · Qt Designer：可视化设计和 ui 文件</h1>
+<h2>.ui 文件如何变成界面</h2>
+<p>Designer 保存的是 XML 描述，uic 在构建时生成 ui_form.h。<code>Ui::Form ui; ui.setupUi(&amp;window);</code> 创建控件与布局，把生成的指针保存在 ui 对象里。不要修改生成的头文件，因为下次构建会覆盖它。</p>
+<h2>从现有表单开始</h2>
+<ol>
+<li>用 SDK 中的 <code>bin/designer.exe</code> 或 Qt Creator 设计模式打开 <code>examples/11_designer/form.ui</code>。</li>
+<li>选中 QLineEdit，在属性面板查看 objectName 为 lineEdit；给它设置 placeholderText。</li>
+<li>选中顶层窗口并确认已经安装垂直布局，拉伸画布检查适配。</li>
+<li>设置 Tab 顺序，使键盘输入可以从文本框移动到按钮。</li>
+<li>保存，重新编译 11_designer。源码里的 ui.lineEdit 名称要与 objectName 一致。</li>
+</ol>
+<p>把业务规则写在自己维护的 cpp 文件，而不是 ui 文件。自动命名槽 <code>on_object_signal</code> 很方便，但改 objectName 时容易发生隐式失效；本课程采用显式 connect，让连接关系可搜索。</p>
+<p>本例 ui 是 main 中的局部变量，在 app.exec 返回前一直存在，因此 lambda 引用它是有效的。如果把 setupUi 放在一个很快返回的辅助函数里，再捕获这个局部 ui 的引用，就会悬空。正式窗口类通常将 Ui::Form 放在成员或使用 unique_ptr 管理。</p>
+<p>练习：加一个清空按钮和一行说明，重建后验证键盘 Tab 与鼠标都能使用。验收：提交 ui 源文件，忽略生成头；Designer 预览和真实运行的布局一致。</p>
+<h2>配套完整源码</h2>
+<p>在根工程构建本章目标：<code>11_designer</code>。以下是仓库内同一份文件，修改请到 examples 目录。</p>
+<h3>form.ui</h3>
+<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;ui version=&quot;4.0&quot;&gt;&lt;class&gt;Form&lt;/class&gt;&lt;widget class=&quot;QWidget&quot; name=&quot;Form&quot;&gt;
+&lt;property name=&quot;windowTitle&quot;&gt;&lt;string&gt;Designer 表单&lt;/string&gt;&lt;/property&gt;
+&lt;layout class=&quot;QVBoxLayout&quot; name=&quot;verticalLayout&quot;&gt;
+&lt;item&gt;&lt;widget class=&quot;QLineEdit&quot; name=&quot;lineEdit&quot;&gt;&lt;property name=&quot;placeholderText&quot;&gt;&lt;string&gt;输入你的名字&lt;/string&gt;&lt;/property&gt;&lt;/widget&gt;&lt;/item&gt;
+&lt;item&gt;&lt;widget class=&quot;QPushButton&quot; name=&quot;pushButton&quot;&gt;&lt;property name=&quot;text&quot;&gt;&lt;string&gt;问候&lt;/string&gt;&lt;/property&gt;&lt;/widget&gt;&lt;/item&gt;
+&lt;item&gt;&lt;widget class=&quot;QLabel&quot; name=&quot;label&quot;&gt;&lt;property name=&quot;text&quot;&gt;&lt;string&gt;等待输入&lt;/string&gt;&lt;/property&gt;&lt;/widget&gt;&lt;/item&gt;
+&lt;/layout&gt;&lt;/widget&gt;&lt;resources/&gt;&lt;connections/&gt;&lt;/ui&gt;
+</code></pre>
+<h3>main.cpp</h3>
+<pre><code class="language-cpp">#include &lt;QtWidgets&gt;
+#include &quot;ui_form.h&quot;
+int main(int argc,char **argv) {
+    QApplication app(argc,argv); QWidget w; Ui::Form ui; ui.setupUi(&amp;w);
+    QObject::connect(ui.pushButton,&amp;QPushButton::clicked,&amp;w,[&amp;ui] {
+        ui.label-&gt;setText(QStringLiteral(&quot;你好，%1&quot;).arg(ui.lineEdit-&gt;text().trimmed()));
+    });
+    w.show();
+    if(app.arguments().contains(&quot;--smoke&quot;)) QTimer::singleShot(150,&amp;app,&amp;QCoreApplication::quit);
+    return app.exec();
+}
+</code></pre>
+<p><a href="index.html">返回目录</a></p><div class="pager"><a href="10.html">← 上一章</a><a href="12.html">下一章 →</a></div></main></div><script src="search.js"></script></body></html>
