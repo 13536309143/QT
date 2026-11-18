@@ -2,7 +2,7 @@
 
 一套可以离线阅读、配套编译、逐章练习的 Qt 6 学习项目。以 **C++17 + Qt Widgets** 为主线，包含 **Qt Quick/QML 与 C++ 交互**，最终完成使用 SQLite 保存数据的 **TaskDesk 任务管理器**。
 
-适合刚接触 Qt、希望逐步独立开发桌面软件的学习者。没有 C++ 基础时先读第 01 章，再完成第 04、05 章补课；第 02 章讲解 Kit、编辑器、构建与断点。课程包含 **49 章中文教程、16 个示例、1 个综合项目和 Qt Test 自动测试**。串口、TCP、音视频与国际化提供选修路线，不冒充已经实现的完整硬件案例。
+适合刚接触 Qt、希望逐步独立开发桌面软件的学习者。没有 C++ 基础时先读第 01 章，再完成第 04、05 章补课；第 02 章讲解 Kit、编辑器、构建与断点。课程包含 **67 章中文教程、18 个源码示例（Vulkan 为可选构建）、1 个综合项目和 Qt Test 自动测试**。串口、TCP、音视频与国际化提供选修路线，不冒充已经实现的完整硬件案例。
 
 ## 从这里开始
 
@@ -10,15 +10,27 @@
 - **GitHub 在线阅读**：[完整章节目录](docs/00-目录.md)。GitHub 仓库页面通常不会直接执行 HTML，请在线读 Markdown，或下载后打开网页。
 - **先运行示例**：按下方步骤安装环境、构建，然后启动 `01_hello`。
 
-- **逐步实操**：[18 个详细实验](docs/WORKBOOK.md)，覆盖搭建新目标、取消保存、线程退出、数据库事务、QML 绑定和部署验收。
+- **逐步实操**：[21 个详细实验](docs/WORKBOOK.md)，覆盖搭建新目标、取消保存、线程退出、数据库事务、QML 绑定和部署验收。
 
 ## 新手推荐路线
 
-按 [六阶段目录](docs/00-目录.md) 学习，章节已按学习顺序连续编号为 00～48，目录、文件名和离线页面保持一致。先读预备课与工具入门，再学对象、控件和布局，随后学习文件与模型、异步与通信、QML，最后进入测试和项目扩展。每章先运行，再修改，最后验证正常、边界和失败路径。
+按 [八阶段目录](docs/00-目录.md) 学习，章节已按学习顺序连续编号为 00～66，目录、文件名和离线页面保持一致。先读预备课与工具入门，再学对象、控件和布局，随后学习文件与模型、异步与通信、QML，最后进入测试和项目扩展。每章先运行，再修改，最后验证正常、边界和失败路径。
 
 示例目标名（如 `01_hello`、`14_controls`）使用独立编号，运行命令按示例名称使用；它们不代表章节号。
 
 新增章节覆盖常用控件、多窗口、QSettings、焦点和事件过滤、TCP 拆包、模型委托、异步状态、SQLite 迁移、QML 组件、交互测试、架构、性能、日志与发布，并附术语答疑。高级章节中的设计片段会明确前提，不代表现有 TaskDesk 已实现全部扩展。
+
+## Qt Creator 图形化操作
+
+新增 [第 59～66 章操作实训](docs/59.md)，以本机 `D:\Qt\Tools\QtCreator\bin\qtcreator.exe`（20.0.2）为版本参考，覆盖工作区、Kit、打开和新建 CMake 工程、Designer 拖拽、属性、布局、Tab/buddy、信号槽、CDB 断点调试和运行设置。配套三项综合实验、16 张本机真实截图和 16 幅教学示意图。每幅主要配图说明看哪里、怎样操作、结果与检查，并区分当前默认值与课程目标值。
+
+初学者可在第 02 章之后提前学习，不用等学完 OpenGL/Vulkan。项目 Qt SDK 仍是课程的 6.8.3，Creator 自身的 Qt 版本不等于项目 Kit。
+
+## 按函数深入阅读
+
+每个主要接口增加了参数、作用与返回结果、调用时机和易错点。可以直接在相关正文查阅，或使用 [164 组主要接口详解](docs/API.md)。这里讲解课程使用的接口和部分对照接口，不代表覆盖整个 Qt 的所有模块与全部重载。
+
+第 49～58 章详解 Qt 与 OpenGL/Vulkan：渲染管线、上下文、shader、VAO/VBO、矩阵和纹理、QVulkanWindow、render pass、Vulkan pipeline、显存、描述符和同步。OpenGL 提供完整彩色三角形，Vulkan 提供完整清屏；后续三角形与纹理是明确标注的扩展实验。
 
 ## 环境基线
 
@@ -97,6 +109,8 @@ Qt Creator 用户打开根目录 `CMakeLists.txt`，选择 SDK 中的 qmake 与 
 | 14_controls | 常用控件与同步 | 输入、选择、QSignalBlocker |
 | 15_settings | 配置保存与恢复 | QSettings、用户路径、默认值 |
 | 16_tcp | 本机 TCP 回显 | 异步 socket、拆帧、缓冲上限 |
+| 17_opengl | OpenGL 3.3 Core 三角形 | shader、VAO、VBO、像素读回自检 |
+| 18_vulkan | Vulkan 清屏（可选） | instance、设备、swapchain、命令录制 |
 | taskdesk | 综合任务管理器 | SQLite、搜索、主键操作、持久化 |
 
 网络例子默认请求本地测试服务，在另一个终端运行：
@@ -111,7 +125,7 @@ TaskDesk 数据保存在 `QStandardPaths::AppDataLocation` 对应用户目录，
 
 C++ 必要基础 → 工具链与 CMake → QObject 与信号槽 → Widgets 布局和表单 → Designer → 文件/JSON/设置/资源 → Model/View → 事件和绘图 → 多线程 → 网络 → SQLite → QML 与 C++ → 自动测试 → 调试与部署 → 综合项目扩展。
 
-每章包含概念、操作或源码分析、练习及验收要点。建议用 12 周完成主线，零基础可放慢预备课和控件阶段的进度，每天 60~90 分钟。[查看全部 49 章](docs/00-目录.md) · [官方参考](docs/REFERENCES.md)。
+每章包含概念、操作或源码分析、练习及验收要点。建议用 12 周完成主线，零基础可放慢预备课和控件阶段的进度，每天 60~90 分钟。[查看全部 67 章](docs/00-目录.md) · [官方参考](docs/REFERENCES.md)。
 
 ## 验证与分发
 
@@ -129,7 +143,7 @@ scripts/deploy.cmd taskdesk
 ```text
 docs/                    中文 Markdown 课程、参考与验证记录
 site/                    无外部依赖的离线网页
-examples/                16 个配套示例
+examples/                18 个配套源码示例
 projects/taskdesk/       综合项目与可测试仓储
 tests/                   Qt Test 测试
 scripts/                 安装、构建、运行、部署和检查脚本
@@ -163,3 +177,16 @@ Markdown 为编辑源，网页从它生成：
 ## 许可
 
 原创文字、网页和示例源码使用 [MIT License](LICENSE)。Qt 与安装工具保持其自身许可；[第三方说明](THIRD_PARTY_NOTICES.md) 和 [Qt 官方许可说明](https://doc.qt.io/qt-6.8/licensing.html) 应一并阅读。
+
+## 图形扩展的构建与检查
+
+普通 build.cmd 默认编译 OpenGL 示例；Vulkan 需提供头文件并显式启用。获取方式见 [第 54 章](docs/54.md)，然后执行：
+
+```powershell
+scripts\build-graphics.cmd
+scripts\run.cmd 17_opengl
+scripts\run.cmd 18_vulkan
+powershell -ExecutionPolicy Bypass -File scripts/check-graphics.ps1
+```
+
+图形检查需要正常 Windows 图形会话和合适的驱动，独立于 check.ps1 的 offscreen 启动检查。Vulkan 的 --validation 还需要实际安装验证层。头文件、运行时、驱动和 SDK 工具是不同组件。

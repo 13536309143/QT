@@ -9,7 +9,7 @@ ids = [c for s in stages for c in s['chapters']]
 assert len(ids) == len(set(ids)) and set(ids) == {p.stem for p in (root/'docs').glob('[0-9][0-9].md')}
 examples = [p for p in (root/'examples').iterdir() if (p/'main.cpp').is_file()]
 labs = len(re.findall(r'^## 实验', (root/'docs/WORKBOOK.md').read_text(encoding='utf-8'), re.M))
-extras = {'WORKBOOK':'workbook', 'REFERENCES':'references', 'VALIDATION':'validation'}
+extras = {'WORKBOOK':'workbook', 'API':'api', 'REFERENCES':'references', 'VALIDATION':'validation'}
 page_map = dict(zip(ids,ids)) | extras | {'00-目录':'index'}
 items = {}
 for c in ids:
@@ -23,7 +23,11 @@ for c in ids:
         md = re.sub(r'### ([^\n]+)\n\n```([^\n]*)\n.*?\n```', sync, md, flags=re.S)
     items[c] = (md.splitlines()[0].lstrip('# '), md)
 def render(md):
-    body = markdown.markdown(md, extensions=['fenced_code','tables','toc'])
+    engine = markdown.Markdown(extensions=['fenced_code','tables','toc'])
+    body = engine.convert(md)
+    if len(re.findall(r'^### ', md, re.M)) >= 8:
+        toc = '<details class="page-toc"><summary>本页函数与小节目录（展开定位）</summary>' + engine.toc + '</details>'
+        body = body.replace('</h1>', '</h1>' + toc, 1)
     def link(m):
         url = html.unescape(m[1])
         path, sep, fragment = url.partition('#')
@@ -33,7 +37,7 @@ def render(md):
     return re.sub(r'href="([^"]*)"', link, body)
 def nav(active):
     out = '<input id="search" type="search" placeholder="搜索章节与正文" aria-label="搜索章节与正文"><p><a href="index.html">课程首页与推荐路线</a>'
-    out += f'<a href="workbook.html">{labs} 个逐步实操实验</a><a href="references.html">官方参考资料</a></p>'
+    out += f'<a href="workbook.html">{labs} 个逐步实操实验</a><a href="api.html">函数详解手册</a><a href="references.html">官方参考资料</a></p>'
     for stage in stages:
         out += '<section class="nav-stage"><h2>'+html.escape(stage['title'])+'</h2>'
         for c in stage['chapters']:
@@ -60,11 +64,13 @@ intro = f'''# 从第一个窗口开始，逐步学会独立开发
 ## 选择你的起点
 
 - **第一次写 C++**：[先读零基础预备课](01.md)，再学习工具、环境和首个窗口。
-- **学过 C++，第一次用 Qt**：[从学习地图开始](00.md)，按下方六个阶段推进。
+- **学过 C++，第一次用 Qt**：[从学习地图开始](00.md)，按下方各阶段推进。
+- **想用 Qt Creator 图形操作**：[从 Creator 工作区入门](59.md)，跟着完成 Kit、Designer、信号槽和调试练习；第 02 章后即可提前学习。
 - **已有入门经验**：选择 [异步任务](28.md)、[模型进阶](23.md)、[测试进阶](37.md) 补齐薄弱环节。
+- **学习图形集成**：从 [图形预备课](49.md) 开始，再学习 OpenGL 与 Vulkan；图形自检需要正常桌面与驱动，Vulkan 为可选构建。
 
 每课先理解输入、输出和对象寿命，再运行原例，修改一个功能，验证正常、边界、失败三条路径。
-全书从 00 到 48 连续编号，章节文件名、侧栏与“上一课 / 下一课”均采用同一顺序。
+全书从 00 到 {len(ids)-1:02d} 连续编号，章节文件名、侧栏与“上一课 / 下一课”均采用同一顺序。每个主要函数的参数、结果与时机可查 [函数详解手册](API.md)。
 
 ## 完成第一个小目标
 

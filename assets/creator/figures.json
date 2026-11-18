@@ -1,0 +1,36 @@
+{
+  "screenshots_used": [
+    "file-menu.jpg",
+    "kits-overview.jpg",
+    "qt-versions.jpg",
+    "compilers.jpg",
+    "debuggers.jpg",
+    "widgets-template.jpg",
+    "project-location.jpg",
+    "build-system-options.jpg",
+    "project-cmake.jpg",
+    "project-class.jpg",
+    "designer-overview.jpg",
+    "designer-properties.jpg",
+    "designer-modes-menu.jpg",
+    "designer-tab-order.jpg",
+    "designer-signals-mode.jpg",
+    "signals-dialog.jpg"
+  ],
+  "diagrams": [
+    "kit-chain.svg",
+    "build-run-cycle.svg",
+    "wizard-values.svg",
+    "control-properties.svg",
+    "preview-versus-run.svg",
+    "nested-layout.svg",
+    "size-policy.svg",
+    "tab-buddy.svg",
+    "signal-roles.svg",
+    "connection-choices.svg",
+    "debug-workspace.svg",
+    "debug-actions.svg",
+    "run-settings.svg",
+    "output-panes.svg"
+  ]
+}

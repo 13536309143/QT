@@ -1,0 +1,1226 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>课程函数详解手册 · Qt 6 中文教程</title><link rel="stylesheet" href="style.css"></head><body><a class="skip-link" href="#content">跳到正文</a><header><div class="tag">C++ · QT 6 · 从入门到项目</div><h1>Qt 6 中文学习手册</h1><p>67 章分阶段学习 / 18 个源码示例 / 21 个逐步实验 / 离线可读</p></header><div class="shell"><nav aria-label="课程导航"><input id="search" type="search" placeholder="搜索章节与正文" aria-label="搜索章节与正文"><p><a href="index.html">课程首页与推荐路线</a><a href="workbook.html">21 个逐步实操实验</a><a href="api.html">函数详解手册</a><a href="references.html">官方参考资料</a></p><section class="nav-stage"><h2>一 · 零基础与开发工具</h2><a class="chapter" data-id="00" href="00.html">00 · 学习地图：从零到独立开发</a><a class="chapter" data-id="01" href="01.html">01 · 零基础预备课：读懂一小段 C++</a><a class="chapter" data-id="02" href="02.html">02 · 开发工具入门：Kit、断点与第一次修改</a><a class="chapter" data-id="03" href="03.html">03 · 安装与环境：项目内的 Qt 6</a><a class="chapter" data-id="04" href="04.html">04 · C++ 补课一：值、引用、指针和生命周期</a><a class="chapter" data-id="05" href="05.html">05 · C++ 补课二：类、继承、lambda 和工程拆分</a><a class="chapter" data-id="06" href="06.html">06 · CMake：从源码到程序</a><a class="chapter" data-id="07" href="07.html">07 · 第一个窗口与事件循环</a></section><section class="nav-stage"><h2>二 · 对象、控件与交互</h2><a class="chapter" data-id="08" href="08.html">08 · QObject、元对象与父子所有权</a><a class="chapter" data-id="09" href="09.html">09 · 信号与槽：把行为连接起来</a><a class="chapter" data-id="10" href="10.html">10 · 布局管理：让界面适应窗口</a><a class="chapter" data-id="11" href="11.html">11 · 常用控件详解：选择、输入与状态同步</a><a class="chapter" data-id="12" href="12.html">12 · 表单、输入验证和对话框</a><a class="chapter" data-id="13" href="13.html">13 · 多窗口与对话框：确认、取消和对象寿命</a><a class="chapter" data-id="14" href="14.html">14 · 主窗口、菜单、工具栏和快捷键</a><a class="chapter" data-id="15" href="15.html">15 · Qt Designer：可视化设计和 ui 文件</a><a class="chapter" data-id="16" href="16.html">16 · QString、容器、日期和字符编码</a><a class="chapter" data-id="17" href="17.html">17 · QSettings 与应用路径：记住用户的选择</a></section><section class="nav-stage"><h2>三 · 文件、数据与界面机制</h2><a class="chapter" data-id="18" href="18.html">18 · 文件、路径与可靠保存</a><a class="chapter" data-id="19" href="19.html">19 · JSON、配置与数据格式演进</a><a class="chapter" data-id="20" href="20.html">20 · 资源系统、QSS 与界面风格</a><a class="chapter" data-id="21" href="21.html">21 · Model/View：列表与表格的核心</a><a class="chapter" data-id="22" href="22.html">22 · 代理模型、选择、委托与分页</a><a class="chapter" data-id="23" href="23.html">23 · 模型进阶：角色、编辑委托与正确通知</a><a class="chapter" data-id="24" href="24.html">24 · 事件系统、定时器和自定义控件</a><a class="chapter" data-id="25" href="25.html">25 · 事件过滤、焦点与键盘：保留正常交互</a><a class="chapter" data-id="26" href="26.html">26 · QPainter：坐标、抗锯齿和仪表盘</a></section><section class="nav-stage"><h2>四 · 异步、通信与数据库</h2><a class="chapter" data-id="27" href="27.html">27 · 多线程：后台任务、取消和退出</a><a class="chapter" data-id="28" href="28.html">28 · 异步任务设计：状态、取消和过期结果</a><a class="chapter" data-id="29" href="29.html">29 · HTTP 网络：异步、超时和错误分层</a><a class="chapter" data-id="30" href="30.html">30 · TCP 实战：连接、拆包和有限缓冲</a><a class="chapter" data-id="31" href="31.html">31 · SQLite：连接、SQL、绑定和事务</a><a class="chapter" data-id="32" href="32.html">32 · SQLite 进阶：事务、迁移与分页</a></section><section class="nav-stage"><h2>五 · QML 与 C++ 协作</h2><a class="chapter" data-id="33" href="33.html">33 · Qt Quick 与 QML：声明式界面</a><a class="chapter" data-id="34" href="34.html">34 · C++ 与 QML：属性、通知和类型注册</a><a class="chapter" data-id="35" href="35.html">35 · QML 进阶入门：组件、绑定与页面状态</a></section><section class="nav-stage"><h2>六 · 测试、工程与综合项目</h2><a class="chapter" data-id="36" href="36.html">36 · 自动测试：Qt Test、信号和临时数据库</a><a class="chapter" data-id="37" href="37.html">37 · 测试进阶：从规则到真实交互</a><a class="chapter" data-id="38" href="38.html">38 · 调试与故障排查：从第一条错误开始</a><a class="chapter" data-id="39" href="39.html">39 · 性能与内存：先测量，再优化</a><a class="chapter" data-id="40" href="40.html">40 · Windows 部署：让程序离开开发机</a><a class="chapter" data-id="41" href="41.html">41 · 进阶发布：日志、翻译与可交付检查</a><a class="chapter" data-id="42" href="42.html">42 · 综合项目 TaskDesk：需求、架构和数据流</a><a class="chapter" data-id="43" href="43.html">43 · 项目拆分：让窗口不再承担全部业务</a><a class="chapter" data-id="44" href="44.html">44 · 综合项目 TaskDesk：分阶段扩展作业</a><a class="chapter" data-id="45" href="45.html">45 · 工程习惯、GitHub 准备和协作</a><a class="chapter" data-id="46" href="46.html">46 · 进阶选修：串口、TCP、音视频与国际化</a><a class="chapter" data-id="47" href="47.html">47 · 练习参考答案与最终验收清单</a><a class="chapter" data-id="48" href="48.html">48 · 新手答疑、术语表与阶段自测</a></section><section class="nav-stage"><h2>七 · Qt 与 OpenGL、Vulkan 图形集成</h2><a class="chapter" data-id="49" href="49.html">49 · 图形预备课：CPU、GPU、坐标与一帧的形成</a><a class="chapter" data-id="50" href="50.html">50 · Qt 与 OpenGL：上下文、控件及完整生命周期</a><a class="chapter" data-id="51" href="51.html">51 · OpenGL 三角形逐行讲解：着色器、VAO 与 VBO</a><a class="chapter" data-id="52" href="52.html">52 · OpenGL 扩展实操：矩阵、相机、纹理与深度</a><a class="chapter" data-id="53" href="53.html">53 · OpenGL 工程化：交互、离屏渲染、调试与清理</a><a class="chapter" data-id="54" href="54.html">54 · Qt 与 Vulkan 环境：头文件、Loader、驱动与实例</a><a class="chapter" data-id="55" href="55.html">55 · QVulkanWindow 完整清屏：回调、命令与 Qt 的责任</a><a class="chapter" data-id="56" href="56.html">56 · Vulkan 三角形进阶：shader、buffer 与图形管线</a><a class="chapter" data-id="57" href="57.html">57 · Vulkan 同步与资源更新：帧槽、描述符和图像布局</a><a class="chapter" data-id="58" href="58.html">58 · Qt 图形集成实战路线：嵌入、选型、性能与发布</a></section><section class="nav-stage"><h2>八 · Qt Creator 图形化操作实训</h2><a class="chapter" data-id="59" href="59.html">59 · Qt Creator 图形操作入门：认识界面与学习路线</a><a class="chapter" data-id="60" href="60.html">60 · 图形化配置 Kit：打开本地课程并构建运行</a><a class="chapter" data-id="61" href="61.html">61 · 新建 Widgets 工程：用向导创建自己的练习窗口</a><a class="chapter" data-id="62" href="62.html">62 · Designer 拖拽入门：控件、属性与 objectName</a><a class="chapter" data-id="63" href="63.html">63 · Designer 布局实操：嵌套、拉伸、Tab 与伙伴关系</a><a class="chapter" data-id="64" href="64.html">64 · 图形化连接信号槽：拖线、转到槽与显式 connect</a><a class="chapter" data-id="65" href="65.html">65 · Qt Creator 调试操作：断点、变量、调用栈和条件</a><a class="chapter" data-id="66" href="66.html">66 · Qt Creator 综合操作：运行设置、故障排查与交付</a></section><p id="search-status" role="status" aria-live="polite"></p></nav><main id="content"><h1 id="_1">课程函数详解手册</h1><details class="page-toc"><summary>本页函数与小节目录（展开定位）</summary><div class="toc">
+<ul>
+<li><a href="#_1">课程函数详解手册</a><ul>
+<li><a href="#_2">怎样逐行读代码</a></li>
+<li><a href="#_3">窗口与应用：参数、结果与时机</a><ul>
+<li><a href="#qapplicationargc-argv">QApplication(argc, argv)</a></li>
+<li><a href="#qwidgetparent">QWidget(parent)</a></li>
+<li><a href="#qlabeltext-parent">QLabel(text, parent)</a></li>
+<li><a href="#resizewidth-height">resize(width, height)</a></li>
+<li><a href="#setwindowtitletitle">setWindowTitle(title)</a></li>
+<li><a href="#setalignmentflags">setAlignment(flags)</a></li>
+<li><a href="#show">show()</a></li>
+<li><a href="#exec">exec()</a></li>
+<li><a href="#arguments">arguments()</a></li>
+<li><a href="#qtimersingleshotms-context-functor">QTimer::singleShot(ms, context, functor)</a></li>
+<li><a href="#qcoreapplicationquit">QCoreApplication::quit()</a></li>
+</ul>
+</li>
+<li><a href="#_4">对象树与连接：参数、结果与时机</a><ul>
+<li><a href="#qobjectconnectsender-signal-context-functor">QObject::connect(sender, signal, context, functor)</a></li>
+<li><a href="#qobjectdisconnectconnection">QObject::disconnect(connection)</a></li>
+<li><a href="#setobjectnamename">setObjectName(name)</a></li>
+<li><a href="#children">children()</a></li>
+<li><a href="#deletelater">deleteLater()</a></li>
+<li><a href="#qpointertobject">QPointer&lt;T&gt;(object)</a></li>
+<li><a href="#movetothreadthread">moveToThread(thread)</a></li>
+</ul>
+</li>
+<li><a href="#_5">布局与尺寸：参数、结果与时机</a><ul>
+<li><a href="#qvboxlayoutparent">QVBoxLayout(parent)</a></li>
+<li><a href="#addwidgetwidget-stretch">addWidget(widget, stretch)</a></li>
+<li><a href="#addlayoutlayout-stretch">addLayout(layout, stretch)</a></li>
+<li><a href="#addstretchstretch">addStretch(stretch)</a></li>
+<li><a href="#qformlayoutaddrowlabel-field">QFormLayout::addRow(label, field)</a></li>
+<li><a href="#setminimumsizew-h">setMinimumSize(w, h)</a></li>
+<li><a href="#setsizepolicyhorizontal-vertical">setSizePolicy(horizontal, vertical)</a></li>
+</ul>
+</li>
+<li><a href="#_6">输入、选择与表单：参数、结果与时机</a><ul>
+<li><a href="#qlineedittext">QLineEdit::text()</a></li>
+<li><a href="#qlineeditsettexttext">QLineEdit::setText(text)</a></li>
+<li><a href="#setplaceholdertexttext">setPlaceholderText(text)</a></li>
+<li><a href="#setmaxlengthlength">setMaxLength(length)</a></li>
+<li><a href="#qspinboxsetrangemin-max">QSpinBox::setRange(min, max)</a></li>
+<li><a href="#qspinboxvalue-setvaluevalue">QSpinBox::value() / setValue(value)</a></li>
+<li><a href="#qcheckboxischecked">QCheckBox::isChecked()</a></li>
+<li><a href="#qcomboboxadditemtext-data">QComboBox::addItem(text, data)</a></li>
+<li><a href="#currenttext-currentdata">currentText() / currentData()</a></li>
+<li><a href="#setcurrentindexindex">setCurrentIndex(index)</a></li>
+<li><a href="#qlabelsettexttext">QLabel::setText(text)</a></li>
+<li><a href="#setwordwrapenabled">setWordWrap(enabled)</a></li>
+<li><a href="#setenabledenabled">setEnabled(enabled)</a></li>
+<li><a href="#qsignalblockerobject">QSignalBlocker(object)</a></li>
+</ul>
+</li>
+<li><a href="#_7">对话框与主窗口：参数、结果与时机</a><ul>
+<li><a href="#qdialogopen">QDialog::open()</a></li>
+<li><a href="#qdialogaccept-reject">QDialog::accept() / reject()</a></li>
+<li><a href="#setattributeqtwa_deleteonclose">setAttribute(Qt::WA_DeleteOnClose)</a></li>
+<li><a href="#qmainwindowsetcentralwidgetwidget">QMainWindow::setCentralWidget(widget)</a></li>
+<li><a href="#menubar-addmenutitle">menuBar()-&gt;addMenu(title)</a></li>
+<li><a href="#qmenuaddactiontext">QMenu::addAction(text)</a></li>
+<li><a href="#qactionsetshortcutsequence">QAction::setShortcut(sequence)</a></li>
+<li><a href="#qfiledialoggetopenfilename-getsavefilename">QFileDialog::getOpenFileName(...) / getSaveFileName(...)</a></li>
+<li><a href="#qmessageboxquestion">QMessageBox::question(...)</a></li>
+<li><a href="#qcloseeventaccept-ignore">QCloseEvent::accept() / ignore()</a></li>
+<li><a href="#uiformsetupuiwidget">Ui::Form::setupUi(widget)</a></li>
+</ul>
+</li>
+<li><a href="#_8">字符串、配置与文件：参数、结果与时机</a><ul>
+<li><a href="#qstringtrimmed-isempty">QString::trimmed() / isEmpty()</a></li>
+<li><a href="#qstringargvalue">QString::arg(value)</a></li>
+<li><a href="#qstringtointok-base">QString::toInt(ok, base)</a></li>
+<li><a href="#qstringtoutf8-fromutf8bytes">QString::toUtf8() / fromUtf8(bytes)</a></li>
+<li><a href="#qstringsize-qbytearraysize">QString::size() / QByteArray::size()</a></li>
+<li><a href="#qsettingsvaluekey-defaultvalue">QSettings::value(key, defaultValue)</a></li>
+<li><a href="#qsettingssetvaluekey-value">QSettings::setValue(key, value)</a></li>
+<li><a href="#qsettingssync-status">QSettings::sync() / status()</a></li>
+<li><a href="#qsettingsfilename">QSettings::fileName()</a></li>
+<li><a href="#qstandardpathswritablelocationtype">QStandardPaths::writableLocation(type)</a></li>
+<li><a href="#qdirmkpathpath">QDir::mkpath(path)</a></li>
+<li><a href="#qfileopenmode">QFile::open(mode)</a></li>
+<li><a href="#qfilereadall">QFile::readAll()</a></li>
+<li><a href="#qiodevicewritebytes">QIODevice::write(bytes)</a></li>
+<li><a href="#qsavefilecommit">QSaveFile::commit()</a></li>
+<li><a href="#errorstring">errorString()</a></li>
+<li><a href="#qtemporarydirisvalid-filepathname">QTemporaryDir::isValid() / filePath(name)</a></li>
+<li><a href="#qjsondocumentfromjsonbytes-error">QJsonDocument::fromJson(bytes, error)</a></li>
+<li><a href="#qjsondocumenttojsonformat">QJsonDocument::toJson(format)</a></li>
+<li><a href="#qjsonobjectvaluekey">QJsonObject::value(key)</a></li>
+<li><a href="#qwidgetsetstylesheetqss">QWidget::setStyleSheet(qss)</a></li>
+<li><a href="#qtextdocumentsetmodifiedfalse">QTextDocument::setModified(false)</a></li>
+</ul>
+</li>
+<li><a href="#_9">模型、代理与索引：参数、结果与时机</a><ul>
+<li><a href="#rowcountparent-columncountparent">rowCount(parent) / columnCount(parent)</a></li>
+<li><a href="#dataindex-role">data(index, role)</a></li>
+<li><a href="#headerdatasection-orientation-role">headerData(section, orientation, role)</a></li>
+<li><a href="#flagsindex">flags(index)</a></li>
+<li><a href="#setdataindex-value-role">setData(index, value, role)</a></li>
+<li><a href="#datachangedtopleft-bottomright-roles">dataChanged(topLeft, bottomRight, roles)</a></li>
+<li><a href="#begininsertrowsparent-first-last-endinsertrows">beginInsertRows(parent, first, last) / endInsertRows()</a></li>
+<li><a href="#setsourcemodelmodel-setmodelmodel">setSourceModel(model) / setModel(model)</a></li>
+<li><a href="#setfilterkeycolumncolumn">setFilterKeyColumn(column)</a></li>
+<li><a href="#setfilterfixedstringtext">setFilterFixedString(text)</a></li>
+<li><a href="#maptosourceproxyindex">mapToSource(proxyIndex)</a></li>
+<li><a href="#currentindex-isvalid">currentIndex() / isValid()</a></li>
+<li><a href="#setsortingenabledtrue">setSortingEnabled(true)</a></li>
+</ul>
+</li>
+<li><a href="#_10">绘图、事件与计时：参数、结果与时机</a><ul>
+<li><a href="#qtimerstartinterval-stop">QTimer::start(interval) / stop()</a></li>
+<li><a href="#qwidgetupdate">QWidget::update()</a></li>
+<li><a href="#painteventevent">paintEvent(event)</a></li>
+<li><a href="#qpainterthis">QPainter(this)</a></li>
+<li><a href="#setrenderhintqpainterantialiasing">setRenderHint(QPainter::Antialiasing)</a></li>
+<li><a href="#translatexy-scalesxsy">translate(x,y) / scale(sx,sy)</a></li>
+<li><a href="#setpenpen-setfontfont">setPen(pen) / setFont(font)</a></li>
+<li><a href="#drawarcrect-start-span">drawArc(rect, start, span)</a></li>
+<li><a href="#drawtextrect-flags-text">drawText(rect, flags, text)</a></li>
+<li><a href="#eventfilterwatched-event">eventFilter(watched, event)</a></li>
+<li><a href="#qelapsedtimerstart-elapsed">QElapsedTimer::start() / elapsed()</a></li>
+</ul>
+</li>
+<li><a href="#http-tcp">线程、HTTP 与 TCP：参数、结果与时机</a><ul>
+<li><a href="#qthreadstart-isrunning">QThread::start() / isRunning()</a></li>
+<li><a href="#requestinterruption-isinterruptionrequested">requestInterruption() / isInterruptionRequested()</a></li>
+<li><a href="#qthreadquit-wait">QThread::quit() / wait()</a></li>
+<li><a href="#qnetworkaccessmanagergetrequest">QNetworkAccessManager::get(request)</a></li>
+<li><a href="#qnetworkrequestsettransfertimeoutms">QNetworkRequest::setTransferTimeout(ms)</a></li>
+<li><a href="#qnetworkreplyattributecode">QNetworkReply::attribute(code)</a></li>
+<li><a href="#qnetworkreplyerror-abort">QNetworkReply::error() / abort()</a></li>
+<li><a href="#qtcpserverlistenaddress-port">QTcpServer::listen(address, port)</a></li>
+<li><a href="#nextpendingconnection">nextPendingConnection()</a></li>
+<li><a href="#qtcpsocketconnecttohostaddress-port">QTcpSocket::connectToHost(address, port)</a></li>
+<li><a href="#bytesavailable-readmaxsize">bytesAvailable() / read(maxSize)</a></li>
+<li><a href="#setreadbuffersizebytes">setReadBufferSize(bytes)</a></li>
+<li><a href="#lineprotocolfeedbytes-lines">LineProtocol::feed(bytes, lines)</a></li>
+</ul>
+</li>
+<li><a href="#taskdesk">数据库与 TaskDesk：参数、结果与时机</a><ul>
+<li><a href="#qsqldatabaseadddatabasedriver-name">QSqlDatabase::addDatabase(driver, name)</a></li>
+<li><a href="#setdatabasenamepath-open">setDatabaseName(path) / open()</a></li>
+<li><a href="#qsqlquerypreparesql">QSqlQuery::prepare(sql)</a></li>
+<li><a href="#addbindvaluevalue-bindvalueindex-value">addBindValue(value) / bindValue(index, value)</a></li>
+<li><a href="#qsqlqueryexec">QSqlQuery::exec()</a></li>
+<li><a href="#qsqlquerynext-valuecolumn">QSqlQuery::next() / value(column)</a></li>
+<li><a href="#numrowsaffected">numRowsAffected()</a></li>
+<li><a href="#transaction-commit-rollback">transaction() / commit() / rollback()</a></li>
+<li><a href="#qsqlqueryfinish">QSqlQuery::finish()</a></li>
+<li><a href="#qsqldatabaseremovedatabasename">QSqlDatabase::removeDatabase(name)</a></li>
+<li><a href="#taskstoreopenpath">TaskStore::open(path)</a></li>
+<li><a href="#taskstoreaddtitle">TaskStore::add(title)</a></li>
+<li><a href="#taskstorecompleteid-done-removeid">TaskStore::complete(id, done) / remove(id)</a></li>
+</ul>
+</li>
+<li><a href="#qml">QML、测试与工程诊断：参数、结果与时机</a><ul>
+<li><a href="#qqmlapplicationengineloadfrommoduleuri-typename">QQmlApplicationEngine::loadFromModule(uri, typeName)</a></li>
+<li><a href="#q_property-read-notify">Q_PROPERTY(... READ ... NOTIFY ...)</a></li>
+<li><a href="#counterincrement">Counter::increment()</a></li>
+<li><a href="#qsignalspysender-signal">QSignalSpy(sender, signal)</a></li>
+<li><a href="#qsignalspywaittimeout">QSignalSpy::wait(timeout)</a></li>
+<li><a href="#qverifyexpr-qcompareactual-expected">QVERIFY(expr) / QCOMPARE(actual, expected)</a></li>
+<li><a href="#qtry_verifyexpr-qtry_compareactual-expected">QTRY_VERIFY(expr) / QTRY_COMPARE(actual, expected)</a></li>
+<li><a href="#qtestmouseclickwidget-button">QTest::mouseClick(widget, button)</a></li>
+<li><a href="#qloggingcategory-qcwarningcategory">QLoggingCategory(...) / qCWarning(category)</a></li>
+<li><a href="#qprocess">QProcess 等外部工具</a></li>
+</ul>
+</li>
+<li><a href="#_11">如何从手册回到源码</a></li>
+<li><a href="#_12">构造函数与其余辅助接口逐项补充</a><ul>
+<li><a href="#qpushbuttontext-parent">QPushButton(text, parent)</a></li>
+<li><a href="#qlineeditparent-qlineedittextparent">QLineEdit(parent) / QLineEdit(text,parent)</a></li>
+<li><a href="#qspinboxparent-qsliderorientationparent">QSpinBox(parent) / QSlider(orientation,parent)</a></li>
+<li><a href="#qcheckboxtextparent">QCheckBox(text,parent)</a></li>
+<li><a href="#qtableviewparent-qplaintexteditparent">QTableView(parent) / QPlainTextEdit(parent)</a></li>
+<li><a href="#qurlscheme-host-isvalid">QUrl::scheme() / host() / isValid()</a></li>
+<li><a href="#qstringnumbervalue">QString::number(value)</a></li>
+<li><a href="#qvarianttostring-tobytearray">QVariant::toString() / toByteArray()</a></li>
+<li><a href="#qstringclear-qlineeditclear">QString::clear() / QLineEdit::clear()</a></li>
+<li><a href="#qplaintexteditappendplaintexttext">QPlainTextEdit::appendPlainText(text)</a></li>
+<li><a href="#qtextedittoplaintext-setplaintexttext">QTextEdit::toPlainText() / setPlainText(text)</a></li>
+<li><a href="#qtexteditdocument">QTextEdit::document()</a></li>
+<li><a href="#qtextdocumentismodified">QTextDocument::isModified()</a></li>
+<li><a href="#qtextdocumentsetmaximumblockcountcount">QTextDocument::setMaximumBlockCount(count)</a></li>
+<li><a href="#setreadonlytrue">setReadOnly(true)</a></li>
+<li><a href="#settextinteractionflagsflags">setTextInteractionFlags(flags)</a></li>
+<li><a href="#qwidgetsavegeometry-restoregeometrybytes">QWidget::saveGeometry() / restoreGeometry(bytes)</a></li>
+<li><a href="#qcoreapplicationsetorganizationnamename-setapplicationnamename">QCoreApplication::setOrganizationName(name) / setApplicationName(name)</a></li>
+<li><a href="#qstandardpathssettestmodeenabledtrue">QStandardPaths::setTestModeEnabled(true)</a></li>
+<li><a href="#qtimersetintervalms-setsingleshottrue">QTimer::setInterval(ms) / setSingleShot(true)</a></li>
+<li><a href="#qthreadcurrentthread-msleepms">QThread::currentThread() / msleep(ms)</a></li>
+<li><a href="#qfontsetpixelsizesize">QFont::setPixelSize(size)</a></li>
+<li><a href="#qpalettetextcolor">QPalette::text().color()</a></li>
+<li><a href="#setfiltercasesensitivitymode">setFilterCaseSensitivity(mode)</a></li>
+<li><a href="#qtcpserverhaspendingconnections">QTcpServer::hasPendingConnections()</a></li>
+<li><a href="#qtcpsocketbytestowrite">QTcpSocket::bytesToWrite()</a></li>
+<li><a href="#qtcpsocketclose-abort">QTcpSocket::close() / abort()</a></li>
+<li><a href="#qfileclose">QFile::close()</a></li>
+<li><a href="#qimageisnull-pixelcolorxy">QImage::isNull() / pixelColor(x,y)</a></li>
+<li><a href="#qinfonoquote">qInfo().noquote()</a></li>
+<li><a href="#qmessageboxwarningparenttitletext">QMessageBox::warning(parent,title,text)</a></li>
+<li><a href="#triangleready-error">Triangle::ready() / error()</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</details>
+<p>本手册解释本课程实际出现的主要 Qt 接口与自定义业务接口，不是整个 Qt 所有模块的函数全集。同名函数必须结合所属类型理解；不同重载参数不同，下面按课程采用的形式解释。正文各章也嵌入了对应分组，阅读时不必先背完整手册。</p>
+<h2 id="_2">怎样逐行读代码</h2>
+<p>每次看到调用先找对象的实际类型，再判断它是构造、读取、修改、排队请求还是资源提交。接着看参数的单位与所有权、返回值的失败表示，最后追踪下一步事件或信号。返回 void 不等于操作已经完成，返回 true 也不等于远端或 GPU 已经完成任务。</p>
+<p>例如 <code>reply = manager-&gt;get(request)</code> 当场返回 reply；真正的结果以后通过 finished 到达。又如 <code>window.show()</code> 只是请求显示，必须让事件循环和平台完成绘制；<code>f.commit()</code> 却是必须检查成功与否的保存边界。三者不能一律理解为“调用完就全部完成”。</p>
+<p><a id="window"></a></p>
+<h2 id="_3">窗口与应用：参数、结果与时机</h2>
+<h3 id="qapplicationargc-argv"><code>QApplication(argc, argv)</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：接收 main 的参数；argc 按引用传递，因此不能传临时值。</li>
+<li><strong>作用与返回结果</strong>：创建 Widgets 应用对象，建立 GUI 所需环境；不是显示一个窗口。</li>
+<li><strong>调用时机与易错点</strong>：一个进程通常只建一个应用对象，而且要早于 QWidget 构造，晚于窗口析构。</li>
+</ul>
+<h3 id="qwidgetparent"><code>QWidget(parent)</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：parent 是父控件，可为 nullptr。</li>
+<li><strong>作用与返回结果</strong>：创建控件；没有父控件时通常是顶层窗口。</li>
+<li><strong>调用时机与易错点</strong>：父控件影响可视层级与销毁责任；构造不会自动 show。</li>
+</ul>
+<h3 id="qlabeltext-parent"><code>QLabel(text, parent)</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：text 为待显示 QString；parent 为所有者。</li>
+<li><strong>作用与返回结果</strong>：创建文本或图片展示控件，本例显示文字。</li>
+<li><strong>调用时机与易错点</strong>：标签不负责业务数据校验；展示字符串不应作为唯一业务状态。</li>
+</ul>
+<h3 id="resizewidth-height"><code>resize(width, height)</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：两个 int 表示控件逻辑尺寸。</li>
+<li><strong>作用与返回结果</strong>：请求调整尺寸，返回 void；布局和尺寸约束可能影响最终大小。</li>
+<li><strong>调用时机与易错点</strong>：不是物理像素保证，也不代表禁止用户再次缩放。</li>
+</ul>
+<h3 id="setwindowtitletitle"><code>setWindowTitle(title)</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：QString 窗口标题。</li>
+<li><strong>作用与返回结果</strong>：改变顶层窗口标题，返回 void。</li>
+<li><strong>调用时机与易错点</strong>：子控件设置标题不一定产生可见顶层标题。</li>
+</ul>
+<h3 id="setalignmentflags"><code>setAlignment(flags)</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：如 Qt::AlignCenter，可用按位或组合水平与垂直方向。</li>
+<li><strong>作用与返回结果</strong>：改变 QLabel 内容对齐。</li>
+<li><strong>调用时机与易错点</strong>：不是移动控件本身；控件位置由布局决定。</li>
+</ul>
+<h3 id="show"><code>show()</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：无参数。</li>
+<li><strong>作用与返回结果</strong>：请求显示窗口并安排平台事件；返回 void。</li>
+<li><strong>调用时机与易错点</strong>：返回时不保证首帧已经绘制，更不代表渲染验证通过。</li>
+</ul>
+<h3 id="exec"><code>exec()</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：应用对象无参数版本。</li>
+<li><strong>作用与返回结果</strong>：进入事件循环，直到 quit/exit；返回 int 退出码。</li>
+<li><strong>调用时机与易错点</strong>：不是每次点击都调用一次，GUI 线程中的长任务会阻止循环分发事件。</li>
+</ul>
+<h3 id="arguments"><code>arguments()</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：无参数。</li>
+<li><strong>作用与返回结果</strong>：返回 QStringList 命令行参数，包含程序名。</li>
+<li><strong>调用时机与易错点</strong>：本课程用 contains("--smoke") 判断启动检查模式，不能把它当业务界面输入。</li>
+</ul>
+<h3 id="qtimersingleshotms-context-functor"><code>QTimer::singleShot(ms, context, functor)</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：毫秒延迟、生命周期上下文和回调。</li>
+<li><strong>作用与返回结果</strong>：安排一次回调；返回 void。</li>
+<li><strong>调用时机与易错点</strong>：延迟不是精密截止时间；上下文销毁后不执行该回调。</li>
+</ul>
+<h3 id="qcoreapplicationquit"><code>QCoreApplication::quit()</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：无参数。</li>
+<li><strong>作用与返回结果</strong>：请求事件循环以正常退出方式结束。</li>
+<li><strong>调用时机与易错点</strong>：不会自动中断正卡住的用户代码；重要数据仍要走保存与退出策略。</li>
+</ul>
+<p><a id="objects"></a></p>
+<h2 id="_4">对象树与连接：参数、结果与时机</h2>
+<h3 id="qobjectconnectsender-signal-context-functor"><code>QObject::connect(sender, signal, context, functor)</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：发送者、类型安全信号指针、上下文、lambda。</li>
+<li><strong>作用与返回结果</strong>：返回 QMetaObject::Connection；建立以后发生的通知关系。</li>
+<li><strong>调用时机与易错点</strong>：不是调用槽一次；重复建立会重复执行。上下文只保护自己的寿命，不保护随意捕获的外部指针。</li>
+</ul>
+<h3 id="qobjectdisconnectconnection"><code>QObject::disconnect(connection)</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：传保存的连接句柄。</li>
+<li><strong>作用与返回结果</strong>：返回 bool，表示是否成功断开。</li>
+<li><strong>调用时机与易错点</strong>：已经排队的调用需要结合实际情况处理；用请求编号拒绝旧结果更可靠。</li>
+</ul>
+<h3 id="setobjectnamename"><code>setObjectName(name)</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：字符串逻辑标识。</li>
+<li><strong>作用与返回结果</strong>：为测试、样式或 findChild 提供名称；返回 void。</li>
+<li><strong>调用时机与易错点</strong>：C++ 变量名不会自动成为 objectName，改其中一个不自动改另一个。</li>
+</ul>
+<h3 id="children"><code>children()</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：无参数。</li>
+<li><strong>作用与返回结果</strong>：返回直接 QObject 子对象列表。</li>
+<li><strong>调用时机与易错点</strong>：不是整个后代树；值类型 QString 不会出现在对象树中。</li>
+</ul>
+<h3 id="deletelater"><code>deleteLater()</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：无参数。</li>
+<li><strong>作用与返回结果</strong>：投递延迟删除，返回 void。</li>
+<li><strong>调用时机与易错点</strong>：不是立即 delete；依赖相应线程的事件处理与结束机制，调用后不再发起依赖其长期存活的新工作。</li>
+</ul>
+<h3 id="qpointertobject"><code>QPointer&lt;T&gt;(object)</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：观察一个 QObject 派生对象。</li>
+<li><strong>作用与返回结果</strong>：对象真正销毁后观察指针清空。</li>
+<li><strong>调用时机与易错点</strong>：不延长寿命，不提供跨线程锁；隐藏窗口不会使它清空。</li>
+</ul>
+<h3 id="movetothreadthread"><code>moveToThread(thread)</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：目标 QThread 指针。</li>
+<li><strong>作用与返回结果</strong>：Qt 6.8 返回 bool，成功后改变线程归属。</li>
+<li><strong>调用时机与易错点</strong>：有 parent 的对象不能随意移动；普通函数直接调用仍在调用者线程运行。</li>
+</ul>
+<p><a id="layout"></a></p>
+<h2 id="_5">布局与尺寸：参数、结果与时机</h2>
+<h3 id="qvboxlayoutparent"><code>QVBoxLayout(parent)</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：父 QWidget 或无父布局。</li>
+<li><strong>作用与返回结果</strong>：创建纵向排列的布局。</li>
+<li><strong>调用时机与易错点</strong>：带 QWidget 参数时安装为该控件的顶层布局，不给同一窗口安装第二个顶层布局。</li>
+</ul>
+<h3 id="addwidgetwidget-stretch"><code>addWidget(widget, stretch)</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：控件指针和额外空间分配权重。</li>
+<li><strong>作用与返回结果</strong>：加入布局，返回 void。</li>
+<li><strong>调用时机与易错点</strong>：stretch 不是像素或百分比，受最小尺寸与 sizePolicy 约束。</li>
+</ul>
+<h3 id="addlayoutlayout-stretch"><code>addLayout(layout, stretch)</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：子布局与拉伸权重。</li>
+<li><strong>作用与返回结果</strong>：组成嵌套布局。</li>
+<li><strong>调用时机与易错点</strong>：布局不是 QWidget，不能把任意布局直接传 addWidget。</li>
+</ul>
+<h3 id="addstretchstretch"><code>addStretch(stretch)</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：默认权重为 0，也可指定正权重。</li>
+<li><strong>作用与返回结果</strong>：加入可伸展空白项。</li>
+<li><strong>调用时机与易错点</strong>：用来推动控件位置，不负责存储和验证业务数据。</li>
+</ul>
+<h3 id="qformlayoutaddrowlabel-field"><code>QFormLayout::addRow(label, field)</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：标签文本和输入控件，或单个跨行控件。</li>
+<li><strong>作用与返回结果</strong>：创建表单行；字符串标签重载会建立合适的 buddy。</li>
+<li><strong>调用时机与易错点</strong>：它与 QVBoxLayout::addWidget 的用途不同，要先确认当前布局类型。</li>
+</ul>
+<h3 id="setminimumsizew-h"><code>setMinimumSize(w, h)</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：逻辑最小宽高。</li>
+<li><strong>作用与返回结果</strong>：设置允许的尺寸下限。</li>
+<li><strong>调用时机与易错点</strong>：不要用过大下限导致小屏窗口无法使用；需要长表单时考虑滚动区。</li>
+</ul>
+<h3 id="setsizepolicyhorizontal-vertical"><code>setSizePolicy(horizontal, vertical)</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：QSizePolicy 枚举或策略对象。</li>
+<li><strong>作用与返回结果</strong>：表达控件愿意怎样缩放。</li>
+<li><strong>调用时机与易错点</strong>：这是布局协商信息，不强制覆盖其他尺寸约束。</li>
+</ul>
+<p><a id="controls"></a></p>
+<h2 id="_6">输入、选择与表单：参数、结果与时机</h2>
+<h3 id="qlineedittext"><code>QLineEdit::text()</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：无参数。</li>
+<li><strong>作用与返回结果</strong>：返回当前 QString 文本副本。</li>
+<li><strong>调用时机与易错点</strong>：读取不会自动 trimmed 或校验；空白字符串可能仍非空。</li>
+</ul>
+<h3 id="qlineeditsettexttext"><code>QLineEdit::setText(text)</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：新的 QString。</li>
+<li><strong>作用与返回结果</strong>：替换输入内容，可能发出 textChanged。</li>
+<li><strong>调用时机与易错点</strong>：程序设置不等于用户编辑，区别 textEdited；必要时防止保存动作被同步通知触发。</li>
+</ul>
+<h3 id="setplaceholdertexttext"><code>setPlaceholderText(text)</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：空输入时的提示文本。</li>
+<li><strong>作用与返回结果</strong>：设置占位提示，返回 void。</li>
+<li><strong>调用时机与易错点</strong>：不是默认值；text() 仍可能为空。</li>
+</ul>
+<h3 id="setmaxlengthlength"><code>setMaxLength(length)</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：int，输入长度上限。</li>
+<li><strong>作用与返回结果</strong>：限制 QLineEdit 文本长度。</li>
+<li><strong>调用时机与易错点</strong>：业务层仍需验证；字符长度和 UTF-8 协议字节数不是同一单位。</li>
+</ul>
+<h3 id="qspinboxsetrangemin-max"><code>QSpinBox::setRange(min, max)</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：最小与最大 int。</li>
+<li><strong>作用与返回结果</strong>：设置合法输入区间，当前值可能随之被调整。</li>
+<li><strong>调用时机与易错点</strong>：先设范围，再设默认值；不要用它代替仓储边界验证。</li>
+</ul>
+<h3 id="qspinboxvalue-setvaluevalue"><code>QSpinBox::value() / setValue(value)</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：读取无参数，写入 int。</li>
+<li><strong>作用与返回结果</strong>：读取返回 int；写入返回 void，值变化时发 valueChanged。</li>
+<li><strong>调用时机与易错点</strong>：设置与当前相同的值不持续制造变化，所以简单双向同步可终止。</li>
+</ul>
+<h3 id="qcheckboxischecked"><code>QCheckBox::isChecked()</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：无参数。</li>
+<li><strong>作用与返回结果</strong>：返回 bool 选中状态。</li>
+<li><strong>调用时机与易错点</strong>：三态复选框需要更细状态时读取 checkState，不能把所有状态压成同一个 bool。</li>
+</ul>
+<h3 id="qcomboboxadditemtext-data"><code>QComboBox::addItem(text, data)</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：展示文字与 QVariant 业务值。</li>
+<li><strong>作用与返回结果</strong>：追加选项，返回 void。</li>
+<li><strong>调用时机与易错点</strong>：名称可翻译；稳定业务编号放 data，不依赖展示文本。</li>
+</ul>
+<h3 id="currenttext-currentdata"><code>currentText() / currentData()</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：无参数，currentData 可指定 role。</li>
+<li><strong>作用与返回结果</strong>：分别返回展示 QString 与业务 QVariant。</li>
+<li><strong>调用时机与易错点</strong>：没有合法当前项时要处理空值；编号不是当前索引的必然同义词。</li>
+</ul>
+<h3 id="setcurrentindexindex"><code>setCurrentIndex(index)</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：int，下标从 0 开始。</li>
+<li><strong>作用与返回结果</strong>：切换选项，可触发 currentIndexChanged。</li>
+<li><strong>调用时机与易错点</strong>：程序修改也会触发；用户意图可根据需求选择 activated。</li>
+</ul>
+<h3 id="qlabelsettexttext"><code>QLabel::setText(text)</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：新的显示文字。</li>
+<li><strong>作用与返回结果</strong>：更新标签内容并请求重绘。</li>
+<li><strong>调用时机与易错点</strong>：只改标签不等于改了业务计数。先更新唯一状态再刷新显示。</li>
+</ul>
+<h3 id="setwordwrapenabled"><code>setWordWrap(enabled)</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：bool。</li>
+<li><strong>作用与返回结果</strong>：使标签按可用宽度换行。</li>
+<li><strong>调用时机与易错点</strong>：不解决所有布局约束；仍要检查长路径与缩放。</li>
+</ul>
+<h3 id="setenabledenabled"><code>setEnabled(enabled)</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：bool。</li>
+<li><strong>作用与返回结果</strong>：启用或禁用交互。</li>
+<li><strong>调用时机与易错点</strong>：禁用按钮不能替代业务函数内部的“任务已运行”检查。</li>
+</ul>
+<h3 id="qsignalblockerobject"><code>QSignalBlocker(object)</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：暂时阻止发信号的 QObject 指针。</li>
+<li><strong>作用与返回结果</strong>：RAII 对象恢复进入作用域前的阻塞状态。</li>
+<li><strong>调用时机与易错点</strong>：阻止过的信号不会离开作用域后补发；批量改完需明确刷新派生界面。</li>
+</ul>
+<p><a id="dialog"></a></p>
+<h2 id="_7">对话框与主窗口：参数、结果与时机</h2>
+<h3 id="qdialogopen"><code>QDialog::open()</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：无参数。</li>
+<li><strong>作用与返回结果</strong>：异步打开模态对话框，返回 void，调用者继续执行。</li>
+<li><strong>调用时机与易错点</strong>：对话框不能是马上离开作用域的局部对象；通过 accepted/rejected 接结果。</li>
+</ul>
+<h3 id="qdialogaccept-reject"><code>QDialog::accept() / reject()</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：无参数。</li>
+<li><strong>作用与返回结果</strong>：设置对话框结果并结束交互。</li>
+<li><strong>调用时机与易错点</strong>：accept 前应完成验证；Cancel 不应已写入真实业务数据。</li>
+</ul>
+<h3 id="setattributeqtwa_deleteonclose"><code>setAttribute(Qt::WA_DeleteOnClose)</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：属性枚举以及可选 bool。</li>
+<li><strong>作用与返回结果</strong>：关闭后安排删除窗口。</li>
+<li><strong>调用时机与易错点</strong>：成员观察指针可能失效；使用 QPointer 或明确复用策略。</li>
+</ul>
+<h3 id="qmainwindowsetcentralwidgetwidget"><code>QMainWindow::setCentralWidget(widget)</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：中央控件指针。</li>
+<li><strong>作用与返回结果</strong>：将控件放进主窗口中心并由主窗口拥有。</li>
+<li><strong>调用时机与易错点</strong>：不要直接对 QMainWindow setLayout，它已有自己的结构。</li>
+</ul>
+<h3 id="menubar-addmenutitle"><code>menuBar()-&gt;addMenu(title)</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：菜单标题。</li>
+<li><strong>作用与返回结果</strong>：返回新建 QMenu 指针。</li>
+<li><strong>调用时机与易错点</strong>：菜单属于界面结构，不把 SQL 或文件业务写进菜单数据中。</li>
+</ul>
+<h3 id="qmenuaddactiontext"><code>QMenu::addAction(text)</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：动作标题。</li>
+<li><strong>作用与返回结果</strong>：返回 QAction 指针，常连接 triggered。</li>
+<li><strong>调用时机与易错点</strong>：QAction 是命令模型，可由菜单和工具栏共同使用，不是 QPushButton。</li>
+</ul>
+<h3 id="qactionsetshortcutsequence"><code>QAction::setShortcut(sequence)</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：如 QKeySequence::Save。</li>
+<li><strong>作用与返回结果</strong>：设置命令快捷键。</li>
+<li><strong>调用时机与易错点</strong>：优先使用平台标准键序列；不要和输入控件必要编辑快捷键冲突。</li>
+</ul>
+<h3 id="qfiledialoggetopenfilename-getsavefilename"><code>QFileDialog::getOpenFileName(...) / getSaveFileName(...)</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：父窗口、标题、初始目录和过滤器等。</li>
+<li><strong>作用与返回结果</strong>：返回选中路径 QString，取消通常返回空字符串。</li>
+<li><strong>调用时机与易错点</strong>：选中路径不代表已经读取或保存成功；空路径不覆盖当前文档状态。</li>
+</ul>
+<h3 id="qmessageboxquestion"><code>QMessageBox::question(...)</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：父窗口、标题、内容、候选按钮和默认按钮。</li>
+<li><strong>作用与返回结果</strong>：返回用户选择的 StandardButton。</li>
+<li><strong>调用时机与易错点</strong>：要分别处理 Save、Discard、Cancel；Save 之后还要检查真正的保存结果。</li>
+</ul>
+<h3 id="qcloseeventaccept-ignore"><code>QCloseEvent::accept() / ignore()</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：无参数。</li>
+<li><strong>作用与返回结果</strong>：允许本次关闭或保持窗口打开。</li>
+<li><strong>调用时机与易错点</strong>：文件对话框取消或写入失败应 ignore，不能仅看用户曾按过 Save。</li>
+</ul>
+<h3 id="uiformsetupuiwidget"><code>Ui::Form::setupUi(widget)</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：uic 生成的函数，传要安装界面的控件。</li>
+<li><strong>作用与返回结果</strong>：创建 ui 中定义的控件、布局和属性。</li>
+<li><strong>调用时机与易错点</strong>：不是 Qt 通用类的任意成员；不要手工编辑生成的 ui_*.h。</li>
+</ul>
+<p><a id="string"></a></p>
+<h2 id="_8">字符串、配置与文件：参数、结果与时机</h2>
+<h3 id="qstringtrimmed-isempty"><code>QString::trimmed() / isEmpty()</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：无参数。</li>
+<li><strong>作用与返回结果</strong>：前者返回去首尾空白的新字符串；后者返回长度是否为 0。</li>
+<li><strong>调用时机与易错点</strong>：trimmed 不原地修改；必须接收结果或继续链式调用。</li>
+</ul>
+<h3 id="qstringargvalue"><code>QString::arg(value)</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：占位符替换值，可链式调用。</li>
+<li><strong>作用与返回结果</strong>：返回替换后的新 QString。</li>
+<li><strong>调用时机与易错点</strong>：不是 SQL 参数绑定；需要控制小数格式时选择对应重载。</li>
+</ul>
+<h3 id="qstringtointok-base"><code>QString::toInt(ok, base)</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：可传 bool 指针与进制，默认十进制。</li>
+<li><strong>作用与返回结果</strong>：返回 int；通过 ok 区分真实 0 与解析失败。</li>
+<li><strong>调用时机与易错点</strong>：不要直接相信失败时的默认数字，也要额外检查业务范围。</li>
+</ul>
+<h3 id="qstringtoutf8-fromutf8bytes"><code>QString::toUtf8() / fromUtf8(bytes)</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：前者无参数，后者接字节。</li>
+<li><strong>作用与返回结果</strong>：在 Unicode 文本与 UTF-8 QByteArray 之间转换。</li>
+<li><strong>调用时机与易错点</strong>：不要将半个多字节字符单独解码后拼接；协议先拆完整帧。</li>
+</ul>
+<h3 id="qstringsize-qbytearraysize"><code>QString::size() / QByteArray::size()</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：无参数。</li>
+<li><strong>作用与返回结果</strong>：分别表示 UTF-16 代码单元数和字节数。</li>
+<li><strong>调用时机与易错点</strong>：都不自动等于用户看到的字符数；接口限制必须写清单位。</li>
+</ul>
+<h3 id="qsettingsvaluekey-defaultvalue"><code>QSettings::value(key, defaultValue)</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：键名和键缺失时的默认 QVariant。</li>
+<li><strong>作用与返回结果</strong>：返回 QVariant，可进一步检查转换结果。</li>
+<li><strong>调用时机与易错点</strong>：默认值只处理缺失，不自动修复存在但内容损坏的值。</li>
+</ul>
+<h3 id="qsettingssetvaluekey-value"><code>QSettings::setValue(key, value)</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：键名与新值。</li>
+<li><strong>作用与返回结果</strong>：记录配置更新，返回 void。</li>
+<li><strong>调用时机与易错点</strong>：不是数据库事务或密码加密；多个字段的更新语义需自行设计。</li>
+</ul>
+<h3 id="qsettingssync-status"><code>QSettings::sync() / status()</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：无参数。</li>
+<li><strong>作用与返回结果</strong>：sync 同步存储；status 返回错误状态。</li>
+<li><strong>调用时机与易错点</strong>：应在 sync 后检查状态并反馈保存失败，不能无条件显示成功。</li>
+</ul>
+<h3 id="qsettingsfilename"><code>QSettings::fileName()</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：无参数。</li>
+<li><strong>作用与返回结果</strong>：返回实际配置位置。</li>
+<li><strong>调用时机与易错点</strong>：原生格式可能是注册表相关位置；本例选择显式 INI 便于观察。</li>
+</ul>
+<h3 id="qstandardpathswritablelocationtype"><code>QStandardPaths::writableLocation(type)</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：如 AppConfigLocation 或 AppDataLocation。</li>
+<li><strong>作用与返回结果</strong>：返回当前应用对应的可写位置 QString。</li>
+<li><strong>调用时机与易错点</strong>：查询前设置应用标识，可能为空；返回目录不表示文件已创建。</li>
+</ul>
+<h3 id="qdirmkpathpath"><code>QDir::mkpath(path)</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：路径。</li>
+<li><strong>作用与返回结果</strong>：返回 bool，递归创建目录或确认已存在。</li>
+<li><strong>调用时机与易错点</strong>：失败需反馈，不能继续把写入错误解释成空数据。</li>
+</ul>
+<h3 id="qfileopenmode"><code>QFile::open(mode)</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：ReadOnly、WriteOnly 等打开模式。</li>
+<li><strong>作用与返回结果</strong>：返回 bool，成功后才能 read/write。</li>
+<li><strong>调用时机与易错点</strong>：文件不存在、权限、目录等都会导致失败，读取前检查。</li>
+</ul>
+<h3 id="qfilereadall"><code>QFile::readAll()</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：无参数。</li>
+<li><strong>作用与返回结果</strong>：返回剩余可读 QByteArray。</li>
+<li><strong>调用时机与易错点</strong>：空内容与读取失败不同，还需 error()；大文件不要不设上限地一次全读。</li>
+</ul>
+<h3 id="qiodevicewritebytes"><code>QIODevice::write(bytes)</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：要写入的 QByteArray。</li>
+<li><strong>作用与返回结果</strong>：返回实际接受的字节数 qint64，-1 表示失败。</li>
+<li><strong>调用时机与易错点</strong>：检查数值与目标长度；socket 接受不等于远端业务处理成功。</li>
+</ul>
+<h3 id="qsavefilecommit"><code>QSaveFile::commit()</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：无参数。</li>
+<li><strong>作用与返回结果</strong>：完成临时写入并替换目标，返回 bool。</li>
+<li><strong>调用时机与易错点</strong>：只在写入完全成功后调用；失败不能更新文档路径或清除修改标记。</li>
+</ul>
+<h3 id="errorstring"><code>errorString()</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：无参数；具体类如 QFile 或 socket。</li>
+<li><strong>作用与返回结果</strong>：返回可读错误说明。</li>
+<li><strong>调用时机与易错点</strong>：要先确认哪个对象和操作失败；旧错误文本不一定代表本次操作状态。</li>
+</ul>
+<h3 id="qtemporarydirisvalid-filepathname"><code>QTemporaryDir::isValid() / filePath(name)</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：检查目录或生成其内部文件路径。</li>
+<li><strong>作用与返回结果</strong>：返回 bool / QString。</li>
+<li><strong>调用时机与易错点</strong>：临时目录必须活过所有文件操作，离开作用域会自动清理。</li>
+</ul>
+<h3 id="qjsondocumentfromjsonbytes-error"><code>QJsonDocument::fromJson(bytes, error)</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：UTF-8 JSON 字节与错误输出指针。</li>
+<li><strong>作用与返回结果</strong>：返回文档对象；error 提供语法错误。</li>
+<li><strong>调用时机与易错点</strong>：语法合法后仍需 isObject/isArray 和逐字段类型校验。</li>
+</ul>
+<h3 id="qjsondocumenttojsonformat"><code>QJsonDocument::toJson(format)</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：默认缩进或 Compact。</li>
+<li><strong>作用与返回结果</strong>：返回序列化 QByteArray。</li>
+<li><strong>调用时机与易错点</strong>：不自动验证你的业务规则或承诺旧版本兼容。</li>
+</ul>
+<h3 id="qjsonobjectvaluekey"><code>QJsonObject::value(key)</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：字符串键。</li>
+<li><strong>作用与返回结果</strong>：返回 QJsonValue，之后检查类型再读取。</li>
+<li><strong>调用时机与易错点</strong>：缺失、null、空文本含义不同，不能全部默认成合法数据。</li>
+</ul>
+<h3 id="qwidgetsetstylesheetqss"><code>QWidget::setStyleSheet(qss)</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：样式字符串。</li>
+<li><strong>作用与返回结果</strong>：更新控件样式。</li>
+<li><strong>调用时机与易错点</strong>：不是 HTML/CSS 浏览器；样式只能改变展示，不能完成业务状态迁移。</li>
+</ul>
+<h3 id="qtextdocumentsetmodifiedfalse"><code>QTextDocument::setModified(false)</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：bool 修改标记。</li>
+<li><strong>作用与返回结果</strong>：标记文档与保存状态一致。</li>
+<li><strong>调用时机与易错点</strong>：仅在真正读取或保存成功后清除；失败时保留原状态。</li>
+</ul>
+<p><a id="model"></a></p>
+<h2 id="_9">模型、代理与索引：参数、结果与时机</h2>
+<h3 id="rowcountparent-columncountparent"><code>rowCount(parent) / columnCount(parent)</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：父索引，平面表格通常只接受无效父索引。</li>
+<li><strong>作用与返回结果</strong>：返回该父节点下的行列数 int。</li>
+<li><strong>调用时机与易错点</strong>：对于有效父索引，简单平面模型通常返回 0，避免被误判为树。</li>
+</ul>
+<h3 id="dataindex-role"><code>data(index, role)</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：索引与所需角色，如 DisplayRole。</li>
+<li><strong>作用与返回结果</strong>：返回 QVariant；不支持角色或非法位置返回空值。</li>
+<li><strong>调用时机与易错点</strong>：显示、编辑、排序可读取不同角色，不能把所有角色都当字符串。</li>
+</ul>
+<h3 id="headerdatasection-orientation-role"><code>headerData(section, orientation, role)</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：表头位置、方向和角色。</li>
+<li><strong>作用与返回结果</strong>：返回对应表头 QVariant。</li>
+<li><strong>调用时机与易错点</strong>：只处理自定义情形，其他请求交回基类，避免破坏默认行号。</li>
+</ul>
+<h3 id="flagsindex"><code>flags(index)</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：索引。</li>
+<li><strong>作用与返回结果</strong>：返回可选、启用、可编辑等标志位。</li>
+<li><strong>调用时机与易错点</strong>：单独增加 ItemIsEditable 不会自动实现保存，还需 setData。</li>
+</ul>
+<h3 id="setdataindex-value-role"><code>setData(index, value, role)</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：目标、候选数据和编辑角色。</li>
+<li><strong>作用与返回结果</strong>：返回 bool；成功更新数据后发 dataChanged。</li>
+<li><strong>调用时机与易错点</strong>：先校验范围与类型，失败不改原数据；不要仅刷新文字而不更新模型。</li>
+</ul>
+<h3 id="datachangedtopleft-bottomright-roles"><code>dataChanged(topLeft, bottomRight, roles)</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：受影响的矩形范围和角色列表。</li>
+<li><strong>作用与返回结果</strong>：信号通知视图重新读取对应数据。</li>
+<li><strong>调用时机与易错点</strong>：不是让数据自动改变；需先更新内部状态，再发通知。</li>
+</ul>
+<h3 id="begininsertrowsparent-first-last-endinsertrows"><code>beginInsertRows(parent, first, last) / endInsertRows()</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：插入范围，first/last 包括两端。</li>
+<li><strong>作用与返回结果</strong>：在修改容器前后成对通知视图。</li>
+<li><strong>调用时机与易错点</strong>：begin 在旧结构仍有效时调用；不能修改完才通知开始。</li>
+</ul>
+<h3 id="setsourcemodelmodel-setmodelmodel"><code>setSourceModel(model) / setModel(model)</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：分别属于代理模型和视图。</li>
+<li><strong>作用与返回结果</strong>：连接源数据到代理、代理到视图。</li>
+<li><strong>调用时机与易错点</strong>：视图不因此任意接管模型所有权，应明确 parent 或普通对象寿命。</li>
+</ul>
+<h3 id="setfilterkeycolumncolumn"><code>setFilterKeyColumn(column)</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：待筛选的列号；-1 有其多列语义。</li>
+<li><strong>作用与返回结果</strong>：设置筛选列。</li>
+<li><strong>调用时机与易错点</strong>：本例任务标题在第 0 列，选错列会让查询结果看似丢失。</li>
+</ul>
+<h3 id="setfilterfixedstringtext"><code>setFilterFixedString(text)</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：用户筛选文字。</li>
+<li><strong>作用与返回结果</strong>：按固定字符串规则过滤。</li>
+<li><strong>调用时机与易错点</strong>：与正则表达式筛选不同，用户输入正则符号不会自动成为模式。</li>
+</ul>
+<h3 id="maptosourceproxyindex"><code>mapToSource(proxyIndex)</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：当前代理索引。</li>
+<li><strong>作用与返回结果</strong>：返回源模型索引。</li>
+<li><strong>调用时机与易错点</strong>：删除和更新先检查有效性，再读稳定主键；代理行号不是数据库 id。</li>
+</ul>
+<h3 id="currentindex-isvalid"><code>currentIndex() / isValid()</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：视图取当前项，索引检查有效性。</li>
+<li><strong>作用与返回结果</strong>：返回 QModelIndex / bool。</li>
+<li><strong>调用时机与易错点</strong>：没有选中或模型已 reset 时旧索引可能无效，不能继续读取旧行。</li>
+</ul>
+<h3 id="setsortingenabledtrue"><code>setSortingEnabled(true)</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：视图 bool。</li>
+<li><strong>作用与返回结果</strong>：允许表头触发排序。</li>
+<li><strong>调用时机与易错点</strong>：字典序的字符串“10”可能先于“2”，数值排序要提供合适类型或角色。</li>
+</ul>
+<p><a id="paint"></a></p>
+<h2 id="_10">绘图、事件与计时：参数、结果与时机</h2>
+<h3 id="qtimerstartinterval-stop"><code>QTimer::start(interval) / stop()</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：间隔毫秒或停止无参数。</li>
+<li><strong>作用与返回结果</strong>：开始或停止 timeout 通知。</li>
+<li><strong>调用时机与易错点</strong>：定时器必须在所属线程正确使用；不保证实时频率，GUI 忙时会延迟。</li>
+</ul>
+<h3 id="qwidgetupdate"><code>QWidget::update()</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：无参数或更新区域。</li>
+<li><strong>作用与返回结果</strong>：安排稍后的重绘请求，返回 void。</li>
+<li><strong>调用时机与易错点</strong>：不是立即递归调用 paintEvent；多个请求可能合并，适合状态变化后使用。</li>
+</ul>
+<h3 id="painteventevent"><code>paintEvent(event)</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：Qt 传入 QPaintEvent 指针。</li>
+<li><strong>作用与返回结果</strong>：由 QWidget 绘制调度调用，返回 void。</li>
+<li><strong>调用时机与易错点</strong>：不要在构造函数里直接调用来替代事件系统；普通控件 QPainter 在此创建。</li>
+</ul>
+<h3 id="qpainterthis"><code>QPainter(this)</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：绘制设备，这里是当前 QWidget。</li>
+<li><strong>作用与返回结果</strong>：开始当前绘制过程，局部对象析构后结束。</li>
+<li><strong>调用时机与易错点</strong>：只能在允许绘制的时机操作该设备，不保留跨事件的活动 painter。</li>
+</ul>
+<h3 id="setrenderhintqpainterantialiasing"><code>setRenderHint(QPainter::Antialiasing)</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：渲染提示与可选 bool。</li>
+<li><strong>作用与返回结果</strong>：开启边缘抗锯齿。</li>
+<li><strong>调用时机与易错点</strong>：改善边缘，不改变几何计算或解决低分辨率图片问题。</li>
+</ul>
+<h3 id="translatexy-scalesxsy"><code>translate(x,y) / scale(sx,sy)</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：平移距离或缩放比例。</li>
+<li><strong>作用与返回结果</strong>：改变后续绘图的坐标变换。</li>
+<li><strong>调用时机与易错点</strong>：顺序会改变结果；常先移到窗口中心，再缩放逻辑画布。</li>
+</ul>
+<h3 id="setpenpen-setfontfont"><code>setPen(pen) / setFont(font)</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：画笔与字体对象。</li>
+<li><strong>作用与返回结果</strong>：设置后续绘图状态。</li>
+<li><strong>调用时机与易错点</strong>：状态会继续影响后面的命令，局部修改可配 save/restore。</li>
+</ul>
+<h3 id="drawarcrect-start-span"><code>drawArc(rect, start, span)</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：外接矩形、起角和跨度。</li>
+<li><strong>作用与返回结果</strong>：绘制圆弧；Qt 角度单位为 1/16 度。</li>
+<li><strong>调用时机与易错点</strong>：不是弧度；正负跨度影响方向，示例乘 16 是有意转换。</li>
+</ul>
+<h3 id="drawtextrect-flags-text"><code>drawText(rect, flags, text)</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：区域、对齐/布局标志和文字。</li>
+<li><strong>作用与返回结果</strong>：在区域内绘制文本。</li>
+<li><strong>调用时机与易错点</strong>：区域过小会裁切；设置字体后重新检查布局和缩放。</li>
+</ul>
+<h3 id="eventfilterwatched-event"><code>eventFilter(watched, event)</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：被观察对象与事件指针。</li>
+<li><strong>作用与返回结果</strong>：返回 true 表示过滤掉本次事件。</li>
+<li><strong>调用时机与易错点</strong>：只处理明确条件，其他交给基类；检查 type 后才能安全转换具体事件类型。</li>
+</ul>
+<h3 id="qelapsedtimerstart-elapsed"><code>QElapsedTimer::start() / elapsed()</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：开始无参数，读取无参数。</li>
+<li><strong>作用与返回结果</strong>：记录起点与经过的毫秒数。</li>
+<li><strong>调用时机与易错点</strong>：用于测持续时间；日历时间与时区使用 QDateTime，不能混用。</li>
+</ul>
+<p><a id="async"></a></p>
+<h2 id="http-tcp">线程、HTTP 与 TCP：参数、结果与时机</h2>
+<h3 id="qthreadstart-isrunning"><code>QThread::start() / isRunning()</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：启动可指定优先级；查询无参数。</li>
+<li><strong>作用与返回结果</strong>：启动线程 / 返回 bool。</li>
+<li><strong>调用时机与易错点</strong>：线程开始不等于业务已经完成；重复点击前检查实际状态。</li>
+</ul>
+<h3 id="requestinterruption-isinterruptionrequested"><code>requestInterruption() / isInterruptionRequested()</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：无参数。</li>
+<li><strong>作用与返回结果</strong>：发协作取消请求 / 查询 bool。</li>
+<li><strong>调用时机与易错点</strong>：请求不会强杀线程，工作代码需周期检查，阻塞操作还需有界超时。</li>
+</ul>
+<h3 id="qthreadquit-wait"><code>QThread::quit() / wait()</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：请求事件循环结束 / 可指定等待上限。</li>
+<li><strong>作用与返回结果</strong>：quit 返回 void，wait 返回 bool。</li>
+<li><strong>调用时机与易错点</strong>：quit 不会中断正在执行的长循环；GUI 上长时间 wait 会冻结界面。</li>
+</ul>
+<h3 id="qnetworkaccessmanagergetrequest"><code>QNetworkAccessManager::get(request)</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：QNetworkRequest。</li>
+<li><strong>作用与返回结果</strong>：返回 QNetworkReply 指针，网络异步继续。</li>
+<li><strong>调用时机与易错点</strong>：调用返回不是请求完成；reply 生命周期与 finished/error 处理必须清楚。</li>
+</ul>
+<h3 id="qnetworkrequestsettransfertimeoutms"><code>QNetworkRequest::setTransferTimeout(ms)</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：无数据传输超时毫秒数。</li>
+<li><strong>作用与返回结果</strong>：设置传输超时策略。</li>
+<li><strong>调用时机与易错点</strong>：不等同于所有情况下的总时限；课程另外设 singleShot 总时限。</li>
+</ul>
+<h3 id="qnetworkreplyattributecode"><code>QNetworkReply::attribute(code)</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：如 HttpStatusCodeAttribute。</li>
+<li><strong>作用与返回结果</strong>：返回 QVariant 状态信息。</li>
+<li><strong>调用时机与易错点</strong>：无 HTTP 响应时可能没有状态码，不能把 0 当作正常 HTTP 状态。</li>
+</ul>
+<h3 id="qnetworkreplyerror-abort"><code>QNetworkReply::error() / abort()</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：查询或主动终止。</li>
+<li><strong>作用与返回结果</strong>：返回错误枚举 / void。</li>
+<li><strong>调用时机与易错点</strong>：abort 也会进入结束路径；恢复按钮和释放 reply 不应只写在成功分支。</li>
+</ul>
+<h3 id="qtcpserverlistenaddress-port"><code>QTcpServer::listen(address, port)</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：监听地址和端口；0 请求系统分配。</li>
+<li><strong>作用与返回结果</strong>：返回 bool；成功后用 serverPort 取实际端口。</li>
+<li><strong>调用时机与易错点</strong>：本例只用 LocalHost；不要无意改为 Any 后把教学服务开放给局域网。</li>
+</ul>
+<h3 id="nextpendingconnection"><code>nextPendingConnection()</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：无参数。</li>
+<li><strong>作用与返回结果</strong>：返回待处理服务端 socket 指针。</li>
+<li><strong>调用时机与易错点</strong>：在 newConnection 后处理；为每条连接保留独立解析器，并在断开后销毁。</li>
+</ul>
+<h3 id="qtcpsocketconnecttohostaddress-port"><code>QTcpSocket::connectToHost(address, port)</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：地址与端口。</li>
+<li><strong>作用与返回结果</strong>：启动异步连接，返回 void。</li>
+<li><strong>调用时机与易错点</strong>：等待 connected 或 errorOccurred；不要在 GUI 中 waitForConnected 阻塞。</li>
+</ul>
+<h3 id="bytesavailable-readmaxsize"><code>bytesAvailable() / read(maxSize)</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：可读字节数查询或最大读取量。</li>
+<li><strong>作用与返回结果</strong>：返回 qint64 / QByteArray。</li>
+<li><strong>调用时机与易错点</strong>：一次读取不保证整帧，解析器必须保存尾部残留数据。</li>
+</ul>
+<h3 id="setreadbuffersizebytes"><code>setReadBufferSize(bytes)</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：最大接收缓冲字节数，0 有无限制语义。</li>
+<li><strong>作用与返回结果</strong>：限制 socket 接收缓冲。</li>
+<li><strong>调用时机与易错点</strong>：业务拆帧缓存、发送队列和日志也需分别设上限。</li>
+</ul>
+<h3 id="lineprotocolfeedbytes-lines"><code>LineProtocol::feed(bytes, lines)</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：自定义解析器；输入字节和输出完整行列表。</li>
+<li><strong>作用与返回结果</strong>：返回 bool，false 表示超过帧上限。</li>
+<li><strong>调用时机与易错点</strong>：按 LF 取帧，残留半帧保存在内部；false 时调用方终止连接，不把损坏数据当正常消息。</li>
+</ul>
+<p><a id="sql"></a></p>
+<h2 id="taskdesk">数据库与 TaskDesk：参数、结果与时机</h2>
+<h3 id="qsqldatabaseadddatabasedriver-name"><code>QSqlDatabase::addDatabase(driver, name)</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：如 QSQLITE 和唯一连接名。</li>
+<li><strong>作用与返回结果</strong>：返回连接句柄。</li>
+<li><strong>调用时机与易错点</strong>：同名会影响旧连接；一个句柄拷贝不是新建独立连接。</li>
+</ul>
+<h3 id="setdatabasenamepath-open"><code>setDatabaseName(path) / open()</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：路径或 :memory:；打开无参数。</li>
+<li><strong>作用与返回结果</strong>：设置目标 / open 返回 bool。</li>
+<li><strong>调用时机与易错点</strong>：失败检查 lastError；SQLite 内存库退出即丢，不能当持久化。</li>
+</ul>
+<h3 id="qsqlquerypreparesql"><code>QSqlQuery::prepare(sql)</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：含 ? 或命名占位符的 SQL。</li>
+<li><strong>作用与返回结果</strong>：返回 bool。</li>
+<li><strong>调用时机与易错点</strong>：准备也会失败；表名和排序字段不能作为普通值占位符绑定。</li>
+</ul>
+<h3 id="addbindvaluevalue-bindvalueindex-value"><code>addBindValue(value) / bindValue(index, value)</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：顺序追加值或按位置更新值。</li>
+<li><strong>作用与返回结果</strong>：把值交给驱动，返回 void。</li>
+<li><strong>调用时机与易错点</strong>：与 SQL 中占位符顺序对应，不通过 arg 拼接用户标题。</li>
+</ul>
+<h3 id="qsqlqueryexec"><code>QSqlQuery::exec()</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：执行已准备语句，或传 SQL 的重载。</li>
+<li><strong>作用与返回结果</strong>：返回 bool。</li>
+<li><strong>调用时机与易错点</strong>：成功不代表一定匹配到某一行；更新/删除还检查受影响行数。</li>
+</ul>
+<h3 id="qsqlquerynext-valuecolumn"><code>QSqlQuery::next() / value(column)</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：推进到下一条结果 / 当前行列号。</li>
+<li><strong>作用与返回结果</strong>：返回 bool / QVariant。</li>
+<li><strong>调用时机与易错点</strong>：必须先 next 成功再读 value；不要把查询失败当作合法空结果。</li>
+</ul>
+<h3 id="numrowsaffected"><code>numRowsAffected()</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：无参数。</li>
+<li><strong>作用与返回结果</strong>：返回写操作影响行数，驱动无法提供时可有特殊值。</li>
+<li><strong>调用时机与易错点</strong>：课程的单主键更新要求 1 行，0 行表示目标可能已经不存在。</li>
+</ul>
+<h3 id="transaction-commit-rollback"><code>transaction() / commit() / rollback()</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：数据库连接成员，无参数。</li>
+<li><strong>作用与返回结果</strong>：均返回 bool。</li>
+<li><strong>调用时机与易错点</strong>：每个结果都检查；业务整批成功才提交，失败回滚，不弹成功提示。</li>
+</ul>
+<h3 id="qsqlqueryfinish"><code>QSqlQuery::finish()</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：无参数。</li>
+<li><strong>作用与返回结果</strong>：结束活动结果集，保留查询对象。</li>
+<li><strong>调用时机与易错点</strong>：有些数据库提交前需结束查询；销毁连接前还需让模型和查询退出作用域。</li>
+</ul>
+<h3 id="qsqldatabaseremovedatabasename"><code>QSqlDatabase::removeDatabase(name)</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：连接名。</li>
+<li><strong>作用与返回结果</strong>：移除命名连接。</li>
+<li><strong>调用时机与易错点</strong>：不能仍有活动 query/model/外部句柄引用该连接；先销毁使用者。</li>
+</ul>
+<h3 id="taskstoreopenpath"><code>TaskStore::open(path)</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：课程仓储自定义接口。</li>
+<li><strong>作用与返回结果</strong>：返回 bool；打开并建表。</li>
+<li><strong>调用时机与易错点</strong>：不是 Qt 自带函数；失败用 store.error 读课程保存的错误。</li>
+</ul>
+<h3 id="taskstoreaddtitle"><code>TaskStore::add(title)</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：候选标题。</li>
+<li><strong>作用与返回结果</strong>：trim 后校验 1~200 UTF-16 单元，成功写入返回 true。</li>
+<li><strong>调用时机与易错点</strong>：UI 通过验证不代表其他调用者不会绕过，仓储仍要保护规则。</li>
+</ul>
+<h3 id="taskstorecompleteid-done-removeid"><code>TaskStore::complete(id, done) / remove(id)</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：稳定主键与目标完成状态，或删除主键。</li>
+<li><strong>作用与返回结果</strong>：返回 bool，要求真正影响一行。</li>
+<li><strong>调用时机与易错点</strong>：id 不是排序后的可见行号；操作后刷新展示并处理失败。</li>
+</ul>
+<p><a id="qmltest"></a></p>
+<h2 id="qml">QML、测试与工程诊断：参数、结果与时机</h2>
+<h3 id="qqmlapplicationengineloadfrommoduleuri-typename"><code>QQmlApplicationEngine::loadFromModule(uri, typeName)</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：课程使用 Course 与 Main。</li>
+<li><strong>作用与返回结果</strong>：加载模块中的根类型，返回 void。</li>
+<li><strong>调用时机与易错点</strong>：配置 URI、资源名或 required 属性错误会使创建失败，连接 objectCreationFailed 处理退出。</li>
+</ul>
+<h3 id="q_property-read-notify"><code>Q_PROPERTY(... READ ... NOTIFY ...)</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：这是元对象声明宏，不是运行时函数。</li>
+<li><strong>作用与返回结果</strong>：使属性可被读取并通知变化。</li>
+<li><strong>调用时机与易错点</strong>：NOTIFY 的发送必须由你的代码保证；getter 不应执行长时间磁盘或网络工作。</li>
+</ul>
+<h3 id="counterincrement"><code>Counter::increment()</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：课程自定义 Q_INVOKABLE，无参数。</li>
+<li><strong>作用与返回结果</strong>：改变 count 并发 countChanged。</li>
+<li><strong>调用时机与易错点</strong>：Q_INVOKABLE 只暴露调用能力，不自动启动线程。</li>
+</ul>
+<h3 id="qsignalspysender-signal"><code>QSignalSpy(sender, signal)</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：被观察对象和信号指针。</li>
+<li><strong>作用与返回结果</strong>：创建信号记录器，用 isValid 检查。</li>
+<li><strong>调用时机与易错点</strong>：尽量在动作前创建，以免错过已经同步发出的信号。</li>
+</ul>
+<h3 id="qsignalspywaittimeout"><code>QSignalSpy::wait(timeout)</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：最长等待毫秒数。</li>
+<li><strong>作用与返回结果</strong>：在超时内收到新信号返回 true。</li>
+<li><strong>调用时机与易错点</strong>：先检查已有数量再 wait，避免信号已发生却继续等待下一次。</li>
+</ul>
+<h3 id="qverifyexpr-qcompareactual-expected"><code>QVERIFY(expr) / QCOMPARE(actual, expected)</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：测试条件或实际值与期望值。</li>
+<li><strong>作用与返回结果</strong>：失败记录上下文并结束当前测试函数。</li>
+<li><strong>调用时机与易错点</strong>：它们是测试宏，不是给真实用户处理错误的界面。</li>
+</ul>
+<h3 id="qtry_verifyexpr-qtry_compareactual-expected"><code>QTRY_VERIFY(expr) / QTRY_COMPARE(actual, expected)</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：可在事件循环中逐步成立的条件。</li>
+<li><strong>作用与返回结果</strong>：重试直到成立或超时。</li>
+<li><strong>调用时机与易错点</strong>：不是无限等待；比固定 sleep 更能适应不同机器速度。</li>
+</ul>
+<h3 id="qtestmouseclickwidget-button"><code>QTest::mouseClick(widget, button)</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：控件与鼠标按钮等参数。</li>
+<li><strong>作用与返回结果</strong>：模拟交互。</li>
+<li><strong>调用时机与易错点</strong>：应测真实窗口的用户结果，而不是仅证明 Qt 自带按钮能发信号。</li>
+</ul>
+<h3 id="qloggingcategory-qcwarningcategory"><code>QLoggingCategory(...) / qCWarning(category)</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：日志分类和输出表达式。</li>
+<li><strong>作用与返回结果</strong>：按类别组织诊断。</li>
+<li><strong>调用时机与易错点</strong>：不会自动写日志文件、轮转或删除敏感信息，仍需明确日志策略。</li>
+</ul>
+<h3 id="qprocess"><code>QProcess 等外部工具</code></h3>
+<ul>
+<li><strong>参数怎样填</strong>：本课程部署脚本实际调用 windeployqt，而非此处启动 Qt 类。</li>
+<li><strong>作用与返回结果</strong>：部署命令收集 DLL、插件和 QML。</li>
+<li><strong>调用时机与易错点</strong>：工具返回成功不证明所有 GPU、驱动、用户输入路径和第三方许可均已验收。</li>
+</ul>
+<h2 id="_11">如何从手册回到源码</h2>
+<p>阅读完一组后运行对应示例，先预测再观察。对 bool 返回值故意制造一次失败，对异步调用记录开始和完成日志，对 QObject 画所有权树。自定义 TaskStore、LineProtocol、Counter 的语义由本仓库源码定义；它们不是可以在任意 Qt 程序中直接使用的系统 API。</p>
+<p><a id="helpers"></a></p>
+<h2 id="_12">构造函数与其余辅助接口逐项补充</h2>
+<p>构造函数创建对象，成员函数才操作已有对象。以下补齐示例中容易被一笔带过的调用；同名方法要看接收对象。</p>
+<h3 id="qpushbuttontext-parent"><code>QPushButton(text, parent)</code></h3>
+<ul>
+<li><strong>参数</strong>：按钮标题和父控件。</li>
+<li><strong>作用与返回</strong>：构造按钮对象，不执行点击。</li>
+<li><strong>为什么要这样调用</strong>：连接 clicked 响应操作；parent 决定销毁责任。</li>
+</ul>
+<h3 id="qlineeditparent-qlineedittextparent"><code>QLineEdit(parent) / QLineEdit(text,parent)</code></h3>
+<ul>
+<li><strong>参数</strong>：父控件或初始文字加父控件。</li>
+<li><strong>作用与返回</strong>：创建单行编辑器。</li>
+<li><strong>为什么要这样调用</strong>：提示文字用 placeholder，不把提示当实际业务输入。</li>
+</ul>
+<h3 id="qspinboxparent-qsliderorientationparent"><code>QSpinBox(parent) / QSlider(orientation,parent)</code></h3>
+<ul>
+<li><strong>参数</strong>：父控件，滑块还指定方向。</li>
+<li><strong>作用与返回</strong>：创建数值输入与连续调节界面。</li>
+<li><strong>为什么要这样调用</strong>：构造后先设范围和默认值，再建立需要的同步连接。</li>
+</ul>
+<h3 id="qcheckboxtextparent"><code>QCheckBox(text,parent)</code></h3>
+<ul>
+<li><strong>参数</strong>：标题与父控件。</li>
+<li><strong>作用与返回</strong>：创建独立开关。</li>
+<li><strong>为什么要这样调用</strong>：构造不会替用户确认，提交仍要读取状态。</li>
+</ul>
+<h3 id="qtableviewparent-qplaintexteditparent"><code>QTableView(parent) / QPlainTextEdit(parent)</code></h3>
+<ul>
+<li><strong>参数</strong>：父控件。</li>
+<li><strong>作用与返回</strong>：创建表格视图或纯文本编辑器。</li>
+<li><strong>为什么要这样调用</strong>：视图需要模型；日志编辑器通常设只读并限制最大行数。</li>
+</ul>
+<h3 id="qurlscheme-host-isvalid"><code>QUrl::scheme() / host() / isValid()</code></h3>
+<ul>
+<li><strong>参数</strong>：无参数。</li>
+<li><strong>作用与返回</strong>：返回协议、主机名或语法有效性。</li>
+<li><strong>为什么要这样调用</strong>：合法 URL 还应检查应用允许的协议；本例仅允许 HTTP/HTTPS 且主机非空。</li>
+</ul>
+<h3 id="qstringnumbervalue"><code>QString::number(value)</code></h3>
+<ul>
+<li><strong>参数</strong>：数值及可选进制/格式参数。</li>
+<li><strong>作用与返回</strong>：返回数值的字符串表示。</li>
+<li><strong>为什么要这样调用</strong>：不是输入验证；地区化展示应根据需求使用 QLocale。</li>
+</ul>
+<h3 id="qvarianttostring-tobytearray"><code>QVariant::toString() / toByteArray()</code></h3>
+<ul>
+<li><strong>参数</strong>：无参数。</li>
+<li><strong>作用与返回</strong>：提取转换后的文本或字节数组。</li>
+<li><strong>为什么要这样调用</strong>：转换结果不等于业务合法，几何状态字节也不是可读标题。</li>
+</ul>
+<h3 id="qstringclear-qlineeditclear"><code>QString::clear() / QLineEdit::clear()</code></h3>
+<ul>
+<li><strong>参数</strong>：无参数。</li>
+<li><strong>作用与返回</strong>：清空字符串值或控件文本。</li>
+<li><strong>为什么要这样调用</strong>：注意接收者类型，控件清空可能触发信号，普通字符串清空不会更新其他控件。</li>
+</ul>
+<h3 id="qplaintexteditappendplaintexttext"><code>QPlainTextEdit::appendPlainText(text)</code></h3>
+<ul>
+<li><strong>参数</strong>：追加的普通文本。</li>
+<li><strong>作用与返回</strong>：追加日志段落。</li>
+<li><strong>为什么要这样调用</strong>：不是富文本 HTML；长期日志需限制容量。</li>
+</ul>
+<h3 id="qtextedittoplaintext-setplaintexttext"><code>QTextEdit::toPlainText() / setPlainText(text)</code></h3>
+<ul>
+<li><strong>参数</strong>：无参数读取，QString 写入。</li>
+<li><strong>作用与返回</strong>：读取或替换纯文本内容。</li>
+<li><strong>为什么要这样调用</strong>：替换可能改变文档修改状态；成功读文件后才明确清除修改标记。</li>
+</ul>
+<h3 id="qtexteditdocument"><code>QTextEdit::document()</code></h3>
+<ul>
+<li><strong>参数</strong>：无参数。</li>
+<li><strong>作用与返回</strong>：返回关联 QTextDocument 指针。</li>
+<li><strong>为什么要这样调用</strong>：文档拥有内容和修改标记，不是文件句柄。</li>
+</ul>
+<h3 id="qtextdocumentismodified"><code>QTextDocument::isModified()</code></h3>
+<ul>
+<li><strong>参数</strong>：无参数。</li>
+<li><strong>作用与返回</strong>：返回内容是否被标记为修改。</li>
+<li><strong>为什么要这样调用</strong>：它不替你判断磁盘上的外部修改，需要另外设计文件变化检测。</li>
+</ul>
+<h3 id="qtextdocumentsetmaximumblockcountcount"><code>QTextDocument::setMaximumBlockCount(count)</code></h3>
+<ul>
+<li><strong>参数</strong>：最大段落块数量。</li>
+<li><strong>作用与返回</strong>：限制日志保留规模，超过时移除旧块。</li>
+<li><strong>为什么要这样调用</strong>：限制块数不等于限制总字节数，单条日志也要合理有界。</li>
+</ul>
+<h3 id="setreadonlytrue"><code>setReadOnly(true)</code></h3>
+<ul>
+<li><strong>参数</strong>：用于文本输入控件的 bool。</li>
+<li><strong>作用与返回</strong>：禁止用户修改但仍可展示内容。</li>
+<li><strong>为什么要这样调用</strong>：不等于禁用所有选择和复制，日志可按需继续允许复制。</li>
+</ul>
+<h3 id="settextinteractionflagsflags"><code>setTextInteractionFlags(flags)</code></h3>
+<ul>
+<li><strong>参数</strong>：如 TextSelectableByMouse。</li>
+<li><strong>作用与返回</strong>：配置 QLabel 文本交互。</li>
+<li><strong>为什么要这样调用</strong>：它不是 QLineEdit 的编辑模式，也不提供保存文件功能。</li>
+</ul>
+<h3 id="qwidgetsavegeometry-restoregeometrybytes"><code>QWidget::saveGeometry() / restoreGeometry(bytes)</code></h3>
+<ul>
+<li><strong>参数</strong>：读取无参数，恢复接 QByteArray。</li>
+<li><strong>作用与返回</strong>：返回几何状态字节 / 恢复成功 bool。</li>
+<li><strong>为什么要这样调用</strong>：读自配置后尝试恢复，屏幕布局改变仍要检查窗口可见性。</li>
+</ul>
+<h3 id="qcoreapplicationsetorganizationnamename-setapplicationnamename"><code>QCoreApplication::setOrganizationName(name) / setApplicationName(name)</code></h3>
+<ul>
+<li><strong>参数</strong>：应用标识字符串。</li>
+<li><strong>作用与返回</strong>：设定默认配置与用户路径的应用身份。</li>
+<li><strong>为什么要这样调用</strong>：在创建默认 QSettings 和查询应用路径前设置，避免写入不同目录。</li>
+</ul>
+<h3 id="qstandardpathssettestmodeenabledtrue"><code>QStandardPaths::setTestModeEnabled(true)</code></h3>
+<ul>
+<li><strong>参数</strong>：bool。</li>
+<li><strong>作用与返回</strong>：使部分用户位置采用测试位置。</li>
+<li><strong>为什么要这样调用</strong>：不是无限制的全局文件安全隔离；本例仍用 QTemporaryDir 放自检配置。</li>
+</ul>
+<h3 id="qtimersetintervalms-setsingleshottrue"><code>QTimer::setInterval(ms) / setSingleShot(true)</code></h3>
+<ul>
+<li><strong>参数</strong>：毫秒间隔或单次模式。</li>
+<li><strong>作用与返回</strong>：改变定时器运行策略。</li>
+<li><strong>为什么要这样调用</strong>：setInterval 本身不等于对未运行定时器 start；防抖需每次输入重新启动。</li>
+</ul>
+<h3 id="qthreadcurrentthread-msleepms"><code>QThread::currentThread() / msleep(ms)</code></h3>
+<ul>
+<li><strong>参数</strong>：当前线程查询或毫秒数。</li>
+<li><strong>作用与返回</strong>：返回当前执行线程对象 / 让调用线程睡眠。</li>
+<li><strong>为什么要这样调用</strong>：不要在 GUI 线程睡眠；本例只在 worker 内模拟耗时。</li>
+</ul>
+<h3 id="qfontsetpixelsizesize"><code>QFont::setPixelSize(size)</code></h3>
+<ul>
+<li><strong>参数</strong>：像素字号 int。</li>
+<li><strong>作用与返回</strong>：设置绘图文字字号。</li>
+<li><strong>为什么要这样调用</strong>：与 setPointSize 的单位不同，改变字号后重新检查绘制区域。</li>
+</ul>
+<h3 id="qpalettetextcolor"><code>QPalette::text().color()</code></h3>
+<ul>
+<li><strong>参数</strong>：获取文本颜色角色的画刷再取颜色。</li>
+<li><strong>作用与返回</strong>：返回颜色值。</li>
+<li><strong>为什么要这样调用</strong>：使用系统主题颜色能改善可读性，但自绘背景也需考虑对比。</li>
+</ul>
+<h3 id="setfiltercasesensitivitymode"><code>setFilterCaseSensitivity(mode)</code></h3>
+<ul>
+<li><strong>参数</strong>：Qt::CaseInsensitive 等枚举。</li>
+<li><strong>作用与返回</strong>：设置代理筛选大小写策略。</li>
+<li><strong>为什么要这样调用</strong>：与排序大小写策略不是必然同一开关。</li>
+</ul>
+<h3 id="qtcpserverhaspendingconnections"><code>QTcpServer::hasPendingConnections()</code></h3>
+<ul>
+<li><strong>参数</strong>：无参数。</li>
+<li><strong>作用与返回</strong>：返回是否有待取连接。</li>
+<li><strong>为什么要这样调用</strong>：配合 while 与 nextPendingConnection 处理积压连接，不等同于某个客户端仍在线。</li>
+</ul>
+<h3 id="qtcpsocketbytestowrite"><code>QTcpSocket::bytesToWrite()</code></h3>
+<ul>
+<li><strong>参数</strong>：无参数。</li>
+<li><strong>作用与返回</strong>：返回待写出的缓冲字节数。</li>
+<li><strong>为什么要这样调用</strong>：用于发送背压；0 不证明远端已处理，仍需应用协议响应。</li>
+</ul>
+<h3 id="qtcpsocketclose-abort"><code>QTcpSocket::close() / abort()</code></h3>
+<ul>
+<li><strong>参数</strong>：无参数。</li>
+<li><strong>作用与返回</strong>：关闭或立即终止 socket；abort 丢弃待写数据。</li>
+<li><strong>为什么要这样调用</strong>：优雅断开与立即中止语义不同；对错误帧本例选择 abort。</li>
+</ul>
+<h3 id="qfileclose"><code>QFile::close()</code></h3>
+<ul>
+<li><strong>参数</strong>：无参数。</li>
+<li><strong>作用与返回</strong>：关闭本文件设备。</li>
+<li><strong>为什么要这样调用</strong>：与 socket 同名不代表完全同义；QSaveFile 成功边界使用 commit。</li>
+</ul>
+<h3 id="qimageisnull-pixelcolorxy"><code>QImage::isNull() / pixelColor(x,y)</code></h3>
+<ul>
+<li><strong>参数</strong>：无参数或图像像素坐标。</li>
+<li><strong>作用与返回</strong>：返回是否无图像 / QColor。</li>
+<li><strong>为什么要这样调用</strong>：读回图像前先检查有效性，坐标使用图像实际尺寸，防止越界。</li>
+</ul>
+<h3 id="qinfonoquote"><code>qInfo().noquote()</code></h3>
+<ul>
+<li><strong>参数</strong>：日志输出流操纵器。</li>
+<li><strong>作用与返回</strong>：取消输出 QString 时默认引号。</li>
+<li><strong>为什么要这样调用</strong>：不会取消隐私过滤责任，也不会自动保存日志文件。</li>
+</ul>
+<h3 id="qmessageboxwarningparenttitletext"><code>QMessageBox::warning(parent,title,text)</code></h3>
+<ul>
+<li><strong>参数</strong>：父窗口、标题、错误文字。</li>
+<li><strong>作用与返回</strong>：展示警告并返回选择结果。</li>
+<li><strong>为什么要这样调用</strong>：仅业务界面层弹窗，仓储和后台线程不要直接弹 GUI。</li>
+</ul>
+<h3 id="triangleready-error"><code>Triangle::ready() / error()</code></h3>
+<ul>
+<li><strong>参数</strong>：示例 17 的自定义只读方法。</li>
+<li><strong>作用与返回</strong>：返回 GPU 初始化成功标志 / 保存的初始化日志。</li>
+<li><strong>为什么要这样调用</strong>：不是 Qt 通用接口；ready 不等同于已经证明所有像素都正确。</li>
+</ul>
+<p><a href="index.html">返回目录</a></p></main></div><script src="search.js"></script></body></html>

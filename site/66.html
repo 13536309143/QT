@@ -1,0 +1,119 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>66 · Qt Creator 综合操作：运行设置、故障排查与交付 · Qt 6 中文教程</title><link rel="stylesheet" href="style.css"></head><body><a class="skip-link" href="#content">跳到正文</a><header><div class="tag">C++ · QT 6 · 从入门到项目</div><h1>Qt 6 中文学习手册</h1><p>67 章分阶段学习 / 18 个源码示例 / 21 个逐步实验 / 离线可读</p></header><div class="shell"><nav aria-label="课程导航"><input id="search" type="search" placeholder="搜索章节与正文" aria-label="搜索章节与正文"><p><a href="index.html">课程首页与推荐路线</a><a href="workbook.html">21 个逐步实操实验</a><a href="api.html">函数详解手册</a><a href="references.html">官方参考资料</a></p><section class="nav-stage"><h2>一 · 零基础与开发工具</h2><a class="chapter" data-id="00" href="00.html">00 · 学习地图：从零到独立开发</a><a class="chapter" data-id="01" href="01.html">01 · 零基础预备课：读懂一小段 C++</a><a class="chapter" data-id="02" href="02.html">02 · 开发工具入门：Kit、断点与第一次修改</a><a class="chapter" data-id="03" href="03.html">03 · 安装与环境：项目内的 Qt 6</a><a class="chapter" data-id="04" href="04.html">04 · C++ 补课一：值、引用、指针和生命周期</a><a class="chapter" data-id="05" href="05.html">05 · C++ 补课二：类、继承、lambda 和工程拆分</a><a class="chapter" data-id="06" href="06.html">06 · CMake：从源码到程序</a><a class="chapter" data-id="07" href="07.html">07 · 第一个窗口与事件循环</a></section><section class="nav-stage"><h2>二 · 对象、控件与交互</h2><a class="chapter" data-id="08" href="08.html">08 · QObject、元对象与父子所有权</a><a class="chapter" data-id="09" href="09.html">09 · 信号与槽：把行为连接起来</a><a class="chapter" data-id="10" href="10.html">10 · 布局管理：让界面适应窗口</a><a class="chapter" data-id="11" href="11.html">11 · 常用控件详解：选择、输入与状态同步</a><a class="chapter" data-id="12" href="12.html">12 · 表单、输入验证和对话框</a><a class="chapter" data-id="13" href="13.html">13 · 多窗口与对话框：确认、取消和对象寿命</a><a class="chapter" data-id="14" href="14.html">14 · 主窗口、菜单、工具栏和快捷键</a><a class="chapter" data-id="15" href="15.html">15 · Qt Designer：可视化设计和 ui 文件</a><a class="chapter" data-id="16" href="16.html">16 · QString、容器、日期和字符编码</a><a class="chapter" data-id="17" href="17.html">17 · QSettings 与应用路径：记住用户的选择</a></section><section class="nav-stage"><h2>三 · 文件、数据与界面机制</h2><a class="chapter" data-id="18" href="18.html">18 · 文件、路径与可靠保存</a><a class="chapter" data-id="19" href="19.html">19 · JSON、配置与数据格式演进</a><a class="chapter" data-id="20" href="20.html">20 · 资源系统、QSS 与界面风格</a><a class="chapter" data-id="21" href="21.html">21 · Model/View：列表与表格的核心</a><a class="chapter" data-id="22" href="22.html">22 · 代理模型、选择、委托与分页</a><a class="chapter" data-id="23" href="23.html">23 · 模型进阶：角色、编辑委托与正确通知</a><a class="chapter" data-id="24" href="24.html">24 · 事件系统、定时器和自定义控件</a><a class="chapter" data-id="25" href="25.html">25 · 事件过滤、焦点与键盘：保留正常交互</a><a class="chapter" data-id="26" href="26.html">26 · QPainter：坐标、抗锯齿和仪表盘</a></section><section class="nav-stage"><h2>四 · 异步、通信与数据库</h2><a class="chapter" data-id="27" href="27.html">27 · 多线程：后台任务、取消和退出</a><a class="chapter" data-id="28" href="28.html">28 · 异步任务设计：状态、取消和过期结果</a><a class="chapter" data-id="29" href="29.html">29 · HTTP 网络：异步、超时和错误分层</a><a class="chapter" data-id="30" href="30.html">30 · TCP 实战：连接、拆包和有限缓冲</a><a class="chapter" data-id="31" href="31.html">31 · SQLite：连接、SQL、绑定和事务</a><a class="chapter" data-id="32" href="32.html">32 · SQLite 进阶：事务、迁移与分页</a></section><section class="nav-stage"><h2>五 · QML 与 C++ 协作</h2><a class="chapter" data-id="33" href="33.html">33 · Qt Quick 与 QML：声明式界面</a><a class="chapter" data-id="34" href="34.html">34 · C++ 与 QML：属性、通知和类型注册</a><a class="chapter" data-id="35" href="35.html">35 · QML 进阶入门：组件、绑定与页面状态</a></section><section class="nav-stage"><h2>六 · 测试、工程与综合项目</h2><a class="chapter" data-id="36" href="36.html">36 · 自动测试：Qt Test、信号和临时数据库</a><a class="chapter" data-id="37" href="37.html">37 · 测试进阶：从规则到真实交互</a><a class="chapter" data-id="38" href="38.html">38 · 调试与故障排查：从第一条错误开始</a><a class="chapter" data-id="39" href="39.html">39 · 性能与内存：先测量，再优化</a><a class="chapter" data-id="40" href="40.html">40 · Windows 部署：让程序离开开发机</a><a class="chapter" data-id="41" href="41.html">41 · 进阶发布：日志、翻译与可交付检查</a><a class="chapter" data-id="42" href="42.html">42 · 综合项目 TaskDesk：需求、架构和数据流</a><a class="chapter" data-id="43" href="43.html">43 · 项目拆分：让窗口不再承担全部业务</a><a class="chapter" data-id="44" href="44.html">44 · 综合项目 TaskDesk：分阶段扩展作业</a><a class="chapter" data-id="45" href="45.html">45 · 工程习惯、GitHub 准备和协作</a><a class="chapter" data-id="46" href="46.html">46 · 进阶选修：串口、TCP、音视频与国际化</a><a class="chapter" data-id="47" href="47.html">47 · 练习参考答案与最终验收清单</a><a class="chapter" data-id="48" href="48.html">48 · 新手答疑、术语表与阶段自测</a></section><section class="nav-stage"><h2>七 · Qt 与 OpenGL、Vulkan 图形集成</h2><a class="chapter" data-id="49" href="49.html">49 · 图形预备课：CPU、GPU、坐标与一帧的形成</a><a class="chapter" data-id="50" href="50.html">50 · Qt 与 OpenGL：上下文、控件及完整生命周期</a><a class="chapter" data-id="51" href="51.html">51 · OpenGL 三角形逐行讲解：着色器、VAO 与 VBO</a><a class="chapter" data-id="52" href="52.html">52 · OpenGL 扩展实操：矩阵、相机、纹理与深度</a><a class="chapter" data-id="53" href="53.html">53 · OpenGL 工程化：交互、离屏渲染、调试与清理</a><a class="chapter" data-id="54" href="54.html">54 · Qt 与 Vulkan 环境：头文件、Loader、驱动与实例</a><a class="chapter" data-id="55" href="55.html">55 · QVulkanWindow 完整清屏：回调、命令与 Qt 的责任</a><a class="chapter" data-id="56" href="56.html">56 · Vulkan 三角形进阶：shader、buffer 与图形管线</a><a class="chapter" data-id="57" href="57.html">57 · Vulkan 同步与资源更新：帧槽、描述符和图像布局</a><a class="chapter" data-id="58" href="58.html">58 · Qt 图形集成实战路线：嵌入、选型、性能与发布</a></section><section class="nav-stage"><h2>八 · Qt Creator 图形化操作实训</h2><a class="chapter" data-id="59" href="59.html">59 · Qt Creator 图形操作入门：认识界面与学习路线</a><a class="chapter" data-id="60" href="60.html">60 · 图形化配置 Kit：打开本地课程并构建运行</a><a class="chapter" data-id="61" href="61.html">61 · 新建 Widgets 工程：用向导创建自己的练习窗口</a><a class="chapter" data-id="62" href="62.html">62 · Designer 拖拽入门：控件、属性与 objectName</a><a class="chapter" data-id="63" href="63.html">63 · Designer 布局实操：嵌套、拉伸、Tab 与伙伴关系</a><a class="chapter" data-id="64" href="64.html">64 · 图形化连接信号槽：拖线、转到槽与显式 connect</a><a class="chapter" data-id="65" href="65.html">65 · Qt Creator 调试操作：断点、变量、调用栈和条件</a><a class="chapter active" data-id="66" href="66.html" aria-current="page">66 · Qt Creator 综合操作：运行设置、故障排查与交付</a></section><p id="search-status" role="status" aria-live="polite"></p></nav><main id="content"><p class="reading-position">八 · Qt Creator 图形化操作实训 · 推荐路线 67 / 67</p><h1 id="66-qt-creator">66 · Qt Creator 综合操作：运行设置、故障排查与交付</h1>
+<h2 id="_1">一、把运行配置和构建配置分开</h2>
+<p>Projects/项目中的 Build Settings 控制怎样构建，Run Settings 控制执行哪个程序、参数、工作目录和环境。两个配置都可能随 Kit 与 Debug/Release 改变；在 Debug 下改过的参数，不应假定 Release 一定相同。</p>
+<p>本仓库有多个 exe。选择运行目标时确认名称，再核对实际路径。若目标 18_vulkan 没出现，先看是否启用对应 CMake 选项和头文件，不能通过手工把另一个 exe 路径改名来制造目标。</p>
+<h2 id="_2">二、在界面中填写参数与环境</h2>
+<p>选择 01_hello 的 Run Settings，在 Arguments/命令行参数中临时填 --smoke，运行后程序应自动退出。清掉参数再运行，应正常保持窗口。这个小实验能证明你修改的是当前运行配置。</p>
+<p>如遇 Qt DLL 或插件查找问题，在当前运行配置的 Environment 中添加或前置：</p>
+<table>
+<thead>
+<tr>
+<th>变量</th>
+<th>课程值</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PATH</td>
+<td>在已有值前加入 <code>E:\QT\QT\sdk\6.8.3\msvc2022_64\bin</code></td>
+<td>查找当前 Qt 的 DLL，保留其余环境</td>
+</tr>
+<tr>
+<td>QT_PLUGIN_PATH</td>
+<td>SDK 根目录下 plugins</td>
+<td>查找 Qt 插件</td>
+</tr>
+<tr>
+<td>QT_QPA_PLATFORM_PLUGIN_PATH</td>
+<td>SDK 根目录下 plugins/platforms</td>
+<td>平台插件位置</td>
+</tr>
+<tr>
+<td>QML_IMPORT_PATH</td>
+<td>SDK 根目录下 qml</td>
+<td>Quick 的 QML 模块</td>
+</tr>
+</tbody>
+</table>
+<p>根据实际错误添加必要项，不机械地把全套环境复制给所有项目。普通桌面运行不要遗留 QT_QPA_PLATFORM=offscreen，否则可能没有可交互窗口；图形 API 示例也需要适合的实际显示环境。</p>
+<p>Working directory/工作目录影响相对文件路径。修改它不会把 exe 移动到该目录；资源路径 <code>:/...</code> 与普通相对磁盘路径又不同，排查“找不到文件”先确认使用哪一种。</p>
+<h2 id="_3">三、看对输出面板</h2>
+<p>Issues 便于跳转错误行，Compile Output 保留完整构建命令，Application Output 显示程序日志。编辑器红线来自代码分析，不总是最新构建结论。先保存、构建，看第一条真实错误，再检查分析器的 Kit 和头文件索引。</p>
+<table>
+<thead>
+<tr>
+<th>现象</th>
+<th>第一步检查</th>
+<th>不建议的盲目操作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>没有可用 Kit</td>
+<td>Qt、编译器和设备配置</td>
+<td>随意切成 MinGW</td>
+</tr>
+<tr>
+<td>找不到 Qt6Config.cmake</td>
+<td>CMAKE_PREFIX_PATH 的 SDK 根目录</td>
+<td>把 Creator bin 当 Qt SDK</td>
+</tr>
+<tr>
+<td>.ui 改了但无效果</td>
+<td>保存、AUTOUIC、目标与构建目录</td>
+<td>修改生成的 ui_*.h</td>
+</tr>
+<tr>
+<td>点击一次执行两次</td>
+<td>自动槽与显式连接是否重复</td>
+<td>不看连接就加计时防抖</td>
+</tr>
+<tr>
+<td>新文件没有编译</td>
+<td>CMake 是否列入正确 target</td>
+<td>只看项目树有没有文件</td>
+</tr>
+<tr>
+<td>程序一闪而过</td>
+<td>参数是否有 --smoke，输出是否有错误</td>
+<td>无条件重装 Qt</td>
+</tr>
+<tr>
+<td>调试按钮不可用</td>
+<td>CDB、Kit、Debug 配置和目标</td>
+<td>以为所有 C++ 编译器都自带兼容调试器</td>
+</tr>
+</tbody>
+</table>
+<h2 id="cmake">四、CMake 选项的图形化编辑</h2>
+<p>在 Build Settings 中查找 Initial/Current Configuration 等 CMake 配置表。调整 COURSE_BUILD_OPENGL、COURSE_BUILD_VULKAN 等 bool 项后，执行 Run CMake/重新配置，再构建新增目标。参数值的变化与真实 configure 是否成功要分别检查。</p>
+<p>改变编译器、生成器或架构时使用新构建目录，不在旧 CMakeCache 上反复覆盖。首次配置与当前缓存两处值可能不同，检查最终生效值和配置输出，不只看输入框里曾经填过什么。</p>
+<h2 id="git">五、交付与 Git 面板的边界</h2>
+<p>Creator 的 Git 面板可以查看差异、暂存与提交。练习先只查看自己的 .cpp/.h/.ui 修改，不把 Qt SDK、build、个人用户配置或真实数据加入仓库。提交前逐文件审阅，自动生成文件不因为 IDE 显示它就应该提交。</p>
+<p>运行按钮执行的是开发构建，不自动生成给别人的完整分发包。交付仍按第 40 章部署依赖并做独立运行检查；本专题不把打开 Git 面板或点 Run 当作已发布到 GitHub。</p>
+<h2 id="_4">最终实操验收</h2>
+<p>从关闭 IDE 开始，重新打开练习 CMakeLists，选对 Kit 和 Debug，打开 .ui 改一个展示文字，构建运行，提交空值和有效值，用清空按钮操作；再调试停在自己的槽函数。最后指出 .ui 的设计连接、.cpp 的业务逻辑、构建目录和用户配置分别在哪。</p>
+<p>把每一步的实际结果写入学习日志。菜单与面板已按官方文档及本机版本信息编写，具体拖拽、Kit 和 CDB 操作仍需在你的当前工作区逐项完成，不冒充所有 GUI 流程都已自动验证。</p>
+<p>参考：<a href="https://doc.qt.io/qtcreator/creator-run-settings.html">运行配置</a>、<a href="https://doc.qt.io/qtcreator/creator-build-settings-cmake.html">CMake 项目设置</a>。</p>
+<h2 id="_5">配图逐项讲解</h2>
+<p>真实截图保持原始内容；图旁说明区分“当前默认状态”“课程目标值”和“故障反例”。示意图用于讲解关系，不代表已经完成的本机操作。可通过每幅图下的原图链接放大查看。</p>
+<h3 id="66-1">图 66-1 · 运行设置必须核对三个独立值</h3>
+<p><strong>教学示意图 · 非实机截图</strong></p>
+<p><img alt="运行设置必须核对三个独立值" src="../assets/creator/run-settings.svg" /></p>
+<p><a href="../assets/creator/run-settings.svg">打开原图查看细节</a></p>
+<ul>
+<li><strong>看哪里</strong>：按图中 1、2、3 的关系理解该功能。</li>
+<li><strong>怎样操作</strong>：01_hello 不是 course_tests；练习后删掉，再验证窗口保持打开；不改变 exe 本身所在位置。</li>
+<li><strong>结果与检查</strong>：不同 Kit 与 Debug/Release 的运行设置可能不同，切换后重新核对。</li>
+</ul>
+<h3 id="66-2">图 66-2 · 同一个失败，要去不同面板找证据</h3>
+<p><strong>教学示意图 · 非实机截图</strong></p>
+<p><img alt="同一个失败，要去不同面板找证据" src="../assets/creator/output-panes.svg" /></p>
+<p><a href="../assets/creator/output-panes.svg">打开原图查看细节</a></p>
+<ul>
+<li><strong>看哪里</strong>：按图中 1、2、3 的关系理解该功能。</li>
+<li><strong>怎样操作</strong>：跳转第一条有意义的源码错误；确认实际目标、编译器和 SDK；检查缺失 DLL、插件、参数与业务错误。</li>
+<li><strong>结果与检查</strong>：截图或日志不能只截最后一行“失败”，要包含出错阶段与第一条原因。</li>
+</ul>
+<p><a href="index.html">返回目录</a></p><div class="pager" aria-label="推荐学习顺序"><a href="65.html">← 上一课</a><a href="index.html">返回首页</a></div></main></div><script src="search.js"></script></body></html>

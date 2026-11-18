@@ -1,0 +1,54 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>57 · Vulkan 同步与资源更新：帧槽、描述符和图像布局 · Qt 6 中文教程</title><link rel="stylesheet" href="style.css"></head><body><a class="skip-link" href="#content">跳到正文</a><header><div class="tag">C++ · QT 6 · 从入门到项目</div><h1>Qt 6 中文学习手册</h1><p>67 章分阶段学习 / 18 个源码示例 / 21 个逐步实验 / 离线可读</p></header><div class="shell"><nav aria-label="课程导航"><input id="search" type="search" placeholder="搜索章节与正文" aria-label="搜索章节与正文"><p><a href="index.html">课程首页与推荐路线</a><a href="workbook.html">21 个逐步实操实验</a><a href="api.html">函数详解手册</a><a href="references.html">官方参考资料</a></p><section class="nav-stage"><h2>一 · 零基础与开发工具</h2><a class="chapter" data-id="00" href="00.html">00 · 学习地图：从零到独立开发</a><a class="chapter" data-id="01" href="01.html">01 · 零基础预备课：读懂一小段 C++</a><a class="chapter" data-id="02" href="02.html">02 · 开发工具入门：Kit、断点与第一次修改</a><a class="chapter" data-id="03" href="03.html">03 · 安装与环境：项目内的 Qt 6</a><a class="chapter" data-id="04" href="04.html">04 · C++ 补课一：值、引用、指针和生命周期</a><a class="chapter" data-id="05" href="05.html">05 · C++ 补课二：类、继承、lambda 和工程拆分</a><a class="chapter" data-id="06" href="06.html">06 · CMake：从源码到程序</a><a class="chapter" data-id="07" href="07.html">07 · 第一个窗口与事件循环</a></section><section class="nav-stage"><h2>二 · 对象、控件与交互</h2><a class="chapter" data-id="08" href="08.html">08 · QObject、元对象与父子所有权</a><a class="chapter" data-id="09" href="09.html">09 · 信号与槽：把行为连接起来</a><a class="chapter" data-id="10" href="10.html">10 · 布局管理：让界面适应窗口</a><a class="chapter" data-id="11" href="11.html">11 · 常用控件详解：选择、输入与状态同步</a><a class="chapter" data-id="12" href="12.html">12 · 表单、输入验证和对话框</a><a class="chapter" data-id="13" href="13.html">13 · 多窗口与对话框：确认、取消和对象寿命</a><a class="chapter" data-id="14" href="14.html">14 · 主窗口、菜单、工具栏和快捷键</a><a class="chapter" data-id="15" href="15.html">15 · Qt Designer：可视化设计和 ui 文件</a><a class="chapter" data-id="16" href="16.html">16 · QString、容器、日期和字符编码</a><a class="chapter" data-id="17" href="17.html">17 · QSettings 与应用路径：记住用户的选择</a></section><section class="nav-stage"><h2>三 · 文件、数据与界面机制</h2><a class="chapter" data-id="18" href="18.html">18 · 文件、路径与可靠保存</a><a class="chapter" data-id="19" href="19.html">19 · JSON、配置与数据格式演进</a><a class="chapter" data-id="20" href="20.html">20 · 资源系统、QSS 与界面风格</a><a class="chapter" data-id="21" href="21.html">21 · Model/View：列表与表格的核心</a><a class="chapter" data-id="22" href="22.html">22 · 代理模型、选择、委托与分页</a><a class="chapter" data-id="23" href="23.html">23 · 模型进阶：角色、编辑委托与正确通知</a><a class="chapter" data-id="24" href="24.html">24 · 事件系统、定时器和自定义控件</a><a class="chapter" data-id="25" href="25.html">25 · 事件过滤、焦点与键盘：保留正常交互</a><a class="chapter" data-id="26" href="26.html">26 · QPainter：坐标、抗锯齿和仪表盘</a></section><section class="nav-stage"><h2>四 · 异步、通信与数据库</h2><a class="chapter" data-id="27" href="27.html">27 · 多线程：后台任务、取消和退出</a><a class="chapter" data-id="28" href="28.html">28 · 异步任务设计：状态、取消和过期结果</a><a class="chapter" data-id="29" href="29.html">29 · HTTP 网络：异步、超时和错误分层</a><a class="chapter" data-id="30" href="30.html">30 · TCP 实战：连接、拆包和有限缓冲</a><a class="chapter" data-id="31" href="31.html">31 · SQLite：连接、SQL、绑定和事务</a><a class="chapter" data-id="32" href="32.html">32 · SQLite 进阶：事务、迁移与分页</a></section><section class="nav-stage"><h2>五 · QML 与 C++ 协作</h2><a class="chapter" data-id="33" href="33.html">33 · Qt Quick 与 QML：声明式界面</a><a class="chapter" data-id="34" href="34.html">34 · C++ 与 QML：属性、通知和类型注册</a><a class="chapter" data-id="35" href="35.html">35 · QML 进阶入门：组件、绑定与页面状态</a></section><section class="nav-stage"><h2>六 · 测试、工程与综合项目</h2><a class="chapter" data-id="36" href="36.html">36 · 自动测试：Qt Test、信号和临时数据库</a><a class="chapter" data-id="37" href="37.html">37 · 测试进阶：从规则到真实交互</a><a class="chapter" data-id="38" href="38.html">38 · 调试与故障排查：从第一条错误开始</a><a class="chapter" data-id="39" href="39.html">39 · 性能与内存：先测量，再优化</a><a class="chapter" data-id="40" href="40.html">40 · Windows 部署：让程序离开开发机</a><a class="chapter" data-id="41" href="41.html">41 · 进阶发布：日志、翻译与可交付检查</a><a class="chapter" data-id="42" href="42.html">42 · 综合项目 TaskDesk：需求、架构和数据流</a><a class="chapter" data-id="43" href="43.html">43 · 项目拆分：让窗口不再承担全部业务</a><a class="chapter" data-id="44" href="44.html">44 · 综合项目 TaskDesk：分阶段扩展作业</a><a class="chapter" data-id="45" href="45.html">45 · 工程习惯、GitHub 准备和协作</a><a class="chapter" data-id="46" href="46.html">46 · 进阶选修：串口、TCP、音视频与国际化</a><a class="chapter" data-id="47" href="47.html">47 · 练习参考答案与最终验收清单</a><a class="chapter" data-id="48" href="48.html">48 · 新手答疑、术语表与阶段自测</a></section><section class="nav-stage"><h2>七 · Qt 与 OpenGL、Vulkan 图形集成</h2><a class="chapter" data-id="49" href="49.html">49 · 图形预备课：CPU、GPU、坐标与一帧的形成</a><a class="chapter" data-id="50" href="50.html">50 · Qt 与 OpenGL：上下文、控件及完整生命周期</a><a class="chapter" data-id="51" href="51.html">51 · OpenGL 三角形逐行讲解：着色器、VAO 与 VBO</a><a class="chapter" data-id="52" href="52.html">52 · OpenGL 扩展实操：矩阵、相机、纹理与深度</a><a class="chapter" data-id="53" href="53.html">53 · OpenGL 工程化：交互、离屏渲染、调试与清理</a><a class="chapter" data-id="54" href="54.html">54 · Qt 与 Vulkan 环境：头文件、Loader、驱动与实例</a><a class="chapter" data-id="55" href="55.html">55 · QVulkanWindow 完整清屏：回调、命令与 Qt 的责任</a><a class="chapter" data-id="56" href="56.html">56 · Vulkan 三角形进阶：shader、buffer 与图形管线</a><a class="chapter active" data-id="57" href="57.html" aria-current="page">57 · Vulkan 同步与资源更新：帧槽、描述符和图像布局</a><a class="chapter" data-id="58" href="58.html">58 · Qt 图形集成实战路线：嵌入、选型、性能与发布</a></section><section class="nav-stage"><h2>八 · Qt Creator 图形化操作实训</h2><a class="chapter" data-id="59" href="59.html">59 · Qt Creator 图形操作入门：认识界面与学习路线</a><a class="chapter" data-id="60" href="60.html">60 · 图形化配置 Kit：打开本地课程并构建运行</a><a class="chapter" data-id="61" href="61.html">61 · 新建 Widgets 工程：用向导创建自己的练习窗口</a><a class="chapter" data-id="62" href="62.html">62 · Designer 拖拽入门：控件、属性与 objectName</a><a class="chapter" data-id="63" href="63.html">63 · Designer 布局实操：嵌套、拉伸、Tab 与伙伴关系</a><a class="chapter" data-id="64" href="64.html">64 · 图形化连接信号槽：拖线、转到槽与显式 connect</a><a class="chapter" data-id="65" href="65.html">65 · Qt Creator 调试操作：断点、变量、调用栈和条件</a><a class="chapter" data-id="66" href="66.html">66 · Qt Creator 综合操作：运行设置、故障排查与交付</a></section><p id="search-status" role="status" aria-live="polite"></p></nav><main id="content"><p class="reading-position">七 · Qt 与 OpenGL、Vulkan 图形集成 · 推荐路线 58 / 67</p><h1 id="57-vulkan">57 · Vulkan 同步与资源更新：帧槽、描述符和图像布局</h1>
+<h2 id="_1">一、先把三个“编号”分清</h2>
+<p>currentFrame 是 Qt 的并发帧资源槽，范围与 concurrentFrameCount 相关；currentSwapChainImageIndex 是当前交换链图像编号；业务 requestId 是应用自己定义的请求序号。三者不保证相等，也不保证始终按同一速度递增。</p>
+<p>为 uniform 等“CPU 每帧写、GPU 会读”的数据分配资源时，按 Qt 当前并发帧槽组织。若交换链有三张图但并发帧槽有两份，你不能直接用交换链图像编号访问两元素数组。</p>
+<h2 id="_2">二、一个具体的数据竞争</h2>
+<p>CPU 为帧 A 写入角度 10 并提交，GPU 还没读完；CPU 又把同一内存改成角度 20 供帧 B 使用。结果可能撕裂或读到不属于该帧的数据。解决思路是帧槽隔离及正确复用时机，不是随手在两个 write 之间 sleep(1)。</p>
+<p>使用 QVulkanWindow 管理的帧资源路径时，遵循它提供的当前槽和回调约束。额外自行提交的 transfer queue、compute queue 或异步读回，不会仅因调用 frameReady 就全部自动同步，必须明确自己的完成条件。</p>
+<h2 id="fencesemaphorebarrier">三、fence、semaphore、barrier 的区别</h2>
+<table>
+<thead>
+<tr>
+<th>工具</th>
+<th>主要协调对象</th>
+<th>常见用途</th>
+<th>不能替代什么</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>fence</td>
+<td>CPU 观察 GPU 工作完成</td>
+<td>等待提交完成后复用 CPU 资源</td>
+<td>不能当作 shader 内任意内存屏障</td>
+</tr>
+<tr>
+<td>semaphore</td>
+<td>GPU 提交之间的依赖</td>
+<td>获取图像、队列提交、呈现依赖</td>
+<td>不自动描述所有资源访问类型</td>
+</tr>
+<tr>
+<td>pipeline barrier</td>
+<td>设备执行与内存访问依赖</td>
+<td>transfer 写到 shader 读等</td>
+<td>不是 CPU 完成通知</td>
+</tr>
+</tbody>
+</table>
+<p>执行顺序和内存可见性是相关但不同的问题。源/目标 stage 表达哪些执行阶段需要建立依赖，access mask 表达相应读写访问。不要使用“全部阶段等全部阶段”作为永久方案，也不要因同一队列顺序提交就认为所有内存危险都消失。</p>
+<p>Qt 已管理的获取、提交和呈现同步，不在本例手动再添加另一套相互冲突的 fence/semaphore。只有明确离开其管理边界的工作，才设计并验证额外同步。</p>
+<h2 id="descriptor">四、descriptor 不是数据本体</h2>
+<p>shader 中的 uniform buffer、采样图像等通过 descriptor 暴露。descriptor set layout 描述 binding 编号、类型、数量和 stage 可见性；descriptor pool 管理分配容量；descriptor set 记录实际资源引用；pipeline layout 决定着色器可使用的布局。</p>
+<p>例如 set=0、binding=0 的 uniform buffer：shader 声明、layout 的 binding、vkUpdateDescriptorSets 的 dstBinding 必须对应。bufferInfo 还要指定 buffer、offset、range，范围不应越界；动态 offset 要满足设备对齐约束。</p>
+<p>descriptor 引用了 buffer，不代表替你拥有或延长了 buffer 的 GPU 使用寿命。正在被 GPU 使用的 set 也不能在未满足相应规则时随意重写。先做每帧一组资源的简单方案，再根据测量考虑更复杂的更新策略。</p>
+<h2 id="_3">五、纹理上传为什么要转换布局</h2>
+<p>VkImage 的 layout 表达图像当前用途和访问约束，不是图片文件格式。常见过程是建立 image 和 memory，用 staging buffer 准备像素，将图像转换到 transfer 目标布局，copy，再转换到 shader 读取布局，同时建立合适的阶段与访问依赖。</p>
+<p>image view 解释图像的格式、层级与子资源；sampler 定义过滤和寻址；二者与图像对象本身不同。descriptor 中声明的 imageLayout 应与实际使用时的布局匹配，不能只改 descriptor 字段就认为真的发生了 layout transition。</p>
+<p>Qt 默认交换链图像和 render pass 的布局处理属于其窗口路径；不要给默认附件随意插入与 pass 约定冲突的转换。先在自己拥有的离屏 image 上学习，再研究与交换链结合。</p>
+<h2 id="_4">六、交换链重建与设备丢失</h2>
+<p>resize、窗口暴露变化和 surface 条件可能导致交换链重建。释放自建的 framebuffer、尺寸相关 image/view 以及必要的 pipeline，再依据新 imageSize、format 与 sampleCount 建立新资源。只改一个 width 成员不等于整套依赖都已更新。</p>
+<p>device lost 不是普通的“下一帧重画即可”。应停止继续录制旧资源、记录诊断并进入应用设计的恢复或退出流程。资源清理还要考虑部分初始化成功的状态。</p>
+<p>实验：在纸上给两帧槽分别列 uniform buffer 与 descriptor；模拟 CPU 比 GPU 快两帧；指出哪个时刻可以重写。实现前先画资源状态图，再开同步验证。没有实际验证层检查时，应明确记录尚未验证的同步实验。</p>
+<p>参考：<a href="https://docs.vulkan.org/guide/latest/synchronization.html">Vulkan 同步指南</a>、<a href="https://docs.vulkan.org/tutorial/latest/03_Drawing_a_triangle/03_Drawing/03_Frames_in_flight.html">并发帧教程</a>。</p>
+<p><a href="index.html">返回目录</a></p><div class="pager" aria-label="推荐学习顺序"><a href="56.html">← 上一课</a><a href="58.html">下一课 →</a></div></main></div><script src="search.js"></script></body></html>

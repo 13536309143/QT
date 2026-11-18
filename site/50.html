@@ -1,0 +1,176 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>50 · Qt 与 OpenGL：上下文、控件及完整生命周期 · Qt 6 中文教程</title><link rel="stylesheet" href="style.css"></head><body><a class="skip-link" href="#content">跳到正文</a><header><div class="tag">C++ · QT 6 · 从入门到项目</div><h1>Qt 6 中文学习手册</h1><p>67 章分阶段学习 / 18 个源码示例 / 21 个逐步实验 / 离线可读</p></header><div class="shell"><nav aria-label="课程导航"><input id="search" type="search" placeholder="搜索章节与正文" aria-label="搜索章节与正文"><p><a href="index.html">课程首页与推荐路线</a><a href="workbook.html">21 个逐步实操实验</a><a href="api.html">函数详解手册</a><a href="references.html">官方参考资料</a></p><section class="nav-stage"><h2>一 · 零基础与开发工具</h2><a class="chapter" data-id="00" href="00.html">00 · 学习地图：从零到独立开发</a><a class="chapter" data-id="01" href="01.html">01 · 零基础预备课：读懂一小段 C++</a><a class="chapter" data-id="02" href="02.html">02 · 开发工具入门：Kit、断点与第一次修改</a><a class="chapter" data-id="03" href="03.html">03 · 安装与环境：项目内的 Qt 6</a><a class="chapter" data-id="04" href="04.html">04 · C++ 补课一：值、引用、指针和生命周期</a><a class="chapter" data-id="05" href="05.html">05 · C++ 补课二：类、继承、lambda 和工程拆分</a><a class="chapter" data-id="06" href="06.html">06 · CMake：从源码到程序</a><a class="chapter" data-id="07" href="07.html">07 · 第一个窗口与事件循环</a></section><section class="nav-stage"><h2>二 · 对象、控件与交互</h2><a class="chapter" data-id="08" href="08.html">08 · QObject、元对象与父子所有权</a><a class="chapter" data-id="09" href="09.html">09 · 信号与槽：把行为连接起来</a><a class="chapter" data-id="10" href="10.html">10 · 布局管理：让界面适应窗口</a><a class="chapter" data-id="11" href="11.html">11 · 常用控件详解：选择、输入与状态同步</a><a class="chapter" data-id="12" href="12.html">12 · 表单、输入验证和对话框</a><a class="chapter" data-id="13" href="13.html">13 · 多窗口与对话框：确认、取消和对象寿命</a><a class="chapter" data-id="14" href="14.html">14 · 主窗口、菜单、工具栏和快捷键</a><a class="chapter" data-id="15" href="15.html">15 · Qt Designer：可视化设计和 ui 文件</a><a class="chapter" data-id="16" href="16.html">16 · QString、容器、日期和字符编码</a><a class="chapter" data-id="17" href="17.html">17 · QSettings 与应用路径：记住用户的选择</a></section><section class="nav-stage"><h2>三 · 文件、数据与界面机制</h2><a class="chapter" data-id="18" href="18.html">18 · 文件、路径与可靠保存</a><a class="chapter" data-id="19" href="19.html">19 · JSON、配置与数据格式演进</a><a class="chapter" data-id="20" href="20.html">20 · 资源系统、QSS 与界面风格</a><a class="chapter" data-id="21" href="21.html">21 · Model/View：列表与表格的核心</a><a class="chapter" data-id="22" href="22.html">22 · 代理模型、选择、委托与分页</a><a class="chapter" data-id="23" href="23.html">23 · 模型进阶：角色、编辑委托与正确通知</a><a class="chapter" data-id="24" href="24.html">24 · 事件系统、定时器和自定义控件</a><a class="chapter" data-id="25" href="25.html">25 · 事件过滤、焦点与键盘：保留正常交互</a><a class="chapter" data-id="26" href="26.html">26 · QPainter：坐标、抗锯齿和仪表盘</a></section><section class="nav-stage"><h2>四 · 异步、通信与数据库</h2><a class="chapter" data-id="27" href="27.html">27 · 多线程：后台任务、取消和退出</a><a class="chapter" data-id="28" href="28.html">28 · 异步任务设计：状态、取消和过期结果</a><a class="chapter" data-id="29" href="29.html">29 · HTTP 网络：异步、超时和错误分层</a><a class="chapter" data-id="30" href="30.html">30 · TCP 实战：连接、拆包和有限缓冲</a><a class="chapter" data-id="31" href="31.html">31 · SQLite：连接、SQL、绑定和事务</a><a class="chapter" data-id="32" href="32.html">32 · SQLite 进阶：事务、迁移与分页</a></section><section class="nav-stage"><h2>五 · QML 与 C++ 协作</h2><a class="chapter" data-id="33" href="33.html">33 · Qt Quick 与 QML：声明式界面</a><a class="chapter" data-id="34" href="34.html">34 · C++ 与 QML：属性、通知和类型注册</a><a class="chapter" data-id="35" href="35.html">35 · QML 进阶入门：组件、绑定与页面状态</a></section><section class="nav-stage"><h2>六 · 测试、工程与综合项目</h2><a class="chapter" data-id="36" href="36.html">36 · 自动测试：Qt Test、信号和临时数据库</a><a class="chapter" data-id="37" href="37.html">37 · 测试进阶：从规则到真实交互</a><a class="chapter" data-id="38" href="38.html">38 · 调试与故障排查：从第一条错误开始</a><a class="chapter" data-id="39" href="39.html">39 · 性能与内存：先测量，再优化</a><a class="chapter" data-id="40" href="40.html">40 · Windows 部署：让程序离开开发机</a><a class="chapter" data-id="41" href="41.html">41 · 进阶发布：日志、翻译与可交付检查</a><a class="chapter" data-id="42" href="42.html">42 · 综合项目 TaskDesk：需求、架构和数据流</a><a class="chapter" data-id="43" href="43.html">43 · 项目拆分：让窗口不再承担全部业务</a><a class="chapter" data-id="44" href="44.html">44 · 综合项目 TaskDesk：分阶段扩展作业</a><a class="chapter" data-id="45" href="45.html">45 · 工程习惯、GitHub 准备和协作</a><a class="chapter" data-id="46" href="46.html">46 · 进阶选修：串口、TCP、音视频与国际化</a><a class="chapter" data-id="47" href="47.html">47 · 练习参考答案与最终验收清单</a><a class="chapter" data-id="48" href="48.html">48 · 新手答疑、术语表与阶段自测</a></section><section class="nav-stage"><h2>七 · Qt 与 OpenGL、Vulkan 图形集成</h2><a class="chapter" data-id="49" href="49.html">49 · 图形预备课：CPU、GPU、坐标与一帧的形成</a><a class="chapter active" data-id="50" href="50.html" aria-current="page">50 · Qt 与 OpenGL：上下文、控件及完整生命周期</a><a class="chapter" data-id="51" href="51.html">51 · OpenGL 三角形逐行讲解：着色器、VAO 与 VBO</a><a class="chapter" data-id="52" href="52.html">52 · OpenGL 扩展实操：矩阵、相机、纹理与深度</a><a class="chapter" data-id="53" href="53.html">53 · OpenGL 工程化：交互、离屏渲染、调试与清理</a><a class="chapter" data-id="54" href="54.html">54 · Qt 与 Vulkan 环境：头文件、Loader、驱动与实例</a><a class="chapter" data-id="55" href="55.html">55 · QVulkanWindow 完整清屏：回调、命令与 Qt 的责任</a><a class="chapter" data-id="56" href="56.html">56 · Vulkan 三角形进阶：shader、buffer 与图形管线</a><a class="chapter" data-id="57" href="57.html">57 · Vulkan 同步与资源更新：帧槽、描述符和图像布局</a><a class="chapter" data-id="58" href="58.html">58 · Qt 图形集成实战路线：嵌入、选型、性能与发布</a></section><section class="nav-stage"><h2>八 · Qt Creator 图形化操作实训</h2><a class="chapter" data-id="59" href="59.html">59 · Qt Creator 图形操作入门：认识界面与学习路线</a><a class="chapter" data-id="60" href="60.html">60 · 图形化配置 Kit：打开本地课程并构建运行</a><a class="chapter" data-id="61" href="61.html">61 · 新建 Widgets 工程：用向导创建自己的练习窗口</a><a class="chapter" data-id="62" href="62.html">62 · Designer 拖拽入门：控件、属性与 objectName</a><a class="chapter" data-id="63" href="63.html">63 · Designer 布局实操：嵌套、拉伸、Tab 与伙伴关系</a><a class="chapter" data-id="64" href="64.html">64 · 图形化连接信号槽：拖线、转到槽与显式 connect</a><a class="chapter" data-id="65" href="65.html">65 · Qt Creator 调试操作：断点、变量、调用栈和条件</a><a class="chapter" data-id="66" href="66.html">66 · Qt Creator 综合操作：运行设置、故障排查与交付</a></section><p id="search-status" role="status" aria-live="polite"></p></nav><main id="content"><p class="reading-position">七 · Qt 与 OpenGL、Vulkan 图形集成 · 推荐路线 51 / 67</p><h1 id="50-qt-opengl">50 · Qt 与 OpenGL：上下文、控件及完整生命周期</h1>
+<p><strong>前置</strong>：第 08、26、49 章。<strong>目标</strong>：运行 <code>17_opengl</code>，理解初始化、绘制和清理分别发生在哪个阶段。</p>
+<h2 id="_1">一、选择正确的入口类</h2>
+<p>QOpenGLWidget 是 QWidget，可以加入布局，与按钮、表格一起使用；它把内容渲染到内部 framebuffer，再参与 Widgets 合成。QOpenGLWindow 是 QWindow 路线，适合独立渲染窗口；把它放到 Widgets 需要容器并理解原生窗口约束。初学时不要同时混合两种生命周期。</p>
+<p>本例继承 QOpenGLWidget，同时 protected 继承 QOpenGLFunctions_3_3_Core。前者提供窗口与回调，后者提供 OpenGL 3.3 Core 函数入口。函数包装器并不自己创建上下文，也不保证当前机器有相应显卡能力。</p>
+<h2 id="_2">二、格式必须先于上下文创建</h2>
+<p>在 QApplication 之前创建 QSurfaceFormat，调用 setVersion(3,3)、setProfile(CoreProfile)，最后 setDefaultFormat。它提出默认请求，不是把旧驱动升级成 3.3；初始化后仍应查看 context 的实际 format。请求失败要反馈，不能继续调用不可用的函数入口。</p>
+<table>
+<thead>
+<tr>
+<th>函数</th>
+<th>参数与返回值</th>
+<th>实际影响</th>
+<th>易错点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>setRenderableType(OpenGL)</td>
+<td>枚举，返回 void</td>
+<td>请求桌面 OpenGL 路线</td>
+<td>与 OpenGL ES GLSL 语法不能随意混用</td>
+</tr>
+<tr>
+<td>setVersion(3,3)</td>
+<td>主次版本 int</td>
+<td>请求所需能力</td>
+<td>请求不等于支持</td>
+</tr>
+<tr>
+<td>setProfile(CoreProfile)</td>
+<td>profile 枚举</td>
+<td>选择现代核心配置</td>
+<td>不再依赖旧固定管线</td>
+</tr>
+<tr>
+<td>setDepthBufferSize(24)</td>
+<td>位数 int</td>
+<td>请求深度附件</td>
+<td>请求深度不等于已启用 GL_DEPTH_TEST</td>
+</tr>
+<tr>
+<td>setDefaultFormat(format)</td>
+<td>格式对象</td>
+<td>影响之后创建的上下文</td>
+<td>控件已创建后再改通常太晚</td>
+</tr>
+</tbody>
+</table>
+<h2 id="qt">三、Qt 在什么时机调用你</h2>
+<p>构造函数只创建普通 C++ 状态。控件首次需要显示时，Qt 建立渲染环境，再调用 initializeGL；窗口大小变化时调用 resizeGL；需要重绘时调用 paintGL。不要在构造函数直接创建 GPU buffer，因为那时没有保证可用的当前上下文。</p>
+<p>initializeGL 中先 initializeOpenGLFunctions，检查 bool，再编译 program、建立 VAO/VBO。它通常不是每帧运行，但上下文被重建时可能重新进入，所以不能把“一生只初始化一次”当作所有平台的保证。</p>
+<p>resizeGL 适合更新投影等尺寸相关状态。QOpenGLWidget 已管理其默认 framebuffer 和基本 viewport；手动离屏渲染后恢复自己的 viewport 时，应按实际目标像素尺寸设置，而不是盲目用逻辑 width/height。</p>
+<p>paintGL 只做本帧工作：清除、绑定已建立资源、更新必要 uniform、绘制。不要每帧重新编译 shader、重新创建全部 buffer 或阻塞等待网络。</p>
+<h2 id="_3">四、请求重绘与立即执行不同</h2>
+<p>普通槽函数里改变 angle_ 后调用 update()，让 Qt 稍后调度 paintGL。不要把鼠标事件当作有当前 GL 上下文的地方直接 glDrawArrays，也不要自己在 paintGL 末尾递归调用 paintGL。</p>
+<p>makeCurrent() 在需要的回调之外把控件上下文设为当前；doneCurrent() 释放当前绑定。二者不等于创建或销毁上下文。若程序涉及多个控件或线程，不能认为“之前某处设过当前”现在还有效。</p>
+<h2 id="_4">五、资源清理要早于基类销毁</h2>
+<p>本例析构函数显式 cleanup，并连接 context 的 aboutToBeDestroyed。cleanup 先 makeCurrent，再 destroy VAO、VBO 和 program，最后 doneCurrent。之所以不只依赖 C++ 成员析构，是因为成员销毁时必须仍有正确 GL 环境。</p>
+<p>清理函数应允许多次调用；资源 handle 已清空时不重复使用。上下文意外丢失时，旧 GPU handle 不能当作新上下文资源继续画，应按重建路径重新建立。复杂应用还要处理共享上下文与线程归属，本例保持 GUI 单线程。</p>
+<h2 id="_5">六、运行与定位失败</h2>
+<p>执行根目录 build.cmd，随后 <code>scripts\run.cmd 17_opengl</code>。自检用 <code>scripts\run.cmd 17_opengl --self-test</code>，它检查初始化、shader/buffer 建立，并读取中心和角落像素确认不是纯背景。需要正常 Windows 图形会话，不放入 offscreen 启动检查中假装测过 GPU。</p>
+<p>无法建立上下文先检查驱动和实际版本；shader 失败读 program.log；纯背景再检查第 51 章的属性布局。不要把复制 Qt DLL 或反复调高版本号当作通用解决方案。</p>
+<p><a href="../examples/17_opengl/main.cpp">示例源码</a></p>
+<h2 id="_6">配套完整源码</h2>
+<p>在根工程构建本章目标：<code>17_opengl</code>。Vulkan 需先启用可选构建。</p>
+<h3 id="maincpp">main.cpp</h3>
+<pre><code class="language-cpp">#include &lt;QtWidgets&gt;
+#include &lt;QOpenGLWidget&gt;
+#include &lt;QOpenGLFunctions_3_3_Core&gt;
+#include &lt;QOpenGLShaderProgram&gt;
+#include &lt;QOpenGLBuffer&gt;
+#include &lt;QOpenGLVertexArrayObject&gt;
+#include &lt;QSurfaceFormat&gt;
+#include &lt;memory&gt;
+
+class Triangle final : public QOpenGLWidget, protected QOpenGLFunctions_3_3_Core {
+public:
+    explicit Triangle(QWidget *parent = nullptr) : QOpenGLWidget(parent) {}
+    ~Triangle() override { QObject::disconnect(cleanupConnection_); cleanup(); }
+    bool ready() const { return ready_; }
+    QString error() const { return error_; }
+protected:
+    void initializeGL() override {
+        functionsReady_ = initializeOpenGLFunctions();
+        if (!functionsReady_) { error_ = &quot;OpenGL 3.3 Core unavailable&quot;; return; }
+        cleanupConnection_ = connect(context(), &amp;QOpenGLContext::aboutToBeDestroyed, this, [this] { cleanup(); }, Qt::DirectConnection);
+        program_ = std::make_unique&lt;QOpenGLShaderProgram&gt;();
+        const char *vertex = R&quot;(#version 330 core
+layout(location=0) in vec2 position;
+layout(location=1) in vec3 color;
+out vec3 vertexColor;
+void main() { gl_Position=vec4(position,0.0,1.0); vertexColor=color; }
+)&quot;;
+        const char *fragment = R&quot;(#version 330 core
+in vec3 vertexColor;
+out vec4 fragmentColor;
+void main() { fragmentColor=vec4(vertexColor,1.0); }
+)&quot;;
+        if (!program_-&gt;addShaderFromSourceCode(QOpenGLShader::Vertex, vertex)
+            || !program_-&gt;addShaderFromSourceCode(QOpenGLShader::Fragment, fragment)
+            || !program_-&gt;link()) { error_ = program_-&gt;log(); return; }
+        const float vertices[] = {
+            -0.7f,-0.6f, 1.f,0.f,0.f,
+             0.7f,-0.6f, 0.f,1.f,0.f,
+             0.0f, 0.7f, 0.f,0.f,1.f
+        };
+        if (!vao_.create() || !vbo_.create()) { error_ = &quot;VAO/VBO creation failed&quot;; return; }
+        QOpenGLVertexArrayObject::Binder binding(&amp;vao_);
+        if (!vbo_.bind() || !program_-&gt;bind()) { error_ = &quot;GPU resource bind failed&quot;; return; }
+        vbo_.setUsagePattern(QOpenGLBuffer::StaticDraw);
+        vbo_.allocate(vertices, sizeof(vertices));
+        program_-&gt;enableAttributeArray(0);
+        program_-&gt;setAttributeBuffer(0, GL_FLOAT, 0, 2, 5 * sizeof(float));
+        program_-&gt;enableAttributeArray(1);
+        program_-&gt;setAttributeBuffer(1, GL_FLOAT, 2 * sizeof(float), 3, 5 * sizeof(float));
+        vbo_.release(); program_-&gt;release();
+        ready_ = true;
+    }
+    void resizeGL(int, int) override {
+        // QOpenGLWidget 已维护 framebuffer 和 viewport；矩阵扩展在教程中讲解。
+    }
+    void paintGL() override {
+        if (!isValid() || !functionsReady_) return;
+        glClearColor(0.06f, 0.10f, 0.16f, 1.f);
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+        if (!ready_) return;
+        program_-&gt;bind();
+        QOpenGLVertexArrayObject::Binder binding(&amp;vao_);
+        glDrawArrays(GL_TRIANGLES, 0, 3);
+        program_-&gt;release();
+    }
+private:
+    void cleanup() {
+        if (!context() || !context()-&gt;isValid()) return;
+        makeCurrent();
+        ready_ = false;
+        vao_.destroy(); vbo_.destroy(); program_.reset();
+        doneCurrent();
+    }
+    QOpenGLBuffer vbo_{QOpenGLBuffer::VertexBuffer};
+    QOpenGLVertexArrayObject vao_;
+    std::unique_ptr&lt;QOpenGLShaderProgram&gt; program_;
+    bool ready_ = false;
+    bool functionsReady_ = false;
+    QMetaObject::Connection cleanupConnection_;
+    QString error_;
+};
+
+int main(int argc, char **argv) {
+    QSurfaceFormat format;
+    format.setRenderableType(QSurfaceFormat::OpenGL);
+    format.setVersion(3, 3);
+    format.setProfile(QSurfaceFormat::CoreProfile);
+    format.setDepthBufferSize(24);
+    QSurfaceFormat::setDefaultFormat(format);
+    QApplication app(argc, argv);
+    Triangle window;
+    window.setWindowTitle(QStringLiteral(&quot;示例 17 · OpenGL 彩色三角形&quot;));
+    window.resize(640, 480); window.show();
+    if (app.arguments().contains(&quot;--self-test&quot;)) {
+        QTimer::singleShot(1500, &amp;window, [&amp;] {
+            if (!window.ready()) { qCritical() &lt;&lt; window.error(); app.exit(1); return; }
+            const QImage image = window.grabFramebuffer();
+            if (image.isNull()) { app.exit(2); return; }
+            const auto center = image.pixelColor(image.width()/2, image.height()/2);
+            const auto corner = image.pixelColor(4,4);
+            if (center == corner) { qCritical() &lt;&lt; &quot;Triangle pixels missing&quot;; app.exit(3); return; }
+            qInfo() &lt;&lt; &quot;PASS OpenGL context, shaders, buffer, draw and pixel readback&quot;;
+            app.exit(0);
+        });
+    }
+    return app.exec();
+}
+</code></pre>
+<p><a href="index.html">返回目录</a></p><div class="pager" aria-label="推荐学习顺序"><a href="49.html">← 上一课</a><a href="51.html">下一课 →</a></div></main></div><script src="search.js"></script></body></html>

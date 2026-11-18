@@ -1,0 +1,122 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>62 · Designer 拖拽入门：控件、属性与 objectName · Qt 6 中文教程</title><link rel="stylesheet" href="style.css"></head><body><a class="skip-link" href="#content">跳到正文</a><header><div class="tag">C++ · QT 6 · 从入门到项目</div><h1>Qt 6 中文学习手册</h1><p>67 章分阶段学习 / 18 个源码示例 / 21 个逐步实验 / 离线可读</p></header><div class="shell"><nav aria-label="课程导航"><input id="search" type="search" placeholder="搜索章节与正文" aria-label="搜索章节与正文"><p><a href="index.html">课程首页与推荐路线</a><a href="workbook.html">21 个逐步实操实验</a><a href="api.html">函数详解手册</a><a href="references.html">官方参考资料</a></p><section class="nav-stage"><h2>一 · 零基础与开发工具</h2><a class="chapter" data-id="00" href="00.html">00 · 学习地图：从零到独立开发</a><a class="chapter" data-id="01" href="01.html">01 · 零基础预备课：读懂一小段 C++</a><a class="chapter" data-id="02" href="02.html">02 · 开发工具入门：Kit、断点与第一次修改</a><a class="chapter" data-id="03" href="03.html">03 · 安装与环境：项目内的 Qt 6</a><a class="chapter" data-id="04" href="04.html">04 · C++ 补课一：值、引用、指针和生命周期</a><a class="chapter" data-id="05" href="05.html">05 · C++ 补课二：类、继承、lambda 和工程拆分</a><a class="chapter" data-id="06" href="06.html">06 · CMake：从源码到程序</a><a class="chapter" data-id="07" href="07.html">07 · 第一个窗口与事件循环</a></section><section class="nav-stage"><h2>二 · 对象、控件与交互</h2><a class="chapter" data-id="08" href="08.html">08 · QObject、元对象与父子所有权</a><a class="chapter" data-id="09" href="09.html">09 · 信号与槽：把行为连接起来</a><a class="chapter" data-id="10" href="10.html">10 · 布局管理：让界面适应窗口</a><a class="chapter" data-id="11" href="11.html">11 · 常用控件详解：选择、输入与状态同步</a><a class="chapter" data-id="12" href="12.html">12 · 表单、输入验证和对话框</a><a class="chapter" data-id="13" href="13.html">13 · 多窗口与对话框：确认、取消和对象寿命</a><a class="chapter" data-id="14" href="14.html">14 · 主窗口、菜单、工具栏和快捷键</a><a class="chapter" data-id="15" href="15.html">15 · Qt Designer：可视化设计和 ui 文件</a><a class="chapter" data-id="16" href="16.html">16 · QString、容器、日期和字符编码</a><a class="chapter" data-id="17" href="17.html">17 · QSettings 与应用路径：记住用户的选择</a></section><section class="nav-stage"><h2>三 · 文件、数据与界面机制</h2><a class="chapter" data-id="18" href="18.html">18 · 文件、路径与可靠保存</a><a class="chapter" data-id="19" href="19.html">19 · JSON、配置与数据格式演进</a><a class="chapter" data-id="20" href="20.html">20 · 资源系统、QSS 与界面风格</a><a class="chapter" data-id="21" href="21.html">21 · Model/View：列表与表格的核心</a><a class="chapter" data-id="22" href="22.html">22 · 代理模型、选择、委托与分页</a><a class="chapter" data-id="23" href="23.html">23 · 模型进阶：角色、编辑委托与正确通知</a><a class="chapter" data-id="24" href="24.html">24 · 事件系统、定时器和自定义控件</a><a class="chapter" data-id="25" href="25.html">25 · 事件过滤、焦点与键盘：保留正常交互</a><a class="chapter" data-id="26" href="26.html">26 · QPainter：坐标、抗锯齿和仪表盘</a></section><section class="nav-stage"><h2>四 · 异步、通信与数据库</h2><a class="chapter" data-id="27" href="27.html">27 · 多线程：后台任务、取消和退出</a><a class="chapter" data-id="28" href="28.html">28 · 异步任务设计：状态、取消和过期结果</a><a class="chapter" data-id="29" href="29.html">29 · HTTP 网络：异步、超时和错误分层</a><a class="chapter" data-id="30" href="30.html">30 · TCP 实战：连接、拆包和有限缓冲</a><a class="chapter" data-id="31" href="31.html">31 · SQLite：连接、SQL、绑定和事务</a><a class="chapter" data-id="32" href="32.html">32 · SQLite 进阶：事务、迁移与分页</a></section><section class="nav-stage"><h2>五 · QML 与 C++ 协作</h2><a class="chapter" data-id="33" href="33.html">33 · Qt Quick 与 QML：声明式界面</a><a class="chapter" data-id="34" href="34.html">34 · C++ 与 QML：属性、通知和类型注册</a><a class="chapter" data-id="35" href="35.html">35 · QML 进阶入门：组件、绑定与页面状态</a></section><section class="nav-stage"><h2>六 · 测试、工程与综合项目</h2><a class="chapter" data-id="36" href="36.html">36 · 自动测试：Qt Test、信号和临时数据库</a><a class="chapter" data-id="37" href="37.html">37 · 测试进阶：从规则到真实交互</a><a class="chapter" data-id="38" href="38.html">38 · 调试与故障排查：从第一条错误开始</a><a class="chapter" data-id="39" href="39.html">39 · 性能与内存：先测量，再优化</a><a class="chapter" data-id="40" href="40.html">40 · Windows 部署：让程序离开开发机</a><a class="chapter" data-id="41" href="41.html">41 · 进阶发布：日志、翻译与可交付检查</a><a class="chapter" data-id="42" href="42.html">42 · 综合项目 TaskDesk：需求、架构和数据流</a><a class="chapter" data-id="43" href="43.html">43 · 项目拆分：让窗口不再承担全部业务</a><a class="chapter" data-id="44" href="44.html">44 · 综合项目 TaskDesk：分阶段扩展作业</a><a class="chapter" data-id="45" href="45.html">45 · 工程习惯、GitHub 准备和协作</a><a class="chapter" data-id="46" href="46.html">46 · 进阶选修：串口、TCP、音视频与国际化</a><a class="chapter" data-id="47" href="47.html">47 · 练习参考答案与最终验收清单</a><a class="chapter" data-id="48" href="48.html">48 · 新手答疑、术语表与阶段自测</a></section><section class="nav-stage"><h2>七 · Qt 与 OpenGL、Vulkan 图形集成</h2><a class="chapter" data-id="49" href="49.html">49 · 图形预备课：CPU、GPU、坐标与一帧的形成</a><a class="chapter" data-id="50" href="50.html">50 · Qt 与 OpenGL：上下文、控件及完整生命周期</a><a class="chapter" data-id="51" href="51.html">51 · OpenGL 三角形逐行讲解：着色器、VAO 与 VBO</a><a class="chapter" data-id="52" href="52.html">52 · OpenGL 扩展实操：矩阵、相机、纹理与深度</a><a class="chapter" data-id="53" href="53.html">53 · OpenGL 工程化：交互、离屏渲染、调试与清理</a><a class="chapter" data-id="54" href="54.html">54 · Qt 与 Vulkan 环境：头文件、Loader、驱动与实例</a><a class="chapter" data-id="55" href="55.html">55 · QVulkanWindow 完整清屏：回调、命令与 Qt 的责任</a><a class="chapter" data-id="56" href="56.html">56 · Vulkan 三角形进阶：shader、buffer 与图形管线</a><a class="chapter" data-id="57" href="57.html">57 · Vulkan 同步与资源更新：帧槽、描述符和图像布局</a><a class="chapter" data-id="58" href="58.html">58 · Qt 图形集成实战路线：嵌入、选型、性能与发布</a></section><section class="nav-stage"><h2>八 · Qt Creator 图形化操作实训</h2><a class="chapter" data-id="59" href="59.html">59 · Qt Creator 图形操作入门：认识界面与学习路线</a><a class="chapter" data-id="60" href="60.html">60 · 图形化配置 Kit：打开本地课程并构建运行</a><a class="chapter" data-id="61" href="61.html">61 · 新建 Widgets 工程：用向导创建自己的练习窗口</a><a class="chapter active" data-id="62" href="62.html" aria-current="page">62 · Designer 拖拽入门：控件、属性与 objectName</a><a class="chapter" data-id="63" href="63.html">63 · Designer 布局实操：嵌套、拉伸、Tab 与伙伴关系</a><a class="chapter" data-id="64" href="64.html">64 · 图形化连接信号槽：拖线、转到槽与显式 connect</a><a class="chapter" data-id="65" href="65.html">65 · Qt Creator 调试操作：断点、变量、调用栈和条件</a><a class="chapter" data-id="66" href="66.html">66 · Qt Creator 综合操作：运行设置、故障排查与交付</a></section><p id="search-status" role="status" aria-live="polite"></p></nav><main id="content"><p class="reading-position">八 · Qt Creator 图形化操作实训 · 推荐路线 63 / 67</p><h1 id="62-designer-objectname">62 · Designer 拖拽入门：控件、属性与 objectName</h1>
+<h2 id="_1">一、进入表单设计界面</h2>
+<p>在第 61 章工程中双击 profilewidget.ui。通常自动进入 Design/设计模式。若看到 XML，检查是否使用了文本编辑器打开；通过文件的 Open With/打开方式选择合适的表单编辑器。不要因为暂时看不到画布就把 .ui 改名为 .cpp。</p>
+<p>Designer 中至少认识四块：Widget Box/控件箱、中央画布、Object Inspector/对象查看器、Property Editor/属性编辑器。属性面板总是在编辑当前选中的对象；先看 objectName 或对象树选择，再改值。</p>
+<h2 id="_2">二、按表格放入控件</h2>
+<p>先把以下控件拖到画布，暂时只需大致分区；下一章用布局规范尺寸。选择 QLabel 时可从控件箱搜索，也可在相应类别中拖出。</p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>objectName</th>
+<th>text 或初始值</th>
+<th>关键属性</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>QLabel</td>
+<td>nameLabel</td>
+<td>姓名</td>
+<td>buddy 后续指向 nameEdit</td>
+</tr>
+<tr>
+<td>QLineEdit</td>
+<td>nameEdit</td>
+<td>保持输入内容为空</td>
+<td>placeholderText=请输入姓名，maxLength=40</td>
+</tr>
+<tr>
+<td>QLabel</td>
+<td>minutesLabel</td>
+<td>每天分钟数</td>
+<td>buddy 指向 minutesSpin</td>
+</tr>
+<tr>
+<td>QSpinBox</td>
+<td>minutesSpin</td>
+<td>value=30</td>
+<td>minimum=5，maximum=120</td>
+</tr>
+<tr>
+<td>QCheckBox</td>
+<td>agreeCheck</td>
+<td>确认学习计划</td>
+<td>checked=false</td>
+</tr>
+<tr>
+<td>QPushButton</td>
+<td>submitButton</td>
+<td>生成计划</td>
+<td>不设置 checkable</td>
+</tr>
+<tr>
+<td>QPushButton</td>
+<td>clearButton</td>
+<td>清空文字</td>
+<td>后面连接 clear 槽</td>
+</tr>
+<tr>
+<td>QLabel</td>
+<td>resultLabel</td>
+<td>等待提交</td>
+<td>wordWrap=true</td>
+</tr>
+</tbody>
+</table>
+<p>objectName 要在英文状态输入，不加空格。显示文字可以是中文，代码里访问的是 ui-&gt;nameEdit，而不是 ui-&gt;请输入姓名。修改 objectName 后，旧 C++ 名称不会自动保证全部同步；构建前检查引用。</p>
+<h2 id="_3">三、怎样修改属性而不选错对象</h2>
+<ol>
+<li>点击画布中的输入框；若重叠或很小，在对象树直接选 nameEdit。</li>
+<li>在属性面板确认当前对象为 QLineEdit/nameEdit。</li>
+<li>搜索 placeholderText，填提示文字，再搜索 maxLength 填 40。</li>
+<li>点击空白背景或对象树顶层，才能修改整个表单的 windowTitle。</li>
+<li>如果改错，用撤销恢复；不要通过删除整个表单来解决一个属性错误。</li>
+</ol>
+<p>text 与 placeholderText 不同：前者是实际输入，后者只在内容为空时提示。QLabel 的 text 是显示内容，QSpinBox 的 value 是数值；不能对所有控件都找同一个“文字”属性。</p>
+<h2 id="_4">四、预览和真实运行各验证什么</h2>
+<p>使用 Form/表单的 Preview/预览，部分版本入口可能在设计菜单。预览检查样式、排版和部分 .ui 连接，不会执行你在 ProfileWidget.cpp 中编写的业务处理。自定义按钮逻辑必须保存并构建真实程序验证。</p>
+<p>现在先预览一次，确认姓名框可输入、分钟范围限制正确、结果标签能换行。关闭预览后保存 .ui。不要把运行窗口的改动当作 Designer 源文件已经修改，两者是独立状态。</p>
+<h2 id="_5">五、操作验收</h2>
+<p>逐个在对象树点选并读出类型、名称与关键属性。故意把 placeholderText 改成 text，预览比较，再恢复。确认顶层对象只有预期窗口，按钮没有意外嵌套到某个错误父控件中。</p>
+<p>下一章会解决缩放后重叠问题；本章不要求通过手工拖坐标获得最终布局。</p>
+<p>参考：<a href="https://doc.qt.io/qtcreator/creator-using-qt-designer.html">Creator 中设计 Widgets</a>、<a href="https://doc.qt.io/qt-6.8/qtdesigner-manual.html">Designer 手册</a>。</p>
+<h2 id="_6">配图逐项讲解</h2>
+<p>真实截图保持原始内容；图旁说明区分“当前默认状态”“课程目标值”和“故障反例”。示意图用于讲解关系，不代表已经完成的本机操作。可通过每幅图下的原图链接放大查看。</p>
+<h3 id="62-1-designer">图 62-1 · Designer 全景：四块区域协同工作</h3>
+<p><strong>本机真实界面截图 · Qt Creator 20.0.2</strong></p>
+<p><img alt="Designer 全景：四块区域协同工作" src="../assets/creator/designer-overview.jpg" /></p>
+<p><a href="../assets/creator/designer-overview.jpg">打开原图查看细节</a></p>
+<ul>
+<li><strong>看哪里</strong>：左侧控件箱、中央表单、右上对象树、右下属性面板同时可见。</li>
+<li><strong>怎样操作</strong>：先在对象树或画布选中对象，再修改属性；左侧设计模式表明正在操作 .ui。</li>
+<li><strong>结果与检查</strong>：下方 Action 编辑器不等于按钮 clicked 的业务实现，不要把不同编辑面板混淆。</li>
+</ul>
+<h3 id="62-2-lineedit">图 62-2 · 对象与属性：先确认选中了 lineEdit</h3>
+<p><strong>本机真实界面截图 · Qt Creator 20.0.2</strong></p>
+<p><img alt="对象与属性：先确认选中了 lineEdit" src="../assets/creator/designer-properties.jpg" /></p>
+<p><a href="../assets/creator/designer-properties.jpg">打开原图查看细节</a></p>
+<ul>
+<li><strong>看哪里</strong>：对象树高亮 lineEdit，属性面板标题显示 lineEdit: QLineEdit。</li>
+<li><strong>怎样操作</strong>：修改 objectName、placeholderText 等时先检查这里的类型与名称，必要时用属性过滤框查找。</li>
+<li><strong>结果与检查</strong>：属性改在目标输入框上，而不是误改顶层 Form 或旁边的 label。</li>
+</ul>
+<h3 id="62-3">图 62-3 · 控件类型不同，要修改的属性也不同</h3>
+<p><strong>教学示意图 · 非实机截图</strong></p>
+<p><img alt="控件类型不同，要修改的属性也不同" src="../assets/creator/control-properties.svg" /></p>
+<p><a href="../assets/creator/control-properties.svg">打开原图查看细节</a></p>
+<ul>
+<li><strong>看哪里</strong>：按图中 1、2、3 的关系理解该功能。</li>
+<li><strong>怎样操作</strong>：placeholderText 提示；text 才是输入；minimum=5 / maximum=120 / value=30；text=等待提交；wordWrap=true。</li>
+<li><strong>结果与检查</strong>：先看对象树中选中了谁，再看属性编辑器的类型与名称。</li>
+</ul>
+<h3 id="62-4">图 62-4 · 预览与真实运行：检查范围不同</h3>
+<p><strong>教学示意图 · 非实机截图</strong></p>
+<p><img alt="预览与真实运行：检查范围不同" src="../assets/creator/preview-versus-run.svg" /></p>
+<p><a href="../assets/creator/preview-versus-run.svg">打开原图查看细节</a></p>
+<ul>
+<li><strong>看哪里</strong>：按图中 1、2、3 的关系理解该功能。</li>
+<li><strong>怎样操作</strong>：可观察部分保存在 .ui 的直接连接；自己的 .cpp 业务代码参与编译；空输入、未确认、有效提交都要测试。</li>
+<li><strong>结果与检查</strong>：预览正常不证明 C++ 提交逻辑已经执行，也不代表数据库功能完成。</li>
+</ul>
+<p><a href="index.html">返回目录</a></p><div class="pager" aria-label="推荐学习顺序"><a href="61.html">← 上一课</a><a href="63.html">下一课 →</a></div></main></div><script src="search.js"></script></body></html>
